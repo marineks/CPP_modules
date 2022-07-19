@@ -24,7 +24,7 @@ IFLAGS := -I includes
 #########################################
 #			FILES PATH					#
 #########################################
-INC_PATH = PhoneBook.hpp
+INC_PATH = PhoneBook.hpp Contact.hpp
 #########################################
 #			SOURCES	FILES				#
 #########################################
