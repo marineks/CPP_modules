@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   add.cpp                                            :+:      :+:    :+:   */
+/*   00_add.cpp                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: msanjuan <msanjuan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/19 18:34:15 by msanjuan          #+#    #+#             */
-/*   Updated: 2022/07/19 21:27:29 by msanjuan         ###   ########.fr       */
+/*   Updated: 2022/07/19 21:56:10 by msanjuan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,14 +103,14 @@ void	askForSecret(Contact *contact)
 {
 	std::string	secret;
 	std::cout << BLUE << "📜 And last but not least... Your darkest secret, please!" << RESET << std::endl;
-	std::getline(std::cin, secret)
+	std::getline(std::cin, secret);
 	
 	while (secret.empty())
 	{
 		std::cout << BLUE << "📜 Please don't worry, this is a safe place here... for your secrets 🧙‍♂️" << RESET << std::endl;
 		std::getline(std::cin, secret);
 	}
-	contact->setDarkestSecret(secret)
+	contact->setDarkestSecret(secret);
 }
 
 int	addContact(Contact *contact)

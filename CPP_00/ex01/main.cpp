@@ -6,7 +6,7 @@
 /*   By: msanjuan <msanjuan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/15 11:37:37 by msanjuan          #+#    #+#             */
-/*   Updated: 2022/07/19 20:15:58 by msanjuan         ###   ########.fr       */
+/*   Updated: 2022/07/19 22:23:52 by msanjuan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,23 +27,19 @@
 # define CYAN "\033[0;36m"
 # define WHITE "\033[0;37m"
 
-int	addContact(Contact *contact);
+int		addContact(Contact *contact);
+void	searchContact(PhoneBook *phonebook, int contact_count);
 
 
 // TODO: gerer les controle D
 // FIXME: quand qqch est faux (mettre des chars dans un int), ca boucle sans fin
-
+// TODO: tester quand y a plus de 8 contacts
 int	main(int argc, char **argv)
 {
-	std::string	add ("ADD");
-	std::string search ("SEARCH");
-	std::string	exit ("EXIT");
-		
 	if (argc == 1)
 	{
-		// INSTANCIATION DE LA CLASSE PHONEBOOK
 		PhoneBook instance;
-		int	contact_count = 1;
+		int	contact_count = 0;
 		
 		while (1)
 		{
@@ -58,29 +54,22 @@ int	main(int argc, char **argv)
 					Contact c_instance;
 					instance.contacts[contact_count] = c_instance;
 					std::cout << "Nouvelle instance (num" << contact_count << ") de la classe contact" << std::endl;
-					// std::cout << "Non function member: " << c_instance.getContactNb() << std::endl;
 					addContact(&instance.contacts[contact_count]);
-					// std::cout << "First name registered: " << instance.contacts[contact_count].getFirstName() << std::endl;
-					// std::cout << "Last name registered: " << instance.contacts[contact_count].getLastName() << std::endl;
-					// std::cout << "Nickname registered: " << instance.contacts[contact_count].getNickname() << std::endl;
-					// std::cout << "Phonenumber registered: " << instance.contacts[contact_count].getPhoneNumber() << std::endl;
-					// std::cout << "Darkest secret registered: " << instance.contacts[contact_count].getDarkestSecret() << std::endl;
 					contact_count++;
 				}
-				else
+				else if (contact_count == 8)
 				{
 					std::cout << "Je dois remplacer le contact le plus ancien" << std::endl;
+					contact_count = 0;
 				}
-				 // instance detruite hors du scope d'une fonction
 			}
 			else if (input == "SEARCH")
-				std::cout << "Je suis tombée sur search" << std::endl;
-			else if (input == "EXIT")
 			{
-				std::cout << "Je suis tombée sur exit" << std::endl;
-				break ;
+				searchContact(&instance, contact_count);
 			}
-			// std::cout << "dans main  " << instance.contacts->getContactNb() << std::endl;
+				
+			else if (input == "EXIT")
+				break ;
 		}
 	}
 	else

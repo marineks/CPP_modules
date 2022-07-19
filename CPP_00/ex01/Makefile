@@ -31,7 +31,8 @@ INC_PATH = PhoneBook.hpp Contact.hpp
 SRCS = PhoneBook.cpp					\
 		Contact.cpp						\
 		main.cpp						\
-		add.cpp							\
+		00_add.cpp						\
+		01_search.cpp					\
 
 #########################################
 #            OBJECT FILES    	        #
