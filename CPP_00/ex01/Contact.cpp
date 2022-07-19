@@ -6,7 +6,7 @@
 /*   By: msanjuan <msanjuan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/15 11:47:27 by msanjuan          #+#    #+#             */
-/*   Updated: 2022/07/19 18:02:11 by msanjuan         ###   ########.fr       */
+/*   Updated: 2022/07/19 21:07:58 by msanjuan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,46 +38,36 @@ Contact::~Contact (void)
 *********************************************************/
 void	Contact::setFirstName(std::string str)
 {
-	// if (str == NULL)
-	// 	std::cout << "Please type your firstname." << std::endl;
-	// else
-		this->_firstName = str;
+	this->_firstName = str;
 	return ;
 }
 
 void	Contact::setLastName(std::string str)
 {
-	// if (str == NULL)
-	// 	std::cout << "Please type your lastname." << std::endl;
-	// else
-		this->_lastName = str;
+	this->_lastName = str;
 	return ;
 }
 
 void	Contact::setNickname(std::string str)
 {
-	// if (str == NULL)
-	// 	std::cout << "Please type your nickname." << std::endl;
-	// else
-		this->_nickname = str;
+	this->_nickname = str;
 	return ;
 }
 
-void	Contact::setPhoneNumber(int number)
+int		Contact::setPhoneNumber(int number)
 {
-	if (number > 0)
-		this->_phoneNumber = number;
+	if (number <= 0)
+		return (-1);
 	else
-		std::cout << "Invalid phone number. Try again!" << std::endl;
-	return ;
+	{
+		this->_phoneNumber = number;
+		return (0);
+	}
 }
 
 void	Contact::setDarkestSecret(std::string str)
 {
-	// if (str == NULL || *str == '\n')
-	// 	std::cout << "Don't be shy! It's a safe place here." << std::endl;
-	// else
-		this->_darkestSecret = str;
+	this->_darkestSecret = str;
 	return ;
 }
 

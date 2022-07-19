@@ -6,7 +6,7 @@
 /*   By: msanjuan <msanjuan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/15 11:37:37 by msanjuan          #+#    #+#             */
-/*   Updated: 2022/07/19 18:19:39 by msanjuan         ###   ########.fr       */
+/*   Updated: 2022/07/19 20:15:58 by msanjuan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,48 +27,11 @@
 # define CYAN "\033[0;36m"
 # define WHITE "\033[0;37m"
 
+int	addContact(Contact *contact);
+
+
 // TODO: gerer les controle D
-// BUG: quand qqch est faux (mettre des chars dans un int), ca boucle sans fin
-int	addContact(Contact contact, int contact_count)
-{
-	std::string	firstname;
-	std::string	lastname;
-	std::string	nickname;
-	std::string	secret;
-	int		phonenumber;
-
-	std::cout << BLUE << "📜 Firstname?" << RESET << std::endl;
-	std::getline(std::cin, firstname);
-	std::getline(std::cin, firstname);
-	contact.setFirstName(firstname);
-	std::cout << "First name registered: " << contact.getFirstName() << std::endl;
-
-	std::cout << BLUE << "📜 Perfect. Lastname?" << RESET << std::endl;
-	std::getline(std::cin, lastname);
-	// std::getline(std::cin, lastname);
-	contact.setLastName(lastname);
-	std::cout << "Last name registered: " << contact.getLastName() << std::endl;
-
-	std::cout << BLUE << "📜 May I ask your nickname?" << RESET << std::endl;
-	std::getline(std::cin, nickname);
-	// std::getline(std::cin, nickname);
-	// std::cout << "print " << nickname << std::endl;
-	contact.setNickname(nickname);
-	std::cout << "Nickname registered: " << contact.getNickname() << std::endl;
-
-	std::cout << BLUE << "📜 Okay... No judgement there, pal! Your phone number?" << RESET << std::endl;
-	std::cin >> phonenumber;
-	contact.setPhoneNumber(phonenumber);
-	std::cout << "Phonenumber registered: " << contact.getPhoneNumber() << std::endl;
-
-	std::cout << BLUE << "📜 And last but not least... Your darkest secret, please!" << RESET << std::endl;
-	std::getline(std::cin, secret);
-	std::getline(std::cin, secret);
-	contact.setDarkestSecret(secret);
-	std::cout << "Darkest secret registered: " << contact.getDarkestSecret() << std::endl;
-	
-	return (0);
-}
+// FIXME: quand qqch est faux (mettre des chars dans un int), ca boucle sans fin
 
 int	main(int argc, char **argv)
 {
@@ -88,7 +51,7 @@ int	main(int argc, char **argv)
 			std::cout << YELLOW << "Please enter a command (ADD, SEARCH or EXIT)" << RESET << std::endl;
 			std::cin >> input;
 			
-			if (input.compare(add) == SUCCESS)
+			if (input == "ADD")
 			{
 				if (contact_count < 8)
 				{
@@ -96,19 +59,23 @@ int	main(int argc, char **argv)
 					instance.contacts[contact_count] = c_instance;
 					std::cout << "Nouvelle instance (num" << contact_count << ") de la classe contact" << std::endl;
 					// std::cout << "Non function member: " << c_instance.getContactNb() << std::endl;
-					addContact(instance.contacts[contact_count], contact_count);
+					addContact(&instance.contacts[contact_count]);
+					// std::cout << "First name registered: " << instance.contacts[contact_count].getFirstName() << std::endl;
+					// std::cout << "Last name registered: " << instance.contacts[contact_count].getLastName() << std::endl;
+					// std::cout << "Nickname registered: " << instance.contacts[contact_count].getNickname() << std::endl;
+					// std::cout << "Phonenumber registered: " << instance.contacts[contact_count].getPhoneNumber() << std::endl;
+					// std::cout << "Darkest secret registered: " << instance.contacts[contact_count].getDarkestSecret() << std::endl;
 					contact_count++;
 				}
 				else
 				{
 					std::cout << "Je dois remplacer le contact le plus ancien" << std::endl;
 				}
-			
 				 // instance detruite hors du scope d'une fonction
 			}
-			else if (input.compare(search) == SUCCESS)
+			else if (input == "SEARCH")
 				std::cout << "Je suis tombée sur search" << std::endl;
-			else if (input.compare(exit) == SUCCESS)
+			else if (input == "EXIT")
 			{
 				std::cout << "Je suis tombée sur exit" << std::endl;
 				break ;
