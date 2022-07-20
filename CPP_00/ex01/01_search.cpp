@@ -6,7 +6,7 @@
 /*   By: msanjuan <msanjuan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/19 21:34:36 by msanjuan          #+#    #+#             */
-/*   Updated: 2022/07/19 22:40:06 by msanjuan         ###   ########.fr       */
+/*   Updated: 2022/07/20 11:20:41 by msanjuan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,34 +26,21 @@
 # define CYAN "\033[0;36m"
 # define WHITE "\033[0;37m"
 
-// Affiche les contacts enregistrés sous la forme d’une liste de 4 colonnes : index,
-// first name, last name et nickname.
-
-// Chaque colonne doit faire 10 caractères de long. Elles doivent être séparées
-// par un pipe (’|’). Leur texte est aligné à droite. Si le texte dépasse la largeur
-// de la colonne, il faut le tronquer et remplacer le dernier caractère affiché par
-// un point (’.’).
-
-// Ensuite, le programme demande à l’utilisateur d’entrer l’index du contact à af-
+// "Ensuite, le programme demande à l’utilisateur d’entrer l’index du contact à af-
 // ficher. Si l’index ou son format sont incorrects, gérez cela de manière pertinente.
-// Sinon, affichez les informations du contact, une par ligne
-
-// FIXME: il faut faire index - 1 car pb d'affichage
-void	displayOneContact(PhoneBook *phonebook, int index, int contact_count)
+// Sinon, affichez les informations du contact, une par ligne"
+void	displayOneContact(PhoneBook *phonebook, int index)
 {
-	while (index < 1 || index > 8 || index > contact_count)
-	{
-		std::cout << " The phonebook only contains " << contact_count << " contacts. Please enter a contact between 1 and " << contact_count << "." << std::endl;
-		std::cin >> index;
-	}
-	std::cout << GREEN << "First name: " << RESET << phonebook->contacts[index].getFirstName() << std::endl;
-	std::cout << GREEN << "Last name: " << RESET << phonebook->contacts[index].getLastName() << std::endl;
-	std::cout << GREEN << "Nickname: " << RESET << phonebook->contacts[index].getNickname() << std::endl;
-	std::cout << GREEN << "Phonenumber: " << RESET << phonebook->contacts[index].getPhoneNumber() << std::endl;
-	std::cout << GREEN << "Darkest secret: " << RESET << phonebook->contacts[index].getDarkestSecret() << std::endl;
+	std::cout << GREEN << "Firstname: " << RESET << phonebook->contacts[index - 1].getFirstName() << std::endl;
+	std::cout << GREEN << "Lastname: " << RESET << phonebook->contacts[index - 1].getLastName() << std::endl;
+	std::cout << GREEN << "Nickname: " << RESET << phonebook->contacts[index - 1].getNickname() << std::endl;
+	std::cout << GREEN << "Phone number: " << RESET << phonebook->contacts[index - 1].getPhoneNumber() << std::endl;
+	std::cout << GREEN << "Darkest secret: " << RESET << phonebook->contacts[index - 1].getDarkestSecret() << std::endl;
 	return ;
 }
 
+// "Si le texte dépasse la largeur de la colonne, il faut le tronquer et remplacer 
+// le dernier caractère affiché par un point (’.’)."
 std::string	trunc(std::string info)
 {
 	if (info.length() > 10)
@@ -64,16 +51,26 @@ std::string	trunc(std::string info)
 	return info;
 }
 
+// "Affiche les contacts enregistrés sous la forme d’une liste de 4 colonnes : index,
+// first name, last name et nickname.
+// Chaque colonne doit faire 10 caractères de long. Elles doivent être séparées
+// par un pipe (’|’). Leur texte est aligné à droite."
 void	searchContact(PhoneBook *phonebook, int contact_count)
 {
 	int format;
-
+	
+	std::cout << std::right << BLUE << std::setw(10) << "Index" << " | ";
+	std::cout << std::right << std::setw(10) << "Firstname" << " | ";
+	std::cout << std::right << std::setw(10) << "Lastname" << " | ";
+	std::cout << std::right << std::setw(10) << "Nickname" << std::endl;
+	std::cout << "-------------------------------------------------" << RESET << std::endl;
 	for (int i = 0; i < contact_count; i++)
 	{
 		format = i + 1;
-		std::cout << std::right << std::setw(10) << format << " | ";
-		std::cout << std::right << std::setw(10) << trunc(phonebook->contacts[i].getFirstName()) << " | ";
-		std::cout << std::right << std::setw(10) << trunc(phonebook->contacts[i].getLastName()) << " | ";
+		
+		std::cout << std::right << std::setw(10) << format << BLUE << " | " << RESET;
+		std::cout << std::right << std::setw(10) << trunc(phonebook->contacts[i].getFirstName()) << BLUE << " | " << RESET;
+		std::cout << std::right << std::setw(10) << trunc(phonebook->contacts[i].getLastName()) << BLUE << " | " << RESET;
 		std::cout << std::right << std::setw(10) << trunc(phonebook->contacts[i].getNickname()) << std::endl;
 	}
 	std::cout << std::endl;
@@ -81,5 +78,19 @@ void	searchContact(PhoneBook *phonebook, int contact_count)
 	
 	int	index;
 	std::cin >> index;
-	displayOneContact(phonebook, (index), contact_count);
+	while (std::cin.fail())
+	{ //if type wasn't right
+		std::cin.clear(); //clear stream
+		std::cin.ignore(); //ignore left over data
+		std::cout << BLUE << "Invalid value! An index is a number. Check the table." << RESET << std::endl;
+		std::cin >> index;
+	}
+	while (index < 1 || index > 8 || index > contact_count)
+	{
+		std::cout << BLUE << "The phonebook only contains " << contact_count << " contact(s). Please enter a contact between 1 and " << contact_count << "." << RESET << std::endl;
+		std::cin.clear(); //clear stream
+		std::cin.ignore(); //ignore left over data
+		std::cin >> index;
+	}
+	displayOneContact(phonebook, index);
 }

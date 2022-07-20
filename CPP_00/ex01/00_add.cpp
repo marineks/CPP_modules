@@ -6,7 +6,7 @@
 /*   By: msanjuan <msanjuan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/19 18:34:15 by msanjuan          #+#    #+#             */
-/*   Updated: 2022/07/19 21:56:10 by msanjuan         ###   ########.fr       */
+/*   Updated: 2022/07/20 13:17:02 by msanjuan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,13 @@
 # define CYAN "\033[0;36m"
 # define WHITE "\033[0;37m"
 
-
+	// if (std::cin.eof())
+	// 		exit(0);
+	// 	else if (std::cin.fail())
+	// 	{
+	// 		std::cin.clear();
+	// 		std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+	// 	}
 void	askForFirstname(Contact *contact)
 {
 	std::string	firstname;
@@ -32,10 +38,15 @@ void	askForFirstname(Contact *contact)
 	std::cout << BLUE << "📜 Firstname?" << RESET << std::endl;
 	std::getline(std::cin, firstname);
 	std::getline(std::cin, firstname);
+	if (std::cin.eof() == true)
+			exit(0);
+
 	while (firstname.empty())
 	{
 		std::cout << BLUE << "📜 Didn't hear anything. Firstname?" << RESET << std::endl;
 		std::getline(std::cin, firstname);
+		if (std::cin.eof() == true)
+			exit(0);
 	}
 	contact->setFirstName(firstname);
 	return ;
@@ -47,10 +58,15 @@ void	askForLastname(Contact *contact)
 
 	std::cout << BLUE << "📜 Perfect. Lastname?" << RESET << std::endl;
 	std::getline(std::cin, lastname);
+	if (std::cin.eof() == true)
+			exit(0);
+
 	while (lastname.empty())
 	{
 		std::cout << BLUE << "📜 But surely you must have a lastname! Tell me." << RESET << std::endl;
 		std::getline(std::cin, lastname);
+		if (std::cin.eof() == true)
+			exit(0);
 	}
 	contact->setLastName(lastname);
 	return ;
@@ -60,43 +76,48 @@ void	askForNickname(Contact *contact)
 {
 	std::string	nickname;
 
-	std::cout << BLUE << "📜 May I ask your nickname?" << RESET << std::endl;
+	std::cout << BLUE << "📜 May I ask for your nickname?" << RESET << std::endl;
 	std::getline(std::cin, nickname);
+	if (std::cin.eof() == true)
+			exit(0);
+
 	while (nickname.empty())
 	{
 		std::cout << BLUE << "📜 Don't be shy! Please speak louder." << RESET << std::endl;
 		std::getline(std::cin, nickname);
+		if (std::cin.eof() == true)
+			exit(0);
 	}
 	contact->setNickname(nickname);
 	return ;
 }
 
-// FIXME: lire la doc de std::string pour methode qui regarde s'il y a une lettre dans la str
+// FIXME: quand char, imprime le message d'erreur autant de fois que de chars
 void	askForNumber(Contact *contact)
 {
 	std::string	input;
-	int	phonenumber = 0;
+	int			phonenumber = 0;
 
 	std::cout << BLUE << "📜 Okay... No judgement there, pal! Your phone number?" << RESET << std::endl;
-	std::getline(std::cin, input);
+	std::cin >> phonenumber;
+	if (std::cin.eof() == true)
+			exit(0);
 	
-	while (input.empty() == true)
-	{
-		std::cout << BLUE << "📜 Buddy, this is a phonebook... Now what is your phone number?" << RESET << std::endl;
-		std::getline(std::cin, input);
-	}
-	phonenumber = atoi(input.c_str());
-	std::cout << "res " << phonenumber << std::endl;
-	if (phonenumber <= 0)
-	{
-		std::cout << BLUE << "📜 Buddy, this is a phonebook... Now what is your phone number?" << RESET << std::endl;
-		std::getline(std::cin, input);
+	while (phonenumber <= 0)
+	{ //if type wasn't right
+		if (std::cin.eof() == true)
+			exit(0);
+		if (std::cin.fail() == true)
+		{
+			std::cout << BLUE << "📜 Buddy, this is a phonebook... Now what is your phone number?" << RESET << std::endl;
+			std::cin.clear(); //clear stream
+			std::cin.ignore(); //ignore left over data
+		}
+		else
+			std::cout << BLUE << "📜 Buddy, this is a phonebook... Now what is your phone number?" << RESET << std::endl;
+		std::cin >> phonenumber;
 	}
 	contact->setPhoneNumber(phonenumber);
-	// std::cout << "First name registered: " << contact->getFirstName() << std::endl;
-	// std::cout << "Last name registered: " << contact->getLastName() << std::endl;
-	// std::cout << "Nickname registered: " << contact->getNickname() << std::endl;
-	// std::cout << "Phonenumber registered: " << contact->getPhoneNumber() << std::endl;
 }
 
 void	askForSecret(Contact *contact)
@@ -104,11 +125,16 @@ void	askForSecret(Contact *contact)
 	std::string	secret;
 	std::cout << BLUE << "📜 And last but not least... Your darkest secret, please!" << RESET << std::endl;
 	std::getline(std::cin, secret);
+	std::getline(std::cin, secret);
+	if (std::cin.eof() == true)
+			exit(0);
 	
 	while (secret.empty())
 	{
 		std::cout << BLUE << "📜 Please don't worry, this is a safe place here... for your secrets 🧙‍♂️" << RESET << std::endl;
 		std::getline(std::cin, secret);
+		if (std::cin.eof() == true)
+			exit(0);
 	}
 	contact->setDarkestSecret(secret);
 }

@@ -6,7 +6,7 @@
 /*   By: msanjuan <msanjuan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/15 11:37:37 by msanjuan          #+#    #+#             */
-/*   Updated: 2022/07/19 22:23:52 by msanjuan         ###   ########.fr       */
+/*   Updated: 2022/07/20 13:15:28 by msanjuan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 #include "PhoneBook.hpp"
 
 #define MSG_USAGE "Correct usage is ./PhoneBook"
+#define MSG_COMMAND "Please enter a command (ADD, SEARCH or EXIT)"
 #define SUCCESS 0
 
 # define RESET "\033[0m"
@@ -30,21 +31,18 @@
 int		addContact(Contact *contact);
 void	searchContact(PhoneBook *phonebook, int contact_count);
 
-
-// TODO: gerer les controle D
-// FIXME: quand qqch est faux (mettre des chars dans un int), ca boucle sans fin
-// TODO: tester quand y a plus de 8 contacts
 int	main(int argc, char **argv)
 {
 	if (argc == 1)
 	{
 		PhoneBook instance;
 		int	contact_count = 0;
+		int eldest_contact = 0;
 		
 		while (1)
 		{
 			std::string input;
-			std::cout << YELLOW << "Please enter a command (ADD, SEARCH or EXIT)" << RESET << std::endl;
+			std::cout << YELLOW << MSG_COMMAND << RESET << std::endl;
 			std::cin >> input;
 			
 			if (input == "ADD")
@@ -53,22 +51,21 @@ int	main(int argc, char **argv)
 				{
 					Contact c_instance;
 					instance.contacts[contact_count] = c_instance;
-					std::cout << "Nouvelle instance (num" << contact_count << ") de la classe contact" << std::endl;
+					std::cout << "Instance numero " << contact_count << " de la classe contact" << std::endl;
 					addContact(&instance.contacts[contact_count]);
 					contact_count++;
 				}
 				else if (contact_count == 8)
 				{
-					std::cout << "Je dois remplacer le contact le plus ancien" << std::endl;
-					contact_count = 0;
+					addContact(&instance.contacts[eldest_contact]);
+					eldest_contact++;
 				}
+				if (eldest_contact == 8)
+					eldest_contact = 0;
 			}
 			else if (input == "SEARCH")
-			{
 				searchContact(&instance, contact_count);
-			}
-				
-			else if (input == "EXIT")
+			else if (input == "EXIT" || std::cin.eof() == true)
 				break ;
 		}
 	}
