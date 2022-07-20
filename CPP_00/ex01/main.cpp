@@ -6,7 +6,7 @@
 /*   By: msanjuan <msanjuan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/15 11:37:37 by msanjuan          #+#    #+#             */
-/*   Updated: 2022/07/20 13:15:28 by msanjuan         ###   ########.fr       */
+/*   Updated: 2022/07/20 13:22:05 by msanjuan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ int	main(int argc, char **argv)
 	{
 		PhoneBook instance;
 		int	contact_count = 0;
-		int eldest_contact = 0;
+		int eldest_index = 0;
 		
 		while (1)
 		{
@@ -51,17 +51,16 @@ int	main(int argc, char **argv)
 				{
 					Contact c_instance;
 					instance.contacts[contact_count] = c_instance;
-					std::cout << "Instance numero " << contact_count << " de la classe contact" << std::endl;
 					addContact(&instance.contacts[contact_count]);
 					contact_count++;
 				}
 				else if (contact_count == 8)
 				{
-					addContact(&instance.contacts[eldest_contact]);
-					eldest_contact++;
+					addContact(&instance.contacts[eldest_index]);
+					eldest_index++;
 				}
-				if (eldest_contact == 8)
-					eldest_contact = 0;
+				if (eldest_index == 8)
+					eldest_index = 0;
 			}
 			else if (input == "SEARCH")
 				searchContact(&instance, contact_count);

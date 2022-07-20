@@ -6,7 +6,7 @@
 /*   By: msanjuan <msanjuan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/19 21:34:36 by msanjuan          #+#    #+#             */
-/*   Updated: 2022/07/20 11:20:41 by msanjuan         ###   ########.fr       */
+/*   Updated: 2022/07/20 13:28:52 by msanjuan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,19 +51,10 @@ std::string	trunc(std::string info)
 	return info;
 }
 
-// "Affiche les contacts enregistrés sous la forme d’une liste de 4 colonnes : index,
-// first name, last name et nickname.
-// Chaque colonne doit faire 10 caractères de long. Elles doivent être séparées
-// par un pipe (’|’). Leur texte est aligné à droite."
-void	searchContact(PhoneBook *phonebook, int contact_count)
+void	displayAllContacts(PhoneBook *phonebook, int contact_count)
 {
 	int format;
-	
-	std::cout << std::right << BLUE << std::setw(10) << "Index" << " | ";
-	std::cout << std::right << std::setw(10) << "Firstname" << " | ";
-	std::cout << std::right << std::setw(10) << "Lastname" << " | ";
-	std::cout << std::right << std::setw(10) << "Nickname" << std::endl;
-	std::cout << "-------------------------------------------------" << RESET << std::endl;
+
 	for (int i = 0; i < contact_count; i++)
 	{
 		format = i + 1;
@@ -74,23 +65,51 @@ void	searchContact(PhoneBook *phonebook, int contact_count)
 		std::cout << std::right << std::setw(10) << trunc(phonebook->contacts[i].getNickname()) << std::endl;
 	}
 	std::cout << std::endl;
+	return ;
+}
+
+void	printTabHeader(void)
+{
+	std::cout << std::right << BLUE << std::setw(10) << "Index" << " | ";
+	std::cout << std::right << std::setw(10) << "Firstname" << " | ";
+	std::cout << std::right << std::setw(10) << "Lastname" << " | ";
+	std::cout << std::right << std::setw(10) << "Nickname" << std::endl;
+	std::cout << "-------------------------------------------------" << RESET << std::endl;
+	return ;
+}
+
+int		askForContactIndex(int contact_count)
+{
+	int index;
+
 	std::cout << PURPLE << "Please enter the contact's index you want to display" << RESET << std::endl;
-	
-	int	index;
 	std::cin >> index;
 	while (std::cin.fail())
-	{ //if type wasn't right
-		std::cin.clear(); //clear stream
-		std::cin.ignore(); //ignore left over data
+	{
+		std::cin.clear();
+		std::cin.ignore();
 		std::cout << BLUE << "Invalid value! An index is a number. Check the table." << RESET << std::endl;
 		std::cin >> index;
 	}
 	while (index < 1 || index > 8 || index > contact_count)
 	{
 		std::cout << BLUE << "The phonebook only contains " << contact_count << " contact(s). Please enter a contact between 1 and " << contact_count << "." << RESET << std::endl;
-		std::cin.clear(); //clear stream
-		std::cin.ignore(); //ignore left over data
+		std::cin.clear();
+		std::cin.ignore();
 		std::cin >> index;
 	}
+	return (index);
+}
+// "Affiche les contacts enregistrés sous la forme d’une liste de 4 colonnes : index,
+// first name, last name et nickname.
+// Chaque colonne doit faire 10 caractères de long. Elles doivent être séparées
+// par un pipe (’|’). Leur texte est aligné à droite."
+void	searchContact(PhoneBook *phonebook, int contact_count)
+{
+	int index;
+	
+	printTabHeader();
+	displayAllContacts(phonebook, contact_count);
+	index = askForContactIndex(contact_count);
 	displayOneContact(phonebook, index);
 }
