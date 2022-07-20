@@ -6,12 +6,14 @@
 /*   By: msanjuan <msanjuan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/19 18:34:15 by msanjuan          #+#    #+#             */
-/*   Updated: 2022/07/20 13:17:02 by msanjuan         ###   ########.fr       */
+/*   Updated: 2022/07/20 13:43:48 by msanjuan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <iostream>
 #include <string>
+#include <limits>
+#include <cstddef>
 #include "PhoneBook.hpp"
 
 # define RESET "\033[0m"
@@ -24,13 +26,6 @@
 # define CYAN "\033[0;36m"
 # define WHITE "\033[0;37m"
 
-	// if (std::cin.eof())
-	// 		exit(0);
-	// 	else if (std::cin.fail())
-	// 	{
-	// 		std::cin.clear();
-	// 		std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
-	// 	}
 void	askForFirstname(Contact *contact)
 {
 	std::string	firstname;
@@ -92,7 +87,7 @@ void	askForNickname(Contact *contact)
 	return ;
 }
 
-// FIXME: quand char, imprime le message d'erreur autant de fois que de chars
+// FIXME: quand nb > INT_MAX, loop sur le prompt wizard du darkest secret
 void	askForNumber(Contact *contact)
 {
 	std::string	input;
@@ -111,7 +106,7 @@ void	askForNumber(Contact *contact)
 		{
 			std::cout << BLUE << "📜 Buddy, this is a phonebook... Now what is your phone number?" << RESET << std::endl;
 			std::cin.clear(); //clear stream
-			std::cin.ignore(); //ignore left over data
+			std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n'); //ignore left over data
 		}
 		else
 			std::cout << BLUE << "📜 Buddy, this is a phonebook... Now what is your phone number?" << RESET << std::endl;

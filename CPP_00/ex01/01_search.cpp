@@ -6,7 +6,7 @@
 /*   By: msanjuan <msanjuan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/19 21:34:36 by msanjuan          #+#    #+#             */
-/*   Updated: 2022/07/20 13:28:52 by msanjuan         ###   ########.fr       */
+/*   Updated: 2022/07/20 13:39:51 by msanjuan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,8 @@
 #include <sstream>
 #include <iomanip>
 #include <string>
+#include <limits>
+#include <cstddef>
 #include "PhoneBook.hpp"
 
 # define RESET "\033[0m"
@@ -87,7 +89,7 @@ int		askForContactIndex(int contact_count)
 	while (std::cin.fail())
 	{
 		std::cin.clear();
-		std::cin.ignore();
+		std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
 		std::cout << BLUE << "Invalid value! An index is a number. Check the table." << RESET << std::endl;
 		std::cin >> index;
 	}
@@ -95,7 +97,7 @@ int		askForContactIndex(int contact_count)
 	{
 		std::cout << BLUE << "The phonebook only contains " << contact_count << " contact(s). Please enter a contact between 1 and " << contact_count << "." << RESET << std::endl;
 		std::cin.clear();
-		std::cin.ignore();
+		std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
 		std::cin >> index;
 	}
 	return (index);
