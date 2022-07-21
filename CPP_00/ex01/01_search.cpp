@@ -6,7 +6,7 @@
 /*   By: msanjuan <msanjuan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/19 21:34:36 by msanjuan          #+#    #+#             */
-/*   Updated: 2022/07/20 13:39:51 by msanjuan         ###   ########.fr       */
+/*   Updated: 2022/07/21 15:18:56 by msanjuan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,11 +82,11 @@ void	printTabHeader(void)
 
 int		askForContactIndex(int contact_count)
 {
-	int index;
+	long int index;
 
 	std::cout << PURPLE << "Please enter the contact's index you want to display" << RESET << std::endl;
 	std::cin >> index;
-	while (std::cin.fail())
+	while (std::cin.fail() || index > INT32_MAX)
 	{
 		std::cin.clear();
 		std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');

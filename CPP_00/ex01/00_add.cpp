@@ -6,7 +6,7 @@
 /*   By: msanjuan <msanjuan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/19 18:34:15 by msanjuan          #+#    #+#             */
-/*   Updated: 2022/07/20 13:43:48 by msanjuan         ###   ########.fr       */
+/*   Updated: 2022/07/21 15:12:54 by msanjuan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,26 +87,25 @@ void	askForNickname(Contact *contact)
 	return ;
 }
 
-// FIXME: quand nb > INT_MAX, loop sur le prompt wizard du darkest secret
 void	askForNumber(Contact *contact)
 {
-	std::string	input;
-	int			phonenumber = 0;
+	long int			phonenumber = 0;
 
 	std::cout << BLUE << "📜 Okay... No judgement there, pal! Your phone number?" << RESET << std::endl;
 	std::cin >> phonenumber;
+	
 	if (std::cin.eof() == true)
 			exit(0);
 	
-	while (phonenumber <= 0)
-	{ //if type wasn't right
+	while (phonenumber <= 0 || phonenumber > 9999999999)
+	{
 		if (std::cin.eof() == true)
 			exit(0);
-		if (std::cin.fail() == true)
+		if (std::cin.fail() == true || phonenumber > 9999999999)
 		{
 			std::cout << BLUE << "📜 Buddy, this is a phonebook... Now what is your phone number?" << RESET << std::endl;
-			std::cin.clear(); //clear stream
-			std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n'); //ignore left over data
+			std::cin.clear();
+			std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
 		}
 		else
 			std::cout << BLUE << "📜 Buddy, this is a phonebook... Now what is your phone number?" << RESET << std::endl;
