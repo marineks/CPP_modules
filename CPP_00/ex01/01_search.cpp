@@ -6,7 +6,7 @@
 /*   By: msanjuan <msanjuan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/19 21:34:36 by msanjuan          #+#    #+#             */
-/*   Updated: 2022/07/21 15:18:56 by msanjuan         ###   ########.fr       */
+/*   Updated: 2022/07/21 19:18:33 by msanjuan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,12 +86,17 @@ int		askForContactIndex(int contact_count)
 
 	std::cout << PURPLE << "Please enter the contact's index you want to display" << RESET << std::endl;
 	std::cin >> index;
+	if (std::cin.eof() == true)
+			exit(0);
+			
 	while (std::cin.fail() || index > INT32_MAX)
 	{
 		std::cin.clear();
 		std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
 		std::cout << BLUE << "Invalid value! An index is a number. Check the table." << RESET << std::endl;
 		std::cin >> index;
+		if (std::cin.eof() == true)
+			exit(0);
 	}
 	while (index < 1 || index > 8 || index > contact_count)
 	{
@@ -99,9 +104,12 @@ int		askForContactIndex(int contact_count)
 		std::cin.clear();
 		std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
 		std::cin >> index;
+		if (std::cin.eof() == true)
+			exit(0);
 	}
 	return (index);
 }
+
 // "Affiche les contacts enregistrés sous la forme d’une liste de 4 colonnes : index,
 // first name, last name et nickname.
 // Chaque colonne doit faire 10 caractères de long. Elles doivent être séparées
@@ -109,7 +117,12 @@ int		askForContactIndex(int contact_count)
 void	searchContact(PhoneBook *phonebook, int contact_count)
 {
 	int index;
-	
+
+	if (contact_count == 0)
+	{
+		std::cout << BLUE << "📜 There are no contacts to display yet." << RESET << std::endl;
+		return ;
+	}
 	printTabHeader();
 	displayAllContacts(phonebook, contact_count);
 	index = askForContactIndex(contact_count);

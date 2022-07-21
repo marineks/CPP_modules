@@ -6,7 +6,7 @@
 /*   By: msanjuan <msanjuan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/15 11:37:37 by msanjuan          #+#    #+#             */
-/*   Updated: 2022/07/20 13:22:05 by msanjuan         ###   ########.fr       */
+/*   Updated: 2022/07/21 19:19:40 by msanjuan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,8 +49,8 @@ int	main(int argc, char **argv)
 			{
 				if (contact_count < 8)
 				{
-					Contact c_instance;
-					instance.contacts[contact_count] = c_instance;
+					// Contact c_instance;
+					// instance.contacts[contact_count] = c_instance;
 					addContact(&instance.contacts[contact_count]);
 					contact_count++;
 				}

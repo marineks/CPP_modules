@@ -6,7 +6,7 @@
 /*   By: msanjuan <msanjuan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/05 16:04:31 by msanjuan          #+#    #+#             */
-/*   Updated: 2022/07/06 11:26:18 by msanjuan         ###   ########.fr       */
+/*   Updated: 2022/07/21 19:26:35 by msanjuan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,6 @@ int	main(int argc, char **argv)
 				char c = argv[i][j];
 				std::cout << (char)toupper(c);
 			}
-			std::cout << " ";
 		}
 		std::cout << std::endl;
 	}
