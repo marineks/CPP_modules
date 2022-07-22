@@ -8,6 +8,8 @@ streams, initialization lists, static, const, and so on.
 <details><summary>:loudspeaker: Ex00 - Megaphone 	:mega:  </summary>
 <p>
 
+![This is an image](https://myoctocat.com/assets/images/base-octocat.svg)
+
 A really straightforward exercice to practice with the iostream library and std::cout.
 
 </p>
@@ -18,7 +20,7 @@ A really straightforward exercice to practice with the iostream library and std:
 
 Some issues I got and ressources which helped me solve them:
 
-### Not being able to retrieve multiples words from stdin
+### Not being able to retrieve multiples words from std::cin
 
 Example:
 ```cpp
@@ -27,6 +29,25 @@ std::cin >> input;
 
 // If the input typed by the user is "Hello World", input will be equal to "Hello" and not "Hello World".
 ```
+This issue was fixed with std::getline, which reads all the characters from an input stream and puts them onto a string.
+
+```cpp
+#include <iostream>
+#include <string>
+ 
+int main() {
+    // Declare a firstname (String)
+    std::string firstname;
+ 
+    std::cout << "What is your firstname ?" << std::endl;
+ 
+    // Get the input from std::cin and store into firstname
+    std::getline(std::cin, firstname);
+ 
+    return 0;
+}
+```
+
 Discovering getline for strings
 
 // WIP : to write about later:
