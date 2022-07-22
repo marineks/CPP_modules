@@ -8,16 +8,18 @@ streams, initialization lists, static, const, and so on.
 <details><summary>:loudspeaker: Ex00 - Megaphone 	:mega:  </summary>
 <p>
 
-![This is an image](https://myoctocat.com/assets/images/base-octocat.svg)
-
 A really straightforward exercice to practice with the iostream library and std::cout.
 
+<img src="assets/megaphone_example.png" alt="Example" width="450"/>
 </p>
 </details>
 
 <details><summary>:bookmark_tabs: Ex01 - Phonebook :phone:  </summary>
+<br></br>
 <p>
 
+<img src="assets/phonebook_example.png" alt="Example" width="450"/>
+ 
 Some issues I got and ressources which helped me solve them:
 
 ### Not being able to retrieve multiples words from std::cin
@@ -48,7 +50,7 @@ int main() {
 }
 ```
 
-Discovering getline for strings
+### Particularities of std::getline and std::cin
 
 // WIP : to write about later:
 <Using std::getline() twice>
@@ -59,14 +61,29 @@ Discovering getline for strings
 
 <cin.eof>
 
-<iomanip => setw, right>
-<But found setfill but no really what i wanted => made my own trunc function with resizing and appending to the subject's needs>
-
 infinite loop with cin.fail when multiples letters => 
 
 ```cpp
    std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
 ```
+### Comparing strings (difference with C)
+
+ ```cpp
+#define SUCCESS 0
+
+std::string input;
+std::string add_command("ADD");
+
+std::getline(std::cin, input);
+std::cout << add_command.compare(input) == SUCCESS ? "OK" : "KO" << std::endl;
+ 
+// is the same as:
+std::cout << (input == "ADD") ? "OK" : "KO" << std::endl;
+```
+ 
+### Formatting your output on the terminal
+<iomanip => setw, right>
+<But found setfill but no really what i wanted => made my own trunc function with resizing and appending to the subject's needs>
 
 </p>
 </details>
