@@ -6,7 +6,7 @@
 /*   By: msanjuan <msanjuan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/26 17:25:29 by msanjuan          #+#    #+#             */
-/*   Updated: 2022/07/26 20:33:11 by msanjuan         ###   ########.fr       */
+/*   Updated: 2022/07/26 20:36:17 by msanjuan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,6 @@
 #define SUCCESS 0
 #define MSG_USAGE "Correct usage is ./sed <filename> <s1> <s2>"
 
-// TODO: Check for "test" directories
 int main(int argc, char **argv)
 {
 	if (argc == 4)
