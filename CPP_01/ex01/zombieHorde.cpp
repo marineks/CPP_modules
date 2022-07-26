@@ -1,22 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   newZombie.cpp                                      :+:      :+:    :+:   */
+/*   zombieHorde.cpp                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: msanjuan <msanjuan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/07/26 11:14:26 by msanjuan          #+#    #+#             */
-/*   Updated: 2022/07/26 11:45:31 by msanjuan         ###   ########.fr       */
+/*   Created: 2022/07/26 11:45:02 by msanjuan          #+#    #+#             */
+/*   Updated: 2022/07/26 11:53:10 by msanjuan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <iostream>
-#include <string>
 #include "Zombie.hpp"
 
-Zombie	*newZombie(std::string name)
+Zombie	*zombieHorde(int N, std::string name)
 {
-	Zombie *undead = new Zombie;
-	undead->setName(name);
-	return (undead);
+	Zombie *zombies = new Zombie[N];
+	
+	for (int i = 0; i < N; i++)
+		zombies[i].setName(name);
+	return (zombies);
 }

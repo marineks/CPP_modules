@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: msanjuan <msanjuan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/07/22 16:16:11 by msanjuan          #+#    #+#             */
-/*   Updated: 2022/07/26 11:43:51 by msanjuan         ###   ########.fr       */
+/*   Created: 2022/07/26 11:43:09 by msanjuan          #+#    #+#             */
+/*   Updated: 2022/07/26 11:45:17 by msanjuan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 #ifndef ZOMBIE_CLASS_H
 
 # include <string>
-
+# include <iostream>
 # define RESET "\033[0m"
 # define BLACK "\033[0;30m"
 # define RED "\033[0;31m"
