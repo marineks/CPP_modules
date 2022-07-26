@@ -6,7 +6,7 @@
 /*   By: msanjuan <msanjuan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/22 16:16:11 by msanjuan          #+#    #+#             */
-/*   Updated: 2022/07/22 16:30:50 by msanjuan         ###   ########.fr       */
+/*   Updated: 2022/07/26 11:38:41 by msanjuan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,6 @@ class	Zombie {
 				std::string	getName(void) const;
 
 				void		announce(void); // <name> : BraiiiiiiinnnzzzZ..
-				Zombie		*newZombie(std::string name);
 				void		randomChump(std::string name);
 	
 	private : 	

@@ -6,7 +6,7 @@
 /*   By: msanjuan <msanjuan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/22 16:24:13 by msanjuan          #+#    #+#             */
-/*   Updated: 2022/07/22 16:32:22 by msanjuan         ###   ########.fr       */
+/*   Updated: 2022/07/26 11:41:01 by msanjuan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@
 *********************************************************/
 Zombie::Zombie (void)
 {
-	std::cout << "🧟‍♂️ Zombie Constructor called" << std::endl;
+	std::cout << "🧟 Zombie Constructor called" << std::endl;
 	return ;
 }
 
@@ -53,7 +53,13 @@ std::string	Zombie::getName(void) const {
 ******
 *********************************************************/
 void	Zombie::announce(void) {
-	std::cout << BLUE << Zombie::getName() << RESET;
-	std::cout << GREEN << " : BraiiiiiiinnnzzzZ.." << RESET << std::endl;
+
+	if (Zombie::getName() == "")
+		std::cout << RED << "Your zombie must be named to announce itself." << RESET << std::endl;
+	else
+	{
+		std::cout << BLUE << Zombie::getName() << RESET;
+		std::cout << GREEN << ": BraiiiiiiinnnzzzZ.." << RESET << std::endl;
+	}
 	return ;
 }
