@@ -50,9 +50,12 @@ EOC		:="\033[0;0m"
 #########################################
 all:	${NAME}
 
+# %.o: %.cpp
+#     $(CC) $(CFLAGS) -c $< -o $@
+
 ${OBJ_DIR}%.o : %.cpp
 	@$(MKDIR) $(@D)
-	$(CC) $(CFLAGS) $(IFLAGS) -o $@ -c $< 
+	$(CC) $(CFLAGS) $(IFLAGS) -c $< -o $@ 
 
 $(NAME): $(OBJS)
 	@echo $(CYAN) " - Compiling $@" $(RED)
