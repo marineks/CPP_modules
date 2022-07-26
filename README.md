@@ -201,6 +201,12 @@ All std::string member functions [here](https://cplusplus.com/reference/string/s
 
 ## Module 01
 
+<!--pb pour imprimer addresse
+
+ static cast trop cool a apprendre
+ difference between a pointer and a reference
+ https://stackoverflow.com/questions/57483/what-are-the-differences-between-a-pointer-variable-and-a-reference-variable -->
+
 ## Module 02
 
 ## Module 03
