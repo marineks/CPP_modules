@@ -205,7 +205,7 @@ All std::string member functions [here](https://cplusplus.com/reference/string/s
 
  static cast trop cool a apprendre
  difference between a pointer and a reference
- https://stackoverflow.com/questions/57483/what-are-the-differences-between-a-pointer-variable-and-a-reference-variable -->
+ https://stackoverflow.com/questions/57483/what-are-the-differences-between-a-pointer-variable-and-a-reference-variable +pb d'init constructeur avec une classe en param -->
 
 ## Module 02
 
