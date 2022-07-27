@@ -6,25 +6,40 @@
 /*   By: msanjuan <msanjuan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/26 17:25:29 by msanjuan          #+#    #+#             */
-/*   Updated: 2022/07/26 20:36:17 by msanjuan         ###   ########.fr       */
+/*   Updated: 2022/07/27 11:40:16 by msanjuan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <iostream>
+#include <istream>
 #include <string>
 #include <fstream>
 #include <sstream>
 
 #define SUCCESS 0
 #define MSG_USAGE "Correct usage is ./sed <filename> <s1> <s2>"
+#define ERR_FILE "The file does not exist, it is not a file, or the access is denied."
+
+bool	is_folder(std::string filename)
+{
+	std::ifstream retrievedFile(filename);
+  	retrievedFile.seekg(0, std::ios::end);
+	retrievedFile.close();
+	return (!retrievedFile.good()) ? true : false;
+}
 
 int main(int argc, char **argv)
 {
 	if (argc == 4)
 	{
-		// open the file <filename>
+		// open the file <filename> with basic checks
 		std::ifstream retrievedFile(argv[1]);
-
+		if (retrievedFile.fail() || retrievedFile.is_open() == false || is_folder(argv[1]) == true) 
+		{
+			std::cout << ERR_FILE << std::endl;
+			return (-1);
+		}
+		
 		// stock its contents into a string
 		std::ostringstream buffer;
 		buffer << retrievedFile.rdbuf();

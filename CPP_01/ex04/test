@@ -5,6 +5,7 @@ Types of tests to do:
 
 Works with:
 - empty file
+- directories
 - file with one word
 - file with one line
 - file with multiple lines and newlines
