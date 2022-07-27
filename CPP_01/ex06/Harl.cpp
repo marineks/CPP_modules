@@ -6,10 +6,9 @@
 /*   By: msanjuan <msanjuan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/26 21:55:28 by msanjuan          #+#    #+#             */
-/*   Updated: 2022/07/26 22:04:19 by msanjuan         ###   ########.fr       */
+/*   Updated: 2022/07/27 11:05:59 by msanjuan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
 
 # define RESET "\033[0m"
 # define BLACK "\033[0;30m"
@@ -45,19 +44,24 @@ Harl::~Harl (void)
 ****** COMPLAIN PUBLIC MEMBER FUNCTION
 ******
 *********************************************************/
-// FIXME: Protect the level (command that begins w the same letter will trigger the function call)
-// BUG: switch cases only accept consts values
 void	Harl::complain(std::string level)
 {
-	switch (level[0])
+	//                           0        1       2          3
+	std::string levels[4] = { "DEBUG", "INFO", "WARNING", "ERROR"};
+
+	int index;
+	while (index < 4)
+		if (level == levels[index++]) break ;
+	
+	switch (index)
 	{
-		case 'D':
+		case 0:
 			this->_debug();
-		case 'I':
+		case 1:
 			this->_info();
-		case 'W':
+		case 2:
 			this->_warning();
-		case 'E':
+		case 3:
 			this->_error();
 			break;
 		default :
