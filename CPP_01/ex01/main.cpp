@@ -6,7 +6,7 @@
 /*   By: msanjuan <msanjuan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/26 11:46:10 by msanjuan          #+#    #+#             */
-/*   Updated: 2022/07/26 12:01:34 by msanjuan         ###   ########.fr       */
+/*   Updated: 2022/07/27 17:26:45 by msanjuan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,8 @@ int	main(void)
 	int		z_count = 3;
 	Zombie	*undeadArmy = zombieHorde(z_count, "Nameless Zombie");
 
+	if (!undeadArmy)
+		return (1);
 	std::cout << "-----------------------------------" << std::endl;
 	for (int i = 0; i < z_count; i++)
 	{
