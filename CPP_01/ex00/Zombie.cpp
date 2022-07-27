@@ -6,7 +6,7 @@
 /*   By: msanjuan <msanjuan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/22 16:24:13 by msanjuan          #+#    #+#             */
-/*   Updated: 2022/07/26 11:41:01 by msanjuan         ###   ########.fr       */
+/*   Updated: 2022/07/27 17:20:49 by msanjuan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ Zombie::Zombie (void)
 
 Zombie::~Zombie (void)
 {
-	std::cout << "💥 Zombie Destructor called" << std::endl;
+	std::cout << "💥 Zombie Destructor " << this->getName() << " called" << std::endl;
 	return ;
 }
 

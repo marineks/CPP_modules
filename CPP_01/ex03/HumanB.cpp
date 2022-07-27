@@ -6,7 +6,7 @@
 /*   By: msanjuan <msanjuan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/26 14:29:32 by msanjuan          #+#    #+#             */
-/*   Updated: 2022/07/26 16:49:59 by msanjuan         ###   ########.fr       */
+/*   Updated: 2022/07/27 17:22:06 by msanjuan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@
 ****** CONSTRUCTOR + DESTRUCTOR MEMBER FUNCTIONS
 ******
 *********************************************************/
-HumanB::HumanB (std::string str) : _name(str)
+HumanB::HumanB (std::string str) : _name(str), _weapon(NULL)
 {
 	std::cout << "🪆  HumanB Constructor called" << std::endl;
 	return ;
@@ -56,7 +56,7 @@ std::string	HumanB::getName(void) const {
 void	HumanB::attack(void)
 {
 	std::cout << GREEN << this->getName();
-	if (this->_weapon->getType() == "")
+	if (this->_weapon == NULL)
 		std::cout << BLUE << " attacks unarmed." << RESET << std::endl;
 	else
 	{
@@ -70,8 +70,9 @@ void	HumanB::attack(void)
 ****** SET WEAPON MEMBER FUNCTION
 ******
 *********************************************************/
-void	HumanB::setWeapon(Weapon newWeapon)
+void	HumanB::setWeapon(Weapon &newWeapon)
 {
-	this->_weapon->setType(newWeapon.getType());
+	this->_weapon = &newWeapon;
+	// this->_weapon->setType(newWeapon.getType());
 	return ;
 }

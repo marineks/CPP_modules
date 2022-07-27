@@ -6,7 +6,7 @@
 /*   By: msanjuan <msanjuan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/26 20:45:25 by msanjuan          #+#    #+#             */
-/*   Updated: 2022/07/26 21:51:46 by msanjuan         ###   ########.fr       */
+/*   Updated: 2022/07/27 17:25:02 by msanjuan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,24 +63,6 @@ void	Harl::complain(std::string level)
 	for (int i = 0; i < 4; i++)
 		if (level == levels[i]) (this->*tab[i])();
 
-	// #######  OTHER SOLUTION ##########
-	// switch (level[0])
-	// {
-	// 	case 'D':
-	// 		this->_debug(); // GREEN color
-	// 		break ;
-	// 	case 'I':
-	// 		this->_info(); // CYAN color
-	// 		break ;
-	// 	case 'W':
-	// 		this->_warning(); // BLUE
-	// 		break ;
-	// 	case 'E':
-	// 		this->_error(); // RED
-	// 		break;
-	// 	default :
-	// 		std::cout << "This level does not exist." << std::endl;
-	// }
 	return ;
 }
 

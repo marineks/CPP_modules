@@ -6,7 +6,7 @@
 /*   By: msanjuan <msanjuan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/26 14:10:00 by msanjuan          #+#    #+#             */
-/*   Updated: 2022/07/26 16:42:59 by msanjuan         ###   ########.fr       */
+/*   Updated: 2022/07/27 17:21:32 by msanjuan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ class	HumanB {
 				void		setName(std::string str);
 				std::string	getName(void) const;
 				void		attack(void);
-				void		setWeapon(Weapon newWeapon);
+				void		setWeapon(Weapon & newWeapon);
 
 	private : 	
 				std::string _name;
