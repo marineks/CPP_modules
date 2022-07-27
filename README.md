@@ -205,7 +205,7 @@ All std::string member functions [here](https://cplusplus.com/reference/string/s
 
  static cast trop cool a apprendre
  difference between a pointer and a reference
- https://stackoverflow.com/questions/57483/what-are-the-differences-between-a-pointer-variable-and-a-reference-variable +pb d'init constructeur avec une classe en param -->
+ https://stackoverflow.com/questions/57483/what-are-the-differences-between-a-pointer-variable-and-a-reference-variable +pb d'init constructeur avec une classe en param  / exo sed file exists: https://stackoverflow.com/questions/1647557/ifstream-how-to-tell-if-specified-file-doesnt-exist / exo sed directories : https://stackoverflow.com/questions/29310166/check-if-a-fstream-is-either-a-file-or-directory / pointer to functions / switch case prend que enums ou integrals -->
 
 ## Module 02
 
