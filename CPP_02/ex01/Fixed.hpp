@@ -5,7 +5,7 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: msanjuan <msanjuan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/07/27 14:39:11 by msanjuan          #+#    #+#             */
+/*   Created: 2022/07/28 23:07:58 by msanjuan          #+#    #+#             */
 /*   Updated: 2022/07/29 00:26:56 by msanjuan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
@@ -15,6 +15,7 @@
 
 # include <string>
 # include <iostream>
+# include <cmath>
 
 class	Fixed {
 
@@ -22,12 +23,19 @@ class	Fixed {
 				Fixed(void); 						  // Constructeur par defaut
 				Fixed(Fixed const & src);			  // Constructeur par copie
 				Fixed & operator=(Fixed const & rhs); // Operateur d'assignation
+
+				Fixed(int const n);					  // Constructeur parametrique
+				Fixed(float const f);				  // Constructeur parametrique
+				
 				~Fixed(void); 						  // Destructeur
 
 				int					getRawBits(void) const;
 				void				setRawBits(int const raw);
 
 				const int			getFractBitsCount(void) const;
+
+				float				toFloat(void) const;
+				int					toInt(void) const;
 
 	private : 
 				int					_rawBits; // = valeur du nombre en virgule fixe

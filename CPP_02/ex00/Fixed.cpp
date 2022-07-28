@@ -6,7 +6,7 @@
 /*   By: msanjuan <msanjuan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/27 14:39:08 by msanjuan          #+#    #+#             */
-/*   Updated: 2022/07/28 23:05:09 by msanjuan         ###   ########.fr       */
+/*   Updated: 2022/07/29 00:26:56 by msanjuan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,7 @@ int	Fixed::getRawBits(void) const
 
 int	const	Fixed::getFractBitsCount(void) const 
 {
-	return this->_fractBitsCount;
+	return this->_fractionalBits;
 }
 
 /*****
@@ -79,4 +79,4 @@ std::ostream &	operator<<(std::ostream & o, Fixed const & i)
 	return o;
 }
 
-const int	Fixed::_fractBitsCount = 8;
+const int	Fixed::_fractionalBits = 8;
