@@ -6,14 +6,14 @@
 /*   By: msanjuan <msanjuan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/28 23:07:20 by msanjuan          #+#    #+#             */
-/*   Updated: 2022/07/29 11:47:23 by msanjuan         ###   ########.fr       */
+/*   Updated: 2022/07/29 11:48:02 by msanjuan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <iostream>
 #include "Fixed.hpp"
 
-int main( void ) 
+int main( void )
 {	
 	Fixed a;
 	Fixed const b( Fixed( 5.05f ) * Fixed( 2 ) );

@@ -6,7 +6,7 @@
 /*   By: msanjuan <msanjuan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/27 14:39:11 by msanjuan          #+#    #+#             */
-/*   Updated: 2022/07/29 00:26:56 by msanjuan         ###   ########.fr       */
+/*   Updated: 2022/07/29 11:54:19 by msanjuan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ class	Fixed {
 				int					getRawBits(void) const;
 				void				setRawBits(int const raw);
 
-				const int			getFractBitsCount(void) const;
+				// const int			getFractBitsCount(void) const;
 
 	private : 
 				int					_rawBits; // = valeur du nombre en virgule fixe

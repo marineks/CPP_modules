@@ -6,7 +6,7 @@
 /*   By: msanjuan <msanjuan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/27 14:39:08 by msanjuan          #+#    #+#             */
-/*   Updated: 2022/07/29 00:26:56 by msanjuan         ###   ########.fr       */
+/*   Updated: 2022/07/29 11:54:22 by msanjuan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,10 +63,10 @@ int	Fixed::getRawBits(void) const
 	return this->_rawBits;
 }
 
-int	const	Fixed::getFractBitsCount(void) const 
-{
-	return this->_fractionalBits;
-}
+// int	const	Fixed::getFractBitsCount(void) const 
+// {
+// 	return this->_fractionalBits;
+// }
 
 /*****
 ****** OVERLOAD ON OPERATOR <<
