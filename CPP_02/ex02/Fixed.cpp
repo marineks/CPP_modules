@@ -6,7 +6,7 @@
 /*   By: msanjuan <msanjuan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/28 23:08:11 by msanjuan          #+#    #+#             */
-/*   Updated: 2022/07/29 00:57:46 by msanjuan         ###   ########.fr       */
+/*   Updated: 2022/07/29 02:38:35 by msanjuan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,32 +20,31 @@
 /* ---------------- CANONICAL -----------------*/
 Fixed::Fixed(void) : _rawBits(0)
 {
-	std::cout << "Default Constructor called" << std::endl;
+	// std::cout << "Default Constructor called" << std::endl;
 	return ;
 }
 
 Fixed::Fixed(Fixed const & src)
 {
-	std::cout << "Copy Constructor called" << std::endl;
-	
-	//this->_rawBits = src.getRawBits();
+	// std::cout << "Copy Constructor called" << std::endl;
 	*this = src; 
 	return ;
 }
 
 Fixed::~Fixed()
 {
-	std::cout << "Destructor called" << std::endl;
+	// std::cout << "Destructor called" << std::endl;
 	return ;
 }
 
 Fixed &		Fixed::operator=(Fixed const & rhs)
 {
-	std::cout << "Copy assignment operator called" << std::endl;
+	// std::cout << "Copy assignment operator called" << std::endl;
 	if (this != &rhs)
 		this->_rawBits = rhs.getRawBits();
 	return *this;
 }
+
 
 /* ------------- PARAMETRIC CONSTRUCTORS  --------------*/
 
@@ -61,7 +60,6 @@ Fixed &		Fixed::operator=(Fixed const & rhs)
  */
 Fixed::Fixed(int const n)
 {
-	std::cout << "Int constructor called" << std::endl;
 	this->_rawBits = n << _fractionalBits;
 	return ;
 }
@@ -77,10 +75,112 @@ Fixed::Fixed(int const n)
  */
 Fixed::Fixed(float const f)
 {
-	std::cout << "Float constructor called" << std::endl;
 	this->_rawBits = roundf(f * (1 << _fractionalBits));
 	return ;
 }
+
+/*****
+****** COMPARISON OPERATOR OVERLOADS
+******
+*********************************************************/
+bool Fixed::operator>(Fixed const & rhs) const
+{
+	return (this->_rawBits > rhs.getRawBits() ? true : false);
+}
+
+bool Fixed::operator<(Fixed const & rhs) const
+{
+	return (this->_rawBits < rhs.getRawBits() ? true : false);
+}
+
+bool Fixed::operator>=(Fixed const & rhs) const
+{
+	return (this->_rawBits >= rhs.getRawBits() ? true : false);
+}
+
+bool Fixed::operator<=(Fixed const & rhs) const
+{
+	return (this->_rawBits <= rhs.getRawBits() ? true : false);
+}
+
+bool Fixed::operator==(Fixed const & rhs) const
+{
+	return (this->_rawBits == rhs.getRawBits() ? true : false);
+}
+
+bool Fixed::operator!=(Fixed const & rhs) const
+{
+	return (this->_rawBits != rhs.getRawBits() ? true : false);
+}
+
+
+/*****
+****** ARITHMETIC OPERATOR OVERLOADS
+******
+*********************************************************/
+Fixed Fixed::operator+(Fixed const & rhs) const
+{
+	return (this->toFloat() + rhs.toFloat());
+}
+
+Fixed Fixed::operator-(Fixed const & rhs) const
+{
+	return (this->toFloat() - rhs.toFloat());
+}
+
+Fixed Fixed::operator*(Fixed const & rhs) const
+{
+	return (this->toFloat() * rhs.toFloat());
+}
+
+Fixed Fixed::operator/(Fixed const & rhs) const
+{
+	return (this->toFloat() / rhs.toFloat());
+}
+
+/*****
+****** INCREMENT OPERATOR OVERLOADS
+******
+*********************************************************/
+
+Fixed &Fixed::operator++(void) // pre
+{
+	(this->_rawBits)++;
+	return *this;
+}
+
+Fixed &Fixed::operator--(void)
+{
+	(this->_rawBits)--;
+	return *this;
+}
+
+Fixed Fixed::operator++(int) // post
+{
+	Fixed tmp;
+	tmp.setRawBits(this->_rawBits);
+	this->_rawBits++;
+	return tmp;
+}
+
+Fixed Fixed::operator--(int)
+{
+	Fixed tmp;
+	tmp.setRawBits(this->_rawBits);
+	this->_rawBits--;
+	return tmp;
+}
+/*****
+****** OVERLOAD ON OPERATOR <<
+******
+*********************************************************/
+std::ostream &	operator<<(std::ostream & o, Fixed const & i)
+{
+	o << i.toFloat();
+	
+	return o;
+}
+
 
 /*****
 ****** ACCESSORS
@@ -121,15 +221,29 @@ int			Fixed::toInt(void) const
 	return (this->_rawBits >> _fractionalBits);
 }
 
+
 /*****
-****** OVERLOAD ON OPERATOR <<
+****** MIN AND MAX PUBLIC MEMBER FUNCTIONS
 ******
 *********************************************************/
-std::ostream &	operator<<(std::ostream & o, Fixed const & i)
+Fixed 	Fixed::min(Fixed & a, Fixed & b)
 {
-	o << i.toFloat();
-	
-	return o;
+	return (a <= b) ? a : b;
+}
+
+Fixed	Fixed::min(Fixed const & a, Fixed const & b)
+{
+	return (a <= b) ? a : b;
+}
+
+Fixed	Fixed::max(Fixed & a, Fixed & b)
+{
+	return (a >= b) ? a : b;
+}
+
+Fixed	Fixed::max(Fixed const & a, Fixed const & b)
+{
+	return (a >= b) ? a : b;
 }
 
 const int	Fixed::_fractionalBits = 8;

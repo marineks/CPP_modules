@@ -6,7 +6,7 @@
 /*   By: msanjuan <msanjuan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/28 23:07:58 by msanjuan          #+#    #+#             */
-/*   Updated: 2022/07/29 01:20:20 by msanjuan         ###   ########.fr       */
+/*   Updated: 2022/07/29 02:34:43 by msanjuan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,24 @@ class	Fixed {
 				Fixed(float const f);				  // Constructeur parametrique
 				
 				~Fixed(void); 						  // Destructeur
+				
+				bool operator>(Fixed const & rhs) const;
+				bool operator<(Fixed const & rhs) const;
+				bool operator>=(Fixed const & rhs) const;
+				bool operator<=(Fixed const & rhs) const;
+				bool operator==(Fixed const & rhs) const;
+				bool operator!=(Fixed const & rhs) const;
 
+				Fixed operator+(Fixed const & rhs) const;
+				Fixed operator-(Fixed const & rhs) const;
+				Fixed operator*(Fixed const & rhs) const;
+				Fixed operator/(Fixed const & rhs) const;
+
+				Fixed & operator++(void); // ++i
+				Fixed & operator--(void); //--i
+				Fixed operator++(int); // i++
+				Fixed operator--(int); //i--
+				
 				int					getRawBits(void) const;
 				void				setRawBits(int const raw);
 
@@ -36,6 +53,11 @@ class	Fixed {
 
 				float				toFloat(void) const;
 				int					toInt(void) const;
+
+				static Fixed		min(Fixed & a, Fixed & b);
+				static Fixed		min(Fixed const & a, Fixed const & b);
+				static Fixed		max(Fixed & a, Fixed & b);
+				static Fixed 		max(Fixed const & a, Fixed const & b);
 
 	private : 
 				int					_rawBits; // = valeur du nombre en virgule fixe
