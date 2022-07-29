@@ -6,7 +6,7 @@
 /*   By: msanjuan <msanjuan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/28 23:07:20 by msanjuan          #+#    #+#             */
-/*   Updated: 2022/07/29 02:25:15 by msanjuan         ###   ########.fr       */
+/*   Updated: 2022/07/29 11:47:23 by msanjuan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,5 +28,23 @@ int main( void )
 	
 	std::cout << "Max is : " << Fixed::max( a, b ) << std::endl;
 
+	std::cout << std::endl;
+	std::cout << "---------- MY OWN TESTS ----------" << std::endl;
+	
+	Fixed c;
+	Fixed d(Fixed (4) / Fixed(2));
+
+	std::cout << "c - d  : " << c - d << std::endl;
+
+	c = 3;
+
+	std::cout << "--c    : " << --c << std::endl;
+	std::cout << "d is   : " << d << std::endl;
+
+	d = c + d;
+	
+	std::cout << "d is   : " << d << std::endl;
+	std::cout << "Min is : " << Fixed::min(c, d) << std::endl;
+	
 	return 0;
 }

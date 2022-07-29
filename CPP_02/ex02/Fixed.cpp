@@ -6,7 +6,7 @@
 /*   By: msanjuan <msanjuan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/28 23:08:11 by msanjuan          #+#    #+#             */
-/*   Updated: 2022/07/29 02:38:35 by msanjuan         ###   ########.fr       */
+/*   Updated: 2022/07/29 11:21:36 by msanjuan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -198,7 +198,7 @@ int			Fixed::getRawBits(void) const
 	return this->_rawBits;
 }
 
-int	const	Fixed::getFractBitsCount(void) const 
+int	const	Fixed::getFractionalBits(void) const 
 {
 	return this->_fractionalBits;
 }

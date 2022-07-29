@@ -6,7 +6,7 @@
 /*   By: msanjuan <msanjuan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/28 23:07:58 by msanjuan          #+#    #+#             */
-/*   Updated: 2022/07/29 02:34:43 by msanjuan         ###   ########.fr       */
+/*   Updated: 2022/07/29 11:21:29 by msanjuan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ class	Fixed {
 				int					getRawBits(void) const;
 				void				setRawBits(int const raw);
 
-				const int			getFractBitsCount(void) const;
+				const int			getFractionalBits(void) const;
 
 				float				toFloat(void) const;
 				int					toInt(void) const;
