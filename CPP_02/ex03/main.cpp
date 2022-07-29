@@ -6,7 +6,7 @@
 /*   By: marine <marine@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/29 14:47:12 by marine            #+#    #+#             */
-/*   Updated: 2022/07/29 18:57:55 by marine           ###   ########.fr       */
+/*   Updated: 2022/07/29 19:10:07 by marine           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,16 +15,9 @@
 #include "Point.hpp"
 
 // bool bsp(Point const a, Point const b, Point const c, Point const point);
-bool bsp(Point const & a, Point const & b, Point const & c, Point const & point);
+bool 	bsp(Point const & a, Point const & b, Point const & c, Point const & point);
+void	print_result(Point const & a, Point const & b, Point const & c, Point const & point);
 
-void	print_result(Point const & a, Point const & b, Point const & c, Point const & point)
-{
-	if (bsp(a, b, c, point) == true)
-	 	std::cout << "Le point est dans le triangle : Oui" << std::endl;
-	else
-		std::cout << "Le point est dans le triangle : Non" << std::endl;
-	return ;
-}
 
 // https://planetcalc.com/8108/ pour verifier
 int main( void )
