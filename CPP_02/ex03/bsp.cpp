@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   bsp.cpp                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marine <marine@student.42.fr>              +#+  +:+       +#+        */
+/*   By: msanjuan <msanjuan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/29 14:55:07 by marine            #+#    #+#             */
-/*   Updated: 2022/07/29 19:13:31 by marine           ###   ########.fr       */
+/*   Updated: 2022/07/30 13:21:29 by msanjuan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,14 +31,6 @@ float	findSignOfSide(Point const & point, Point const & vertex1, Point const & v
 	Fixed const v1_y = vertex1.getY();
 	Fixed const v2_x = vertex2.getX();
 	Fixed const v2_y = vertex2.getY();
-
-	// std::cout << "Print valeurs dans sign" << std::endl;
-	// std::cout << px << std::endl;
-	// std::cout << py << std::endl;
-	// std::cout << v1_x << std::endl;
-	// std::cout << v1_x << std::endl;
-	// std::cout << v2_x << std::endl;
-	// std::cout << v2_y << std::endl;
 		
 	Fixed result = (px - v2_x) * (v1_y - v2_y) - (v1_x - v2_x) * (py - v2_y);
 
@@ -54,7 +46,7 @@ float	findSignOfSide(Point const & point, Point const & vertex1, Point const & v
  * @return false : si point est en dehors du triangle (inclus si le point
  * 					est un sommet ou placé sur une arrête).
  */
-bool bsp(Point const & a, Point const & b, Point const & c, Point const & point)
+bool bsp(Point const a, Point const b, Point const c, Point const point)
 {
 	float AB, BC, AC;
 	bool is_inside = true;
@@ -70,21 +62,11 @@ bool bsp(Point const & a, Point const & b, Point const & c, Point const & point)
 	// cas du point sur l'un des sommets/arrêtes
 	if (AB == 0 || BC == 0 || AC == 0)
 		is_inside = false;
-		
+
 	return (is_inside);
 }	
-
-	// std::cout << "Print valeurs dans bsp" << std::endl;
-	// std::cout << a.getX() << std::endl;
-	// std::cout << a.getY() << std::endl;
-	// std::cout << b.getX() << std::endl;
-	// std::cout << b.getY() << std::endl;
-	// std::cout << c.getX() << std::endl;
-	// std::cout << c.getY() << std::endl;
-	// std::cout << point.getX() << std::endl;
-	// std::cout << point.getY() << std::endl;
 	
-void	print_result(Point const & a, Point const & b, Point const & c, Point const & point)
+void	print_result(Point const a, Point const b, Point const c, Point const point)
 {
 	if (bsp(a, b, c, point) == true)
 	 	std::cout << "Le point est dans le triangle : Oui" << std::endl;

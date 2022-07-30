@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Fixed.cpp                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marine <marine@student.42.fr>              +#+  +:+       +#+        */
+/*   By: msanjuan <msanjuan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/29 14:47:44 by marine            #+#    #+#             */
-/*   Updated: 2022/07/29 14:47:46 by marine           ###   ########.fr       */
+/*   Updated: 2022/07/30 11:40:07 by msanjuan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,8 @@ Fixed::Fixed(void) : _rawBits(0)
 Fixed::Fixed(Fixed const & src)
 {
 	// std::cout << "Copy Constructor called" << std::endl;
-	*this = src; 
+	*this = src;
+	this->_rawBits = src.getRawBits();
 	return ;
 }
 

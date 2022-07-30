@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Point.cpp                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marine <marine@student.42.fr>              +#+  +:+       +#+        */
+/*   By: msanjuan <msanjuan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/29 14:48:46 by marine            #+#    #+#             */
-/*   Updated: 2022/07/29 18:42:57 by marine           ###   ########.fr       */
+/*   Updated: 2022/07/30 11:39:19 by msanjuan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ Point::Point(void) : _x(Fixed(0)), _y(Fixed(0))
 	return ;
 }
 
-Point::Point(Point const & src)
+Point::Point(Point const & src) : _x(src.getX()), _y(src.getY())
 {
 	*this = src;
 	return ;
