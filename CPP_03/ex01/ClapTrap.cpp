@@ -6,12 +6,11 @@
 /*   By: msanjuan <msanjuan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/30 14:18:52 by msanjuan          #+#    #+#             */
-/*   Updated: 2022/07/30 16:33:59 by msanjuan         ###   ########.fr       */
+/*   Updated: 2022/07/31 11:43:18 by msanjuan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ClapTrap.hpp"
-
 
 /*****
 ****** CONSTRUCTORS AND DESTRUCTORS
@@ -21,26 +20,26 @@
 /* ---------------- CANONICAL -----------------*/
 ClapTrap::ClapTrap(void) : _name(""), _hitPoints(10), _energyPoints(10), _attackDamage(0)
 {
-	std::cout << "🦾 Default Constructor called" << std::endl;
+	std::cout << "🦾 [CLAPTRAP] Default Constructor called" << std::endl;
 	return ;
 }
 
 ClapTrap::ClapTrap(ClapTrap const & src)
 {
-	std::cout << "🧠 Copy Constructor called" << std::endl;
+	std::cout << "🧠 [CLAPTRAP] Copy Constructor called" << std::endl;
 	*this = src;
 	return ;
 }
 
 ClapTrap::~ClapTrap()
 {
-	std::cout << "💥 Destructor " << this->_name << " called" << std::endl;
+	std::cout << "💥 [CLAPTRAP] Destructor " << this->_name << " called" << std::endl;
 	return ;
 }
 
 ClapTrap &		ClapTrap::operator=(ClapTrap const & rhs)
 {
-	std::cout << "🦴 Copy assignment operator called" << std::endl;
+	std::cout << "🦴 [CLAPTRAP] Copy assignment operator called" << std::endl;
 	if (this != &rhs)
 	{
 		this->_name = rhs.getName();
@@ -56,7 +55,7 @@ ClapTrap &		ClapTrap::operator=(ClapTrap const & rhs)
 
 ClapTrap::ClapTrap(std::string str) : _name(str), _hitPoints(10), _energyPoints(10), _attackDamage(0)
 {
-	std::cout << "👑 Parametric constructor " << this->_name << " called" << std::endl;
+	std::cout << "👑 [CLAPTRAP] Parametric constructor " << this->_name << " called" << std::endl;
 	return ;
 }
 
