@@ -6,7 +6,7 @@
 /*   By: msanjuan <msanjuan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/31 12:41:01 by msanjuan          #+#    #+#             */
-/*   Updated: 2022/07/31 13:14:45 by msanjuan         ###   ########.fr       */
+/*   Updated: 2022/07/31 13:22:56 by msanjuan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,8 +61,8 @@ FragTrap::FragTrap(std::string str) : ClapTrap::ClapTrap(str)
 {
 	this->_name = str;
 	this->_hitPoints = 100;
-	this->_energyPoints = 50;
-	this->_attackDamage = 20;
+	this->_energyPoints = 100;
+	this->_attackDamage = 30;
 	std::cout << "🍓 [FRAGTRAP] Parametric constructor " << this->_name << " called" << std::endl;
 	return ;
 }
