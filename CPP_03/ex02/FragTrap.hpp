@@ -6,7 +6,7 @@
 /*   By: msanjuan <msanjuan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/31 12:41:03 by msanjuan          #+#    #+#             */
-/*   Updated: 2022/07/31 12:41:39 by msanjuan         ###   ########.fr       */
+/*   Updated: 2022/07/31 13:02:57 by msanjuan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,8 +29,8 @@ class FragTrap : public ClapTrap
 				FragTrap(std::string str);
 			
 				/* Other member functions */
-				void	attack(const std::string & target);
-				void	guardGate(void);
+				// void	attack(const std::string & target);
+				void	highFivesGuys(void);
 	
 };
 

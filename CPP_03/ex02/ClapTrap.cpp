@@ -6,7 +6,7 @@
 /*   By: msanjuan <msanjuan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/30 14:18:52 by msanjuan          #+#    #+#             */
-/*   Updated: 2022/07/31 12:52:57 by msanjuan         ###   ########.fr       */
+/*   Updated: 2022/07/31 13:14:08 by msanjuan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -118,7 +118,7 @@ void		ClapTrap::attack(const std::string & target)
 	std::cout << std::endl;
 		
 	if (this->_hitPoints <= 0)
-		std::cout << "🪶 Kind of hard to do when ClapTrap" << YELLOW << this->_name << RESET << " is dead..." << std::endl;
+		std::cout << "🪶  Kind of hard to do when ClapTrap " << YELLOW << this->_name << RESET << " is dead..." << std::endl;
 	else if (this->_energyPoints <= 0)
 		std::cout << "🔋 No energy left for ClapTrap " << PURPLE << this->_name << RESET << std::endl;
 	else
@@ -145,7 +145,7 @@ void		ClapTrap::takeDamage(unsigned int amount)
 	std::cout << std::endl;
 	
 	if (this->_hitPoints <= 0)
-		std::cout << "🪶 ClapTrap" << YELLOW << this->_name << RESET << " is already dead..." << std::endl;
+		std::cout << "🪶 ClapTrap " << YELLOW << this->_name << RESET << " is already dead..." << std::endl;
 	else
 	{
 		if (this->_name.empty() == false)
