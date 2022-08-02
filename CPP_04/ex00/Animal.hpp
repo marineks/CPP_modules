@@ -6,7 +6,7 @@
 /*   By: msanjuan <msanjuan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/31 15:44:12 by msanjuan          #+#    #+#             */
-/*   Updated: 2022/07/31 15:49:23 by msanjuan         ###   ########.fr       */
+/*   Updated: 2022/08/02 11:04:26 by msanjuan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ class Animal
 				Animal(std::string type);
 			
 				/* Other member functions */
-				void	makeSound(void);
+				virtual void	makeSound(void);
 	
 	protected:	
 				std::string	_type;

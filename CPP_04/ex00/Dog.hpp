@@ -6,7 +6,7 @@
 /*   By: msanjuan <msanjuan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/31 15:44:23 by msanjuan          #+#    #+#             */
-/*   Updated: 2022/07/31 15:52:00 by msanjuan         ###   ########.fr       */
+/*   Updated: 2022/07/31 16:20:26 by msanjuan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ class Dog : public Animal
 				Dog &	operator=(Dog const & rhs); // affectation
 			
 				/* Other member functions */
-				void	makeSound(void);
+				void	makeSound(void); // override de la fonction 
 	
 	private:
 				std::string	_type;
