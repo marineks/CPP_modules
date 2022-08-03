@@ -6,7 +6,7 @@
 /*   By: msanjuan <msanjuan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/31 15:44:12 by msanjuan          #+#    #+#             */
-/*   Updated: 2022/08/02 11:04:26 by msanjuan         ###   ########.fr       */
+/*   Updated: 2022/08/03 10:55:22 by msanjuan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,14 +20,15 @@ class Animal
 	public:
 				Animal(void); 							// default
 				Animal(Animal const & src);				// copy
-				~Animal(void);							// destructor
+				virtual ~Animal(void);							// destructor
 				Animal &	operator=(Animal const & rhs); // affectation
-
-				/* Parametric constructors */
-				Animal(std::string type);
-			
+				
+				/* Accessors */
+				std::string	getType(void) const;
+				void		setType(std::string str);
+				
 				/* Other member functions */
-				virtual void	makeSound(void);
+				virtual void	makeSound(void) const;
 	
 	protected:	
 				std::string	_type;
