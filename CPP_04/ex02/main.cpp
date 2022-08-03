@@ -6,14 +6,14 @@
 /*   By: msanjuan <msanjuan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/31 15:53:12 by msanjuan          #+#    #+#             */
-/*   Updated: 2022/08/03 17:32:03 by msanjuan         ###   ########.fr       */
+/*   Updated: 2022/08/03 18:19:51 by msanjuan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Animal.hpp"
+#include "AAnimal.hpp"
 #include "Dog.hpp"
 #include "Cat.hpp"
-#include "WrongAnimal.hpp"
+#include "WrongAAnimal.hpp"
 #include "WrongCat.hpp"
 #include "Brain.hpp"
 
@@ -21,7 +21,7 @@ int	main(void)
 {
 	unsigned int	i = 0;
 	unsigned int	n = 10;
-	const Animal	*tab[n];
+	const AAnimal	*tab[n];
 
 
 	std::cout << " # --------------- Call to constructors ----------------- # " << std::endl;
@@ -41,8 +41,8 @@ int	main(void)
 
 	std::cout << " # --------------- Make them do things ----------------- # " << std::endl;
 	
-	std::cout << "Index 5 animal should be a cat and is a : " << tab[5]->getType() << std::endl;
-	std::cout << "Index 2 animal should be a dog and is a : " << tab[2]->getType() << std::endl;
+	std::cout << "Index 5 AAnimal should be a cat and is a : " << tab[5]->getType() << std::endl;
+	std::cout << "Index 2 AAnimal should be a dog and is a : " << tab[2]->getType() << std::endl;
 
 	
 	std::cout << std::endl;
@@ -57,8 +57,8 @@ int	main(void)
 	std::cout << std::endl << std::endl;
 	std::cout << " # --------------- From the subject ----------------- # " << std::endl;
 	
-	const Animal *o = new Dog();
-	const Animal *p = new Cat();
+	const AAnimal *o = new Dog();
+	const AAnimal *p = new Cat();
 
 	delete o;
 	delete p;
@@ -73,13 +73,17 @@ int	main(void)
 	Cat assign;
 	std::cout << " # ~~~~~~~~~~~~~~~~~~~~~~ # " << std::endl;
 	assign = origin;
-	std::cout << " # ~~~~~~~~~~~~~~~~~~~~~~ # " << std::endl;
+	std::cout << " # ~~~~~~~~~~~~~~~~~~~~~~ # " << std::endl << std::endl;
 	
 
 	Cat *first = new Cat();
+	std::cout << " # ~~~~~~~~~~~~~~~~~~~~~~ # " << std::endl;
 	Cat *second = new Cat(*first);
+	std::cout << " # ~~~~~~~~~~~~~~~~~~~~~~ # " << std::endl;
 
 	delete first;
+	std::cout << " # ~~~~~~~~~~~~~~~~~~~~~~ # " << std::endl;
 	delete second;
+	std::cout << " # ~~~~~~~~~~~~~~~~~~~~~~ # " << std::endl;
 	return (0);
 }
