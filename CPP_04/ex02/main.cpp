@@ -6,7 +6,7 @@
 /*   By: msanjuan <msanjuan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/31 15:53:12 by msanjuan          #+#    #+#             */
-/*   Updated: 2022/08/03 18:19:51 by msanjuan         ###   ########.fr       */
+/*   Updated: 2022/08/03 19:17:12 by msanjuan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,8 @@ int	main(void)
 	unsigned int	n = 10;
 	const AAnimal	*tab[n];
 
-
+	// AAnimal test; // Must return an error of compilation because it cannot be instanciated (abstract class)
+		
 	std::cout << " # --------------- Call to constructors ----------------- # " << std::endl;
 	
 	while (i < n / 2)

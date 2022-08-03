@@ -6,7 +6,7 @@
 /*   By: msanjuan <msanjuan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/31 15:44:23 by msanjuan          #+#    #+#             */
-/*   Updated: 2022/08/03 17:42:41 by msanjuan         ###   ########.fr       */
+/*   Updated: 2022/08/03 19:12:02 by msanjuan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,15 +25,10 @@ class Dog : public AAnimal
 				~Dog(void);							// destructor
 				Dog &	operator=(Dog const & rhs); // affectation
 			
-				/* Accessors */
-				std::string	getType(void) const;
-				void		setType(std::string str);
-
 				/* Other member functions */
 				void	makeSound(void) const; // override de la fonction 
 	
 	private:
-				std::string	_type;
 				Brain		*_brain;
 };
 

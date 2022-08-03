@@ -6,7 +6,7 @@
 /*   By: msanjuan <msanjuan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/03 10:37:04 by msanjuan          #+#    #+#             */
-/*   Updated: 2022/08/03 18:23:13 by msanjuan         ###   ########.fr       */
+/*   Updated: 2022/08/03 19:12:44 by msanjuan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 *********************************************************/
 
 /* ---------------- CANONICAL -----------------*/
-Cat::Cat(void)
+Cat::Cat(void) : AAnimal()
 {
 	this->_brain = new Brain();
 	this->_type = "Cat";
@@ -26,7 +26,7 @@ Cat::Cat(void)
 	return ;
 }
 
-Cat::Cat(Cat const & src)
+Cat::Cat(Cat const & src) : AAnimal(src)
 {
 	std::cout << "🐅 [Cat] Copy Constructor called" << std::endl;
 	this->_type = src.getType();
@@ -53,22 +53,6 @@ Cat &		Cat::operator=(Cat const & rhs)
 		this->_brain = new Brain(*rhs._brain);
 	}
 	return *this;
-}
-
-/*****
-****** ACCESSORS
-******
-*********************************************************/
-
-std::string	Cat::getType(void) const
-{
-	return this->_type;
-}
-
-void		Cat::setType(std::string str)
-{
-	this->_type = str;
-	return ;
 }
 
 /*****
