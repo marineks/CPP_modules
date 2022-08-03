@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Animal.cpp                                         :+:      :+:    :+:   */
+/*   WrongAnimal.cpp                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: msanjuan <msanjuan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/08/03 10:39:30 by msanjuan          #+#    #+#             */
-/*   Updated: 2022/08/03 11:54:00 by msanjuan         ###   ########.fr       */
+/*   Created: 2022/08/03 11:32:48 by msanjuan          #+#    #+#             */
+/*   Updated: 2022/08/03 11:51:46 by msanjuan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Animal.hpp"
+#include "WrongAnimal.hpp"
 
 /*****
 ****** CONSTRUCTORS AND DESTRUCTORS
@@ -18,28 +18,28 @@
 *********************************************************/
 
 /* ---------------- CANONICAL -----------------*/
-Animal::Animal(void) : _type("Animal")
+WrongAnimal::WrongAnimal(void) : _type("WrongAnimal")
 {
-	std::cout << "🐞 [Animal] Default Constructor called" << std::endl;
+	std::cout << "🦖 [WrongAnimal] Default Constructor called" << std::endl;
 	return ;
 }
 
-Animal::Animal(Animal const & src)
+WrongAnimal::WrongAnimal(WrongAnimal const & src)
 {
-	std::cout << "🐸 [Animal] Copy Constructor called" << std::endl;
+	std::cout << "🦖 [WrongAnimal] Copy Constructor called" << std::endl;
 	*this = src;
 	return ;
 }
 
-Animal::~Animal()
+WrongAnimal::~WrongAnimal()
 {
-	std::cout << "🦆 [Animal] Destructor " << this->_type << " called" << std::endl;
+	std::cout << "🦕 [WrongAnimal] Destructor " << this->_type << " called" << std::endl;
 	return ;
 }
 
-Animal &		Animal::operator=(Animal const & rhs)
+WrongAnimal &		WrongAnimal::operator=(WrongAnimal const & rhs)
 {
-	std::cout << "🐥 [Animal] Copy assignment operator called" << std::endl;
+	std::cout << "🦖 [WrongAnimal] Copy assignment operator called" << std::endl;
 	if (this != &rhs)
 	{
 		this->_type = rhs.getType();
@@ -52,12 +52,12 @@ Animal &		Animal::operator=(Animal const & rhs)
 ******
 *********************************************************/
 
-std::string	Animal::getType(void) const
+std::string	WrongAnimal::getType(void) const
 {
 	return this->_type;
 }
 
-void		Animal::setType(std::string str)
+void		WrongAnimal::setType(std::string str)
 {
 	this->_type = str;
 	return ;
@@ -68,8 +68,8 @@ void		Animal::setType(std::string str)
 ******
 *********************************************************/
 
-void	Animal::makeSound(void) const
+void	WrongAnimal::makeSound(void) const
 {
-	std::cout << "* generic animal noises *" << std::endl;
+	std::cout << "* wrong generic WrongAnimal noises *" << std::endl;
 	return ;
 }

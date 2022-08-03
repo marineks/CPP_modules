@@ -1,34 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Animal.hpp                                         :+:      :+:    :+:   */
+/*   WrongAnimal.hpp                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: msanjuan <msanjuan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/07/31 15:44:12 by msanjuan          #+#    #+#             */
-/*   Updated: 2022/08/03 11:55:38 by msanjuan         ###   ########.fr       */
+/*   Created: 2022/08/03 11:33:14 by msanjuan          #+#    #+#             */
+/*   Updated: 2022/08/03 11:47:52 by msanjuan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef ANIMAL_CLASS_HPP
-# define ANIMAL_CLASS_HPP
+#ifndef WRONGANIMAL_CLASS_HPP
+# define WRONGANIMAL_CLASS_HPP
 
 # include <iostream>
 
-class Animal
+class WrongAnimal
 {
 	public:
-				Animal(void); 							// default
-				Animal(Animal const & src);				// copy
-				virtual ~Animal(void);							// destructor
-				Animal &	operator=(Animal const & rhs); // affectation
+				WrongAnimal(void); 									// default
+				WrongAnimal(WrongAnimal const & src);				// copy
+				~WrongAnimal(void);									// destructor
+				WrongAnimal &	operator=(WrongAnimal const & rhs); // affectation
 				
 				/* Accessors */
-				virtual std::string	getType(void) const;
-				virtual void		setType(std::string str);
+				std::string	getType(void) const;
+				void		setType(std::string str);
 				
 				/* Other member functions */
-				virtual void	makeSound(void) const;
+				void	makeSound(void) const;
 	
 	protected:	
 				std::string	_type;

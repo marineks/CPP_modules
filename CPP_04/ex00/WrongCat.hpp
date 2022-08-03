@@ -1,36 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Animal.hpp                                         :+:      :+:    :+:   */
+/*   WrongCat.hpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: msanjuan <msanjuan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/07/31 15:44:12 by msanjuan          #+#    #+#             */
-/*   Updated: 2022/08/03 11:55:38 by msanjuan         ###   ########.fr       */
+/*   Created: 2022/08/03 11:31:40 by msanjuan          #+#    #+#             */
+/*   Updated: 2022/08/03 11:32:16 by msanjuan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef ANIMAL_CLASS_HPP
-# define ANIMAL_CLASS_HPP
 
+#ifndef WRONGCAT_CLASS_HPP
+# define WRONGCAT_CLASS_HPP
+
+# include "WrongAnimal.hpp"
 # include <iostream>
 
-class Animal
+class WrongCat : public WrongAnimal
 {
 	public:
-				Animal(void); 							// default
-				Animal(Animal const & src);				// copy
-				virtual ~Animal(void);							// destructor
-				Animal &	operator=(Animal const & rhs); // affectation
-				
+				WrongCat(void); 							// default
+				WrongCat(WrongCat const & src);				// copy
+				~WrongCat(void);							// destructor
+				WrongCat &	operator=(WrongCat const & rhs); // affectation
+			
 				/* Accessors */
-				virtual std::string	getType(void) const;
-				virtual void		setType(std::string str);
+				std::string	getType(void) const;
+				void		setType(std::string str);
 				
 				/* Other member functions */
-				virtual void	makeSound(void) const;
+				void	makeSound(void) const;
 	
-	protected:	
+	private:
 				std::string	_type;
 };
 

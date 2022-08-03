@@ -24,7 +24,7 @@ IFLAGS := -I includes
 #########################################
 #			FILES PATH					#
 #########################################
-INC_PATH = Animal.hpp Dog.hpp Cat.hpp
+INC_PATH = Animal.hpp Dog.hpp Cat.hpp WrongAnimal.hpp WrongCat.hpp
 #########################################
 #			SOURCES	FILES				#
 #########################################
@@ -32,6 +32,8 @@ SRCS = main.cpp							\
 		Animal.cpp						\
 		Dog.cpp							\
 		Cat.cpp							\
+		WrongAnimal.cpp					\
+		WrongCat.cpp					\
 
 #########################################
 #            OBJECT FILES    	        #
