@@ -6,7 +6,7 @@
 /*   By: msanjuan <msanjuan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/03 11:31:40 by msanjuan          #+#    #+#             */
-/*   Updated: 2022/08/03 11:32:16 by msanjuan         ###   ########.fr       */
+/*   Updated: 2022/08/03 18:33:49 by msanjuan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,15 +25,15 @@ class WrongCat : public WrongAnimal
 				~WrongCat(void);							// destructor
 				WrongCat &	operator=(WrongCat const & rhs); // affectation
 			
-				/* Accessors */
-				std::string	getType(void) const;
-				void		setType(std::string str);
+				// /* Accessors */
+				// std::string	getType(void) const;
+				// void		setType(std::string str);
 				
 				/* Other member functions */
 				void	makeSound(void) const;
 	
-	private:
-				std::string	_type;
+	// private:
+	// 			std::string	_type;
 };
 
 #endif

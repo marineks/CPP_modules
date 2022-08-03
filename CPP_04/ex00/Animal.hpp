@@ -6,7 +6,7 @@
 /*   By: msanjuan <msanjuan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/31 15:44:12 by msanjuan          #+#    #+#             */
-/*   Updated: 2022/08/03 11:55:38 by msanjuan         ###   ########.fr       */
+/*   Updated: 2022/08/03 18:31:00 by msanjuan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,8 @@ class Animal
 				Animal &	operator=(Animal const & rhs); // affectation
 				
 				/* Accessors */
-				virtual std::string	getType(void) const;
-				virtual void		setType(std::string str);
+				std::string	getType(void) const;
+				void		setType(std::string str);
 				
 				/* Other member functions */
 				virtual void	makeSound(void) const;

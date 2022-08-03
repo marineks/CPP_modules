@@ -19,13 +19,14 @@
 *********************************************************/
 
 /* ---------------- CANONICAL -----------------*/
-WrongCat::WrongCat(void) : _type("WrongCat")
+WrongCat::WrongCat(void) : WrongAnimal()
 {
+	this->_type = "WrongCat";
 	std::cout << "🐹 [WrongCat] Default Constructor called" << std::endl;
 	return ;
 }
 
-WrongCat::WrongCat(WrongCat const & src)
+WrongCat::WrongCat(WrongCat const & src) : WrongAnimal(src)
 {
 	std::cout << "🐹 [WrongCat] Copy Constructor called" << std::endl;
 	*this = src;
@@ -48,21 +49,21 @@ WrongCat &		WrongCat::operator=(WrongCat const & rhs)
 	return *this;
 }
 
-/*****
-****** ACCESSORS
-******
-*********************************************************/
+// /*****
+// ****** ACCESSORS
+// ******
+// *********************************************************/
 
-std::string	WrongCat::getType(void) const
-{
-	return this->_type;
-}
+// std::string	WrongCat::getType(void) const
+// {
+// 	return this->_type;
+// }
 
-void		WrongCat::setType(std::string str)
-{
-	this->_type = str;
-	return ;
-}
+// void		WrongCat::setType(std::string str)
+// {
+// 	this->_type = str;
+// 	return ;
+// }
 
 /*****
 ****** OTHER MEMBER FUNCTIONS
