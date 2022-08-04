@@ -6,7 +6,7 @@
 /*   By: msanjuan <msanjuan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/04 11:17:19 by msanjuan          #+#    #+#             */
-/*   Updated: 2022/08/04 17:35:06 by msanjuan         ###   ########.fr       */
+/*   Updated: 2022/08/04 17:41:04 by msanjuan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,12 +60,10 @@ try : _name(name), _grade(grade)
 }
 catch (Bureaucrat::GradeTooLowException& exception)
 {
-	std::cout << "I'm there" << std::endl;
 	std::cerr << exception.what() << std::endl;	
 }
 catch (Bureaucrat::GradeTooHighException& exception)
 {
-	std::cout << "I'm here" << std::endl;
 	std::cerr << exception.what() << std::endl;
 }
 
@@ -120,7 +118,6 @@ void				Bureaucrat::lowerGrade(void)
 	}
 	catch (Bureaucrat::GradeTooHighException& exception)
 	{
-		std::cout << "The fuck" << std::endl;
 		std::cerr << exception.what() << std::endl;
 	}
 	return ;
