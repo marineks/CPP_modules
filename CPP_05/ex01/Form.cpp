@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Form.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marine <marine@student.42.fr>              +#+  +:+       +#+        */
+/*   By: msanjuan <msanjuan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/16 11:05:34 by marine            #+#    #+#             */
-/*   Updated: 2022/09/27 10:32:21 by marine           ###   ########.fr       */
+/*   Updated: 2022/10/03 20:02:20 by msanjuan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,9 +55,9 @@ Form::Form(std::string const name, int signGrade, int execGrade, bool state)
 try : _name(name), _signGrade(signGrade), _execGrade(execGrade), _isSigned(state)
 {
 	std::cout << BLUE << "📑 [Form] Parametric Constructor called for " << this->_name << RESET << std::endl;
-	if (signGrade > 150)
+	if (signGrade < 1 || execGrade < 1)
 		throw Form::GradeTooHighException();
-	else if (signGrade < 1)
+	else if (signGrade > 150 || execGrade > 150)
 		throw Form::GradeTooLowException();
 }
 catch (Form::GradeTooLowException& exception)
@@ -98,9 +98,9 @@ void				Form::setSignGrade(int rank)
 {
 	try
 	{
-		if (rank > 150)
+		if (rank < 1)
 			throw Form::GradeTooHighException();
-		else if (rank < 1)
+		else if (rank > 150)
 			throw Form::GradeTooLowException();
 		else
 			this->_signGrade = rank;
@@ -120,9 +120,9 @@ void				Form::setExecGrade(int rank)
 {
 	try
 	{
-		if (rank > 150)
+		if (rank < 1)
 			throw Form::GradeTooHighException();
-		else if (rank < 1)
+		else if (rank > 150)
 			throw Form::GradeTooLowException();
 		else
 			this->_execGrade = rank;
@@ -142,7 +142,7 @@ void				Form::setExecGrade(int rank)
 ****** OTHER FUNCTIONS MEMBERS
 ******
 *********************************************************/
-void				Form::beSigned(Bureaucrat bureaucrat)
+void				Form::beSigned(Bureaucrat & bureaucrat)
 {
 	try
 	{
@@ -162,8 +162,12 @@ void				Form::beSigned(Bureaucrat bureaucrat)
 ****** OVERLOAD ON OPERATOR <<
 ******
 *********************************************************/
-std::ostream &	operator<<(std::ostream & o, Form const & b)
+std::ostream &	operator<<(std::ostream & o, Form const & f)
 {
-	o << b.getName()<< ", Form grade " << b.getGrade() << "." << std::endl; 
+	o << "The Form is : " << f.getName() << ". The required grade to sign it is :";
+	o << f.getSignGrade() << ". The one to execute it is : " << f.getExecGrade();
+	o << "Currently, it is ";
+	(f.getIsSigned() == true) ? std::cout << "signed." : std::cout << "not signed.";
+	o << std::endl; 
 	return o;
 }

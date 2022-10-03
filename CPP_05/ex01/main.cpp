@@ -3,17 +3,20 @@
 /*                                                        :::      ::::::::   */
 /*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marine <marine@student.42.fr>              +#+  +:+       +#+        */
+/*   By: msanjuan <msanjuan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/04 11:16:18 by msanjuan          #+#    #+#             */
-/*   Updated: 2022/08/16 11:00:14 by marine           ###   ########.fr       */
+/*   Updated: 2022/10/03 20:23:03 by msanjuan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+
+#include "Form.hpp"
 #include "Bureaucrat.hpp"
 
 int	main(void)
 {
+	std::cout << YELLOW << "VERIF ACQUIS DU 1ER EXO" << RESET << std::endl;
 	Bureaucrat one(5, "Ollie");
 	std::cout << one << std::endl;
 	one.riseGrade();
@@ -52,5 +55,12 @@ int	main(void)
 	}
 	catch (Bureaucrat::GradeTooLowException& exception) {}
 	catch (Bureaucrat::GradeTooHighException& exception) {}
+
+	std::cout << YELLOW << "NOW LA VRAIE CORRECTION" << RESET << std::endl;
+	
+	Form form_1("Destroy building", 78, 140, false);
+
+	std::cout << form_1 << std::endl;
+	
 	return (0);
 }

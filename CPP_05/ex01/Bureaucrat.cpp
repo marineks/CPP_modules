@@ -3,15 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   Bureaucrat.cpp                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marine <marine@student.42.fr>              +#+  +:+       +#+        */
+/*   By: msanjuan <msanjuan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/04 11:17:19 by msanjuan          #+#    #+#             */
-/*   Updated: 2022/09/27 10:32:14 by marine           ###   ########.fr       */
+/*   Updated: 2022/10/03 20:13:52 by msanjuan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Bureaucrat.hpp"
-
+#include "Form.hpp"
 /*****
 ****** CONSTRUCTORS AND DESTRUCTORS
 ******
@@ -139,6 +139,15 @@ void				Bureaucrat::lowerGrade(void)
 		std::cerr << exception.what() << std::endl;
 		return ;
 	}
+	return ;
+}
+
+void				Bureaucrat::signForm(Form &form)
+{
+	if (form.getIsSigned() == true)
+		std::cout << "Bureaucrat " <<  this->getName() << " signed" << form.getName() << std::endl;
+	else
+		std::cout << "Bureaucrat " <<  this->getName() << " couldn't sign " << form.getName() << " because he does not have the right credentials." << std::endl;
 	return ;
 }
 

@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   Bureaucrat.hpp                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marine <marine@student.42.fr>              +#+  +:+       +#+        */
+/*   By: msanjuan <msanjuan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/04 11:16:21 by msanjuan          #+#    #+#             */
-/*   Updated: 2022/08/16 12:45:35 by marine           ###   ########.fr       */
+/*   Updated: 2022/10/03 20:10:59 by msanjuan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 
-#ifndef BUREAUCRAT_CLASS_HPP
-# define BUREAUCRAT_CLASS_HPP
+#ifndef BUREAUCRAT_HPP
+# define BUREAUCRAT_HPP
 
 # define RESET "\033[0m"
 # define BLACK "\033[0;30m"
@@ -26,7 +26,8 @@
 
 # include <iostream>
 # include <cstdlib>
-# include "Form.hpp"
+// # include "Form.hpp"
+class Form;
 
 class Bureaucrat
 {
@@ -49,7 +50,7 @@ class Bureaucrat
 				/* Other function members */
 				void				riseGrade(void);
 				void				lowerGrade(void);
-				void				signForm(Form form);
+				void				signForm(Form &form);
 
 				/* Custom exceptions */
 				class GradeTooHighException : public std::exception

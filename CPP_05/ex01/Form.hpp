@@ -3,15 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   Form.hpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marine <marine@student.42.fr>              +#+  +:+       +#+        */
+/*   By: msanjuan <msanjuan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/16 11:05:32 by marine            #+#    #+#             */
-/*   Updated: 2022/08/16 12:59:16 by marine           ###   ########.fr       */
+/*   Updated: 2022/10/03 19:59:26 by msanjuan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FORM_CLASS_HPP
-# define FORM_CLASS_HPP
+#ifndef FORM_HPP
+# define FORM_HPP
 
 # include "Bureaucrat.hpp"
 # include <iostream>
@@ -42,7 +42,7 @@ class Form
 				bool				getIsSigned(void) const;
 				
 				/* Other function members */
-				void				beSigned(Bureaucrat bureaucrat);
+				void				beSigned(Bureaucrat & bureaucrat);
 				
 				/* Custom exceptions */
 				class GradeTooHighException : public std::exception
@@ -69,6 +69,6 @@ class Form
 				bool				_isSigned;
 };
 
-std::ostream &	operator<<(std::ostream & o, Form const & i);
+std::ostream &	operator<<(std::ostream & o, Form const & f);
 
 #endif
