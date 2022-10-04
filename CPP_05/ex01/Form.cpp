@@ -6,7 +6,7 @@
 /*   By: msanjuan <msanjuan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/16 11:05:34 by marine            #+#    #+#             */
-/*   Updated: 2022/10/03 20:02:20 by msanjuan         ###   ########.fr       */
+/*   Updated: 2022/10/04 15:17:04 by msanjuan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 *********************************************************/
 
 /* ---------------- CANONICAL -----------------*/
-Form::Form(void) : _name(""), _signGrade(75), _execGrade(1), _isSigned(false)
+Form::Form(void) : _name("Default"), _signGrade(75), _execGrade(1), _isSigned(false)
 {
 	std::cout << GREEN << "📑 [Form] Default Constructor called" << RESET << std::endl;
 	return ;
@@ -149,7 +149,11 @@ void				Form::beSigned(Bureaucrat & bureaucrat)
 		if (bureaucrat.getGrade() > this->_signGrade) // Grade 1 is higher in rank than Grade 2
 			throw Bureaucrat::GradeTooLowException();
 		else
+		{
 			this->_isSigned = true;
+			std::cout << bureaucrat.getName() << " is able to sign the Form!" << std::endl;
+		}
+			
 	}
 	catch (Bureaucrat::GradeTooLowException& exception)
 	{
@@ -164,10 +168,9 @@ void				Form::beSigned(Bureaucrat & bureaucrat)
 *********************************************************/
 std::ostream &	operator<<(std::ostream & o, Form const & f)
 {
-	o << "The Form is : " << f.getName() << ". The required grade to sign it is :";
-	o << f.getSignGrade() << ". The one to execute it is : " << f.getExecGrade();
-	o << "Currently, it is ";
-	(f.getIsSigned() == true) ? std::cout << "signed." : std::cout << "not signed.";
-	o << std::endl; 
+	o << "The Form is named : <" << YELLOW << f.getName() << RESET << ">. The required grade to sign it is : ";
+	o << GREEN << f.getSignGrade() << RESET << ". The one to execute it is : " << CYAN << f.getExecGrade() << RESET;
+	o << ". Currently, it is ";
+	o << BLUE << ((f.getIsSigned() == true) ? "signed." : "not signed.") << RESET << std::endl;
 	return o;
 }
