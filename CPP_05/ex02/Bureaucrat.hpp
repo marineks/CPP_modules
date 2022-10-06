@@ -6,7 +6,7 @@
 /*   By: msanjuan <msanjuan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/04 11:16:21 by msanjuan          #+#    #+#             */
-/*   Updated: 2022/10/03 20:10:59 by msanjuan         ###   ########.fr       */
+/*   Updated: 2022/10/06 14:51:38 by msanjuan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,7 @@ class Bureaucrat
 				void				riseGrade(void);
 				void				lowerGrade(void);
 				void				signForm(Form &form);
+				void				executeForm(Form const & form);
 
 				/* Custom exceptions */
 				class GradeTooHighException : public std::exception
@@ -69,7 +70,6 @@ class Bureaucrat
 							}
 				};
 				
-
 	private:
 				std::string const 	_name;
 				int 				_grade; // goes from 1 to 150

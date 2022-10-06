@@ -6,7 +6,7 @@
 /*   By: msanjuan <msanjuan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/04 11:17:19 by msanjuan          #+#    #+#             */
-/*   Updated: 2022/10/04 15:15:30 by msanjuan         ###   ########.fr       */
+/*   Updated: 2022/10/06 12:00:08 by msanjuan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -144,10 +144,25 @@ void				Bureaucrat::lowerGrade(void)
 
 void				Bureaucrat::signForm(Form &form)
 {
-	if (form.getIsSigned() == true)
-		std::cout << "Bureaucrat " <<  this->getName() << " signed " << form.getName() << std::endl;
-	else
-		std::cout << "Bureaucrat " <<  this->getName() << " couldn't sign " << form.getName() << " because he does not have the right credentials." << std::endl;
+	std::cout << "Bureaucrat " <<  this->getName();
+	std::cout << ((form.getIsSigned() == true) ? " signed " : " couldn't sign ");
+	std::cout << form.getName() << " because he does not have the right credentials." << std::endl;
+	return ;
+}
+
+void				Bureaucrat::executeForm(Form const & form)
+{
+	try
+	{
+		form.execute(*this);
+		std::cout << "Bureaucrat " << this->getName();
+		std::cout << " executed " << form.getName() << std::endl;
+	}
+	catch (std::exception& exception)
+	{
+		std::cerr << exception.what() << std::endl;
+		return ;
+	}
 	return ;
 }
 

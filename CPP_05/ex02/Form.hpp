@@ -6,7 +6,7 @@
 /*   By: msanjuan <msanjuan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/16 11:05:32 by marine            #+#    #+#             */
-/*   Updated: 2022/10/04 17:29:36 by msanjuan         ###   ########.fr       */
+/*   Updated: 2022/10/06 11:58:56 by msanjuan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ class Form
 	public:
 				Form(void); 							// default
 				Form(Form const & src);					// copy
-				~Form(void);							// destructor
+				virtual ~Form(void) = 0;				// destructor
 				Form &	operator=(Form const & rhs);	// affectation
 
 				/* Parametric constructors */
@@ -41,6 +41,7 @@ class Form
 				
 				/* Other function members */
 				void				beSigned(Bureaucrat & bureaucrat);
+				virtual void 		execute(Bureaucrat const & executor) const = 0;
 				
 				/* Custom exceptions */
 				class GradeTooHighException : public std::exception
@@ -52,6 +53,14 @@ class Form
 				};
 
 				class GradeTooLowException : public std::exception
+				{
+					public : 
+							const char * 	what (void) const throw() {
+								return "The grade is too low.";
+							}
+				};
+
+				class InvalidExecutionGradeException : public std::exception
 				{
 					public : 
 							const char * 	what (void) const throw() {

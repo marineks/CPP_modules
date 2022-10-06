@@ -1,7 +1,7 @@
 ########################################
 #				PROGRAMS				#
 #########################################
-NAME = form
+NAME = speforms
 
 #########################################
 #				COMMANDS				#
@@ -24,13 +24,22 @@ IFLAGS := -I includes
 #########################################
 #			FILES PATH					#
 #########################################
-INC_PATH = Bureaucrat.hpp Form.hpp
+INC_PATH = Bureaucrat.hpp				\
+			 Form.hpp					\
+			 RobotomyRequestForm.hpp	\
+			 ShrubberyCreationForm.hpp	\
+			 PresidentialPardonForm.hpp	\
+
 #########################################
 #			SOURCES	FILES				#
 #########################################
 SRCS = main.cpp							\
 		Bureaucrat.cpp					\
 		Form.cpp						\
+		RobotomyRequestForm.cpp			\
+		ShrubberyCreationForm.cpp		\
+		PresidentialPardonForm.cpp		\
+
 
 #########################################
 #            OBJECT FILES    	        #

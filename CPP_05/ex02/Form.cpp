@@ -6,7 +6,7 @@
 /*   By: msanjuan <msanjuan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/16 11:05:34 by marine            #+#    #+#             */
-/*   Updated: 2022/10/04 15:17:04 by msanjuan         ###   ########.fr       */
+/*   Updated: 2022/10/06 12:00:16 by msanjuan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -147,7 +147,7 @@ void				Form::beSigned(Bureaucrat & bureaucrat)
 	try
 	{
 		if (bureaucrat.getGrade() > this->_signGrade) // Grade 1 is higher in rank than Grade 2
-			throw Bureaucrat::GradeTooLowException();
+			throw Form::GradeTooLowException();
 		else
 		{
 			this->_isSigned = true;
@@ -155,7 +155,7 @@ void				Form::beSigned(Bureaucrat & bureaucrat)
 		}
 			
 	}
-	catch (Bureaucrat::GradeTooLowException& exception)
+	catch (Form::GradeTooLowException& exception)
 	{
 		std::cerr << exception.what() << std::endl;
 	}
