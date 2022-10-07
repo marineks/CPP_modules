@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Bureaucrat.cpp                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: msanjuan <msanjuan@student.42.fr>          +#+  +:+       +#+        */
+/*   By: marine <marine@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/04 11:17:19 by msanjuan          #+#    #+#             */
-/*   Updated: 2022/10/04 15:15:30 by msanjuan         ###   ########.fr       */
+/*   Updated: 2022/10/07 23:22:03 by marine           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -150,6 +150,23 @@ void				Bureaucrat::signForm(Form &form)
 		std::cout << "Bureaucrat " <<  this->getName() << " couldn't sign " << form.getName() << " because he does not have the right credentials." << std::endl;
 	return ;
 }
+
+
+/*****
+****** EXCEPTIONS
+******
+*********************************************************/
+const char * 	Bureaucrat::GradeTooHighException::what (void) const throw() 
+{
+	return "The grade is too high.";
+}
+
+
+const char * 	Bureaucrat::GradeTooLowException::what (void) const throw() 
+{
+	return "The grade is too low.";
+}
+
 
 /*****
 ****** OVERLOAD ON OPERATOR <<

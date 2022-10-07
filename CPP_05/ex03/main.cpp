@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: msanjuan <msanjuan@student.42.fr>          +#+  +:+       +#+        */
+/*   By: marine <marine@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/04 11:16:18 by msanjuan          #+#    #+#             */
-/*   Updated: 2022/10/07 15:07:45 by msanjuan         ###   ########.fr       */
+/*   Updated: 2022/10/07 23:15:49 by marine           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,11 +16,12 @@
 #include "ShrubberyCreationForm.hpp"
 #include "RobotomyRequestForm.hpp"
 #include "PresidentialPardonForm.hpp"
+#include "Intern.hpp"
 
 int	main(void)
 {
 	srand(time(NULL));
-	/* CHECK DECLARATION DE CLASSES */
+	/* CHECK DECLARATION OF CLASSES */
 	std::cout << YELLOW << " ### OVERVIEW OF THE CLASSES ###" << RESET << std::endl;
 	Bureaucrat Georges(46, "Georges");
 	std::cout << Georges << std::endl;
@@ -28,45 +29,44 @@ int	main(void)
 	Bureaucrat Alicia(2, "Alicia");
 	std::cout << Alicia << std::endl;
 	
-	RobotomyRequestForm Robotomy("Claire");
-	std::cout << Robotomy << std::endl;
-	
-	PresidentialPardonForm Pardon("Xavier");
-	std::cout << Pardon << std::endl;
-	
-	ShrubberyCreationForm Shrubbery("Garden");
-	std::cout << Shrubbery << std::endl;
+	Intern intern;
 
-	// Form testAbstrait; // should raise a compiling error
+	/* CHECK CREATION OF FORMS BY INTERN */	
+	Form *test = intern.makeForm("test non concluant", "Alicia");
+	(void) test;
+	
+	Form *anotherTest = intern.makeForm("", "");
+	(void) anotherTest;
+	
+	Form *Robotomy = intern.makeForm("robotomy request", "Bender");
 
-	/* CHECK SIGNER CHAQUE FORM */
+	Form *Shrubbery = intern.makeForm("shrubbery creation", "Mansion");
+
+	Form *Pardon = intern.makeForm("presidential pardon", "me");
+	
+	/* CHECK THAT IT WORKS */
 	std::cout << YELLOW << " ### SIGN EACH FORM ###" << RESET << std::endl;
-	Robotomy.beSigned(Georges);
-	Georges.signForm(Robotomy);
-	std::cout << Robotomy << std::endl;
 	
-	Pardon.beSigned(Georges); // Georges should not be able to sign
-	Pardon.beSigned(Alicia);
-	Alicia.signForm(Pardon);
-	std::cout << Pardon << std::endl;
+	Robotomy->beSigned(Georges);
+	Georges.signForm(*Robotomy);
+	
+	Pardon->beSigned(Alicia);
+	Alicia.signForm(*Pardon);
 
-	Shrubbery.beSigned(Georges);
-	Georges.signForm(Shrubbery);
-	std::cout << Shrubbery << std::endl;
+	Shrubbery->beSigned(Georges);
+	Georges.signForm(*Shrubbery);
 	
 	/* CHECK EXECUTER CHAQUE FORM */
-	std::cout << YELLOW << " ### OVERVIEW OF THE CLASSES ###" << RESET << std::endl;
-	Georges.executeForm(Robotomy); // Georges should not be able to exec
-	Alicia.executeForm(Robotomy);
-	Alicia.executeForm(Robotomy);
-	Alicia.executeForm(Robotomy);
-	Alicia.executeForm(Robotomy);
-
-	Georges.executeForm(Pardon); // Georges should not be able to exec
-	Alicia.executeForm(Pardon);
-
-	Georges.executeForm(Shrubbery);
+	Alicia.executeForm(*Robotomy);
 	
-	
+	Alicia.executeForm(*Pardon);
+
+	Georges.executeForm(*Shrubbery);
+
+	delete test;
+	delete anotherTest;
+	delete Robotomy;
+	delete Shrubbery;
+	delete Pardon;
 	return (0);
 }

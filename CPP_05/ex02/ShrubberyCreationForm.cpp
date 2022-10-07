@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ShrubberyCreationForm.cpp                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: msanjuan <msanjuan@student.42.fr>          +#+  +:+       +#+        */
+/*   By: marine <marine@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/06 14:27:16 by msanjuan          #+#    #+#             */
-/*   Updated: 2022/10/07 15:11:05 by msanjuan         ###   ########.fr       */
+/*   Updated: 2022/10/07 23:45:54 by marine           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,41 +62,33 @@ std::string const ShrubberyCreationForm::getTarget(void) const
 ******
 *********************************************************/
 
-bool ShrubberyCreationForm::execute(Bureaucrat const &executor) const
+void ShrubberyCreationForm::execute(Bureaucrat const &executor) const
 {
-	try
+	if (executor.getGrade() > 137)
+		throw Form::GradeTooLowException();
+	else if (this->getIsSigned() == false)
+		throw Form::UnsignedFormException();
+	else
 	{
-		if (executor.getGrade() > 137 || this->getIsSigned() == false)
-			throw Form::InvalidExecutionGradeException();
-		else
-		{
-			std::string newFilename = this->getTarget();
-			newFilename.append("_shrubbery");
+		std::string newFilename = this->getTarget();
+		newFilename.append("_shrubbery");
 
-			std::ofstream newFile(newFilename.c_str());
+		std::ofstream newFile(newFilename.c_str());
 
-			newFile << "				,@@@@@@@," << std::endl;
-			newFile << "       ,,,.   ,@@@@@@/@@,  .oo8888o." << std::endl;
-			newFile << "    ,&%%&%&&%,@@@@@/@@@@@@,8888\\88/8o"<< std::endl;
-			newFile << "   ,%&\\%&&%&&%,@@@\\@@@/@@@88\\88888/88'" << std::endl;
-			newFile << "   %&&%&%&/%&&%@@\\@@/ /@@@88888\\88888'"<< std::endl;
-			newFile << "   %&&%/ %&%%&&@@\\ V /@@' `88\\8 `/88'" << std::endl;
-			newFile << "   `&%\\ ` /%&'    |.|        \\ '|8'" << std::endl;
-			newFile << "       |o|        | |         | |" << std::endl;
-			newFile << "       |.|        | |         | |"<< std::endl;
-			newFile << "_\\/ ._\\//_/__/  ,\\_//__\\/.  \\_//__/_"  << std::endl;
-			
-			newFile.close();
-			
-		}
+		newFile << "				,@@@@@@@," << std::endl;
+		newFile << "       ,,,.   ,@@@@@@/@@,  .oo8888o." << std::endl;
+		newFile << "    ,&%%&%&&%,@@@@@/@@@@@@,8888\\88/8o"<< std::endl;
+		newFile << "   ,%&\\%&&%&&%,@@@\\@@@/@@@88\\88888/88'" << std::endl;
+		newFile << "   %&&%&%&/%&&%@@\\@@/ /@@@88888\\88888'"<< std::endl;
+		newFile << "   %&&%/ %&%%&&@@\\ V /@@' `88\\8 `/88'" << std::endl;
+		newFile << "   `&%\\ ` /%&'    |.|        \\ '|8'" << std::endl;
+		newFile << "       |o|        | |         | |" << std::endl;
+		newFile << "       |.|        | |         | |"<< std::endl;
+		newFile << "_\\/ ._\\//_/__/  ,\\_//__\\/.  \\_//__/_"  << std::endl;
+		
+		newFile.close();
+		
 	}
-	catch (Form::InvalidExecutionGradeException &exception)
-	{
-		// std::cout << RED << executor.getName() << " cannot execute this form. Reason : ";
-		// std::cerr << exception.what() << RESET << std::endl;
-		return false;
-	}
-	return true;
 }
 
 std::ostream &	operator<<(std::ostream & o, ShrubberyCreationForm const & f)

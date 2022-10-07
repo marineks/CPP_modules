@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Form.hpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: msanjuan <msanjuan@student.42.fr>          +#+  +:+       +#+        */
+/*   By: marine <marine@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/16 11:05:32 by marine            #+#    #+#             */
-/*   Updated: 2022/10/06 13:57:52 by msanjuan         ###   ########.fr       */
+/*   Updated: 2022/10/07 23:21:16 by marine           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,17 +48,13 @@ class Form
 				class GradeTooHighException : public std::exception
 				{
 					public : 
-							const char * 	what (void) const throw() {
-								return "The grade is too high.";
-							}
+							const char * 	what (void) const throw();
 				};
 
 				class GradeTooLowException : public std::exception
 				{
 					public : 
-							const char * 	what (void) const throw() {
-								return "The grade is too low.";
-							}
+							const char * 	what (void) const throw();
 				};
 				
 

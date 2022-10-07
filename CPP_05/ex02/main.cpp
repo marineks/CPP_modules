@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: msanjuan <msanjuan@student.42.fr>          +#+  +:+       +#+        */
+/*   By: marine <marine@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/04 11:16:18 by msanjuan          #+#    #+#             */
-/*   Updated: 2022/10/07 15:07:45 by msanjuan         ###   ########.fr       */
+/*   Updated: 2022/10/07 23:48:51 by marine           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,7 @@ int	main(void)
 	Georges.signForm(Robotomy);
 	std::cout << Robotomy << std::endl;
 	
+	Alicia.executeForm(Pardon); // Alicia should not be able to execute
 	Pardon.beSigned(Georges); // Georges should not be able to sign
 	Pardon.beSigned(Alicia);
 	Alicia.signForm(Pardon);

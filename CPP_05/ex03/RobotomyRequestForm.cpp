@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   RobotomyRequestForm.cpp                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: msanjuan <msanjuan@student.42.fr>          +#+  +:+       +#+        */
+/*   By: marine <marine@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/04 17:58:54 by msanjuan          #+#    #+#             */
-/*   Updated: 2022/10/07 15:11:21 by msanjuan         ###   ########.fr       */
+/*   Updated: 2022/10/07 23:52:22 by marine           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,31 +57,23 @@ std::string const	RobotomyRequestForm::getTarget(void) const
 ******
 *********************************************************/
 
-bool	RobotomyRequestForm::execute(Bureaucrat const & executor) const
+void	RobotomyRequestForm::execute(Bureaucrat const & executor) const
 {
-	try
+	if (executor.getGrade() > 45)
+		throw Form::GradeTooLowException();
+	else if (this->getIsSigned() == false)
+		throw Form::UnsignedFormException();
+	else
 	{
-		if (executor.getGrade() > 45 || this->getIsSigned() == false)
-			throw Form::InvalidExecutionGradeException();
+		std::cout << "BJJJZZZZ BJJJJJJZZZZ BBJJZZZZZZZ" << std::endl; // bruits de perceuse
+		
+		int RobotomyTry = std::rand() % 2;
+		std::cout << this->getTarget();
+		if (RobotomyTry == 0)
+			std::cout << " was successfully robotomised!" << std::endl;
 		else
-		{
-			std::cout << "BJJJZZZZ BJJJJJJZZZZ BBJJZZZZZZZ" << std::endl; // bruits de perceuse
-			
-			int RobotomyTry = std::rand() % 2;
-			std::cout << this->getTarget();
-			if (RobotomyTry == 0)
-				std::cout << " was successfully robotomised with a success rate of 50%!" << std::endl;
-			else
-				std::cout << "'s operation failed. Sorry their brain is intact!" << std::endl;
-		}
+			std::cout << "'s operation failed. Sorry their brain is intact!" << std::endl;
 	}
-	catch (Form::InvalidExecutionGradeException& exception)
-	{
-		// std::cout << RED << executor.getName() << " cannot execute this form. Reason : ";
-		// std::cerr << exception.what() << RESET << std::endl;
-		return false;
-	}
-	return true;
 }
 
 std::ostream &	operator<<(std::ostream & o, RobotomyRequestForm const & f)

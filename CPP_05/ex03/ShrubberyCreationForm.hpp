@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ShrubberyCreationForm.hpp                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: msanjuan <msanjuan@student.42.fr>          +#+  +:+       +#+        */
+/*   By: marine <marine@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/04 17:59:44 by msanjuan          #+#    #+#             */
-/*   Updated: 2022/10/07 14:50:30 by msanjuan         ###   ########.fr       */
+/*   Updated: 2022/10/07 23:52:36 by marine           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ class ShrubberyCreationForm : public Form
 				std::string const	getTarget(void) const;
 				
 				/* Other function members */
-				bool 				execute(Bureaucrat const & executor) const;
+				void 				execute(Bureaucrat const & executor) const;
 	
 	private:
 				std::string const	_target;

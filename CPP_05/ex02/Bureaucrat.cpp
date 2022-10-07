@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Bureaucrat.cpp                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: msanjuan <msanjuan@student.42.fr>          +#+  +:+       +#+        */
+/*   By: marine <marine@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/04 11:17:19 by msanjuan          #+#    #+#             */
-/*   Updated: 2022/10/07 15:04:46 by msanjuan         ###   ########.fr       */
+/*   Updated: 2022/10/07 23:43:43 by marine           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -151,21 +151,34 @@ void				Bureaucrat::signForm(Form &form)
 
 void				Bureaucrat::executeForm(Form const & form)
 {
-	try
-	{
-		if (form.execute(*this) == false)
-			throw Form::InvalidExecutionGradeException();
-		std::cout << GREEN "Bureaucrat " << this->getName();
-		std::cout << " executed " << form.getName() << RESET << std::endl << std::endl;		
-	}
-	catch (Form::InvalidExecutionGradeException & exception)
+	try { form.execute(*this); }
+	catch (std::exception & exception)
 	{
 		std::cout << RED << this->getName() << " cannot execute the " << form.getName() << ". ";
 		std::cerr << exception.what() << RESET << std::endl << std::endl;
 		return ;
 	}
+	std::cout << GREEN "Bureaucrat " << this->getName();
+	std::cout << " executed " << form.getName() << RESET << std::endl << std::endl;		
 	return ;
 }
+
+
+/*****
+****** EXCEPTIONS
+******
+*********************************************************/
+const char * 	Bureaucrat::GradeTooHighException::what (void) const throw() 
+{
+	return "The grade is too high.";
+}
+
+
+const char * 	Bureaucrat::GradeTooLowException::what (void) const throw() 
+{
+	return "The grade is too low.";
+}
+
 
 /*****
 ****** OVERLOAD ON OPERATOR <<

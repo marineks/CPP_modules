@@ -1,7 +1,7 @@
 ########################################
 #				PROGRAMS				#
 #########################################
-NAME = speforms
+NAME = intern
 
 #########################################
 #				COMMANDS				#
@@ -29,6 +29,7 @@ INC_PATH = Bureaucrat.hpp				\
 			 RobotomyRequestForm.hpp	\
 			 ShrubberyCreationForm.hpp	\
 			 PresidentialPardonForm.hpp	\
+			 Intern.hpp					\
 
 #########################################
 #			SOURCES	FILES				#
@@ -39,6 +40,7 @@ SRCS = main.cpp							\
 		RobotomyRequestForm.cpp			\
 		ShrubberyCreationForm.cpp		\
 		PresidentialPardonForm.cpp		\
+		Intern.cpp						\
 
 
 #########################################

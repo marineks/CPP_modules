@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Form.hpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: msanjuan <msanjuan@student.42.fr>          +#+  +:+       +#+        */
+/*   By: marine <marine@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/16 11:05:32 by marine            #+#    #+#             */
-/*   Updated: 2022/10/07 15:00:57 by msanjuan         ###   ########.fr       */
+/*   Updated: 2022/10/07 23:42:48 by marine           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,31 +41,25 @@ class Form
 				
 				/* Other function members */
 				void				beSigned(Bureaucrat & bureaucrat);
-				virtual bool 		execute(Bureaucrat const & executor) const = 0;
+				virtual void 		execute(Bureaucrat const & executor) const = 0;
 				
 				/* Custom exceptions */
 				class GradeTooHighException : public std::exception
 				{
 					public : 
-							const char * 	what (void) const throw() {
-								return "The grade is too high.";
-							}
+							const char * 	what (void) const throw();
 				};
 
 				class GradeTooLowException : public std::exception
 				{
 					public : 
-							const char * 	what (void) const throw() {
-								return "The grade is too low.";
-							}
+							const char * 	what (void) const throw();
 				};
 
-				class InvalidExecutionGradeException : public std::exception
+				class UnsignedFormException : public std::exception
 				{
 					public : 
-							const char * 	what (void) const throw() {
-								return "The grade is too low or the form is not signed.";
-							}
+							const char * 	what (void) const throw();
 				};
 				
 

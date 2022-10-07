@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Form.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: msanjuan <msanjuan@student.42.fr>          +#+  +:+       +#+        */
+/*   By: marine <marine@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/16 11:05:34 by marine            #+#    #+#             */
-/*   Updated: 2022/10/07 14:18:55 by msanjuan         ###   ########.fr       */
+/*   Updated: 2022/10/07 23:30:19 by marine           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -161,6 +161,26 @@ void				Form::beSigned(Bureaucrat & bureaucrat)
 		std::cerr << exception.what() << std::endl;
 	}
 	return ;
+}
+
+/*****
+****** EXCEPTIONS
+******
+*********************************************************/
+const char * 	Form::GradeTooHighException::what (void) const throw() 
+{
+	return "The grade is too high.";
+}
+
+
+const char * 	Form::GradeTooLowException::what (void) const throw() 
+{
+	return "The grade is too low.";
+}
+
+const char * 	Form::UnsignedFormException::what (void) const throw() 
+{
+	return "The form is not signed.";
 }
 
 /*****

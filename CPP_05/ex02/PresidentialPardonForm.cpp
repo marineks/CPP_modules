@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   PresidentialPardonForm.cpp                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: msanjuan <msanjuan@student.42.fr>          +#+  +:+       +#+        */
+/*   By: marine <marine@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/04 17:51:22 by msanjuan          #+#    #+#             */
-/*   Updated: 2022/10/07 15:03:27 by msanjuan         ###   ########.fr       */
+/*   Updated: 2022/10/07 23:43:27 by marine           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,22 +59,14 @@ std::string const	PresidentialPardonForm::getTarget(void) const
 
 /* Échelons requis : signature 25, exécution 5
 Informe que la <target> a été pardonnée par Zaphod Beeblebrox.*/
-bool	PresidentialPardonForm::execute(Bureaucrat const & executor) const
+void	PresidentialPardonForm::execute(Bureaucrat const & executor) const
 {
-	try
-	{
-		if (executor.getGrade() > 5 || this->getIsSigned() == false)
-			throw Form::InvalidExecutionGradeException();
+		if (executor.getGrade() > 5)
+			throw Form::GradeTooLowException();
+		else if (this->getIsSigned() == false)
+			throw Form::UnsignedFormException();
 		else
 			std::cout << this->getTarget() << " was forgiven by Zaphod Beeblebrox." << std::endl;
-	}
-	catch (Form::InvalidExecutionGradeException& exception)
-	{
-		// std::cout << RED << executor.getName() << " cannot execute this form. Reason : ";
-		// std::cerr << exception.what() << RESET << std::endl;
-		return false;
-	}
-	return true;
 }
 
 std::ostream &	operator<<(std::ostream & o, PresidentialPardonForm const & f)
