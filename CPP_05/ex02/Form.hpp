@@ -6,7 +6,7 @@
 /*   By: msanjuan <msanjuan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/16 11:05:32 by marine            #+#    #+#             */
-/*   Updated: 2022/10/06 11:58:56 by msanjuan         ###   ########.fr       */
+/*   Updated: 2022/10/07 15:00:57 by msanjuan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ class Form
 				
 				/* Other function members */
 				void				beSigned(Bureaucrat & bureaucrat);
-				virtual void 		execute(Bureaucrat const & executor) const = 0;
+				virtual bool 		execute(Bureaucrat const & executor) const = 0;
 				
 				/* Custom exceptions */
 				class GradeTooHighException : public std::exception
@@ -64,7 +64,7 @@ class Form
 				{
 					public : 
 							const char * 	what (void) const throw() {
-								return "The grade is too low.";
+								return "The grade is too low or the form is not signed.";
 							}
 				};
 				

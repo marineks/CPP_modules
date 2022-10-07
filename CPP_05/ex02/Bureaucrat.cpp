@@ -6,7 +6,7 @@
 /*   By: msanjuan <msanjuan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/04 11:17:19 by msanjuan          #+#    #+#             */
-/*   Updated: 2022/10/06 12:00:08 by msanjuan         ###   ########.fr       */
+/*   Updated: 2022/10/07 15:04:46 by msanjuan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -145,8 +145,7 @@ void				Bureaucrat::lowerGrade(void)
 void				Bureaucrat::signForm(Form &form)
 {
 	std::cout << "Bureaucrat " <<  this->getName();
-	std::cout << ((form.getIsSigned() == true) ? " signed " : " couldn't sign ");
-	std::cout << form.getName() << " because he does not have the right credentials." << std::endl;
+	std::cout << ((form.getIsSigned() == true) ? " signed." : " couldn't sign because he does not have the right credentials.") << std::endl;
 	return ;
 }
 
@@ -154,13 +153,15 @@ void				Bureaucrat::executeForm(Form const & form)
 {
 	try
 	{
-		form.execute(*this);
-		std::cout << "Bureaucrat " << this->getName();
-		std::cout << " executed " << form.getName() << std::endl;
+		if (form.execute(*this) == false)
+			throw Form::InvalidExecutionGradeException();
+		std::cout << GREEN "Bureaucrat " << this->getName();
+		std::cout << " executed " << form.getName() << RESET << std::endl << std::endl;		
 	}
-	catch (std::exception& exception)
+	catch (Form::InvalidExecutionGradeException & exception)
 	{
-		std::cerr << exception.what() << std::endl;
+		std::cout << RED << this->getName() << " cannot execute the " << form.getName() << ". ";
+		std::cerr << exception.what() << RESET << std::endl << std::endl;
 		return ;
 	}
 	return ;

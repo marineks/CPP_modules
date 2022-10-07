@@ -6,7 +6,7 @@
 /*   By: msanjuan <msanjuan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/04 17:59:06 by msanjuan          #+#    #+#             */
-/*   Updated: 2022/10/06 18:47:09 by msanjuan         ###   ########.fr       */
+/*   Updated: 2022/10/07 14:49:35 by msanjuan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,13 +18,12 @@
 # include <iostream>
 # include <cstdlib>
 
-// note a soi meme: classe abstraite Form en public ou privee ? pas oublier attributs en protected
 class RobotomyRequestForm : public Form
 {
 	public:
-				RobotomyRequestForm(void);							// default
+				RobotomyRequestForm(void);											// default
 				RobotomyRequestForm(RobotomyRequestForm const & src);				// copy
-				~RobotomyRequestForm(void);							// destructor
+				~RobotomyRequestForm(void);											// destructor
 				RobotomyRequestForm &	operator=(RobotomyRequestForm const & rhs);	// affectation
 
 				/* Parametric constructors */
@@ -34,10 +33,10 @@ class RobotomyRequestForm : public Form
 				std::string const	getTarget(void) const;
 				
 				/* Other function members */
-				void execute(Bureaucrat const & executor) const;
+				bool				execute(Bureaucrat const & executor) const;
 
 	private:
-				std::string const _target;
+				std::string const	_target;
 	
 };
 

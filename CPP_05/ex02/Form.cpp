@@ -6,7 +6,7 @@
 /*   By: msanjuan <msanjuan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/16 11:05:34 by marine            #+#    #+#             */
-/*   Updated: 2022/10/06 12:00:16 by msanjuan         ###   ########.fr       */
+/*   Updated: 2022/10/07 14:18:55 by msanjuan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -157,6 +157,7 @@ void				Form::beSigned(Bureaucrat & bureaucrat)
 	}
 	catch (Form::GradeTooLowException& exception)
 	{
+		std::cout << bureaucrat.getName() << " is not able to sign the Form. Reason: " << std::endl;
 		std::cerr << exception.what() << std::endl;
 	}
 	return ;

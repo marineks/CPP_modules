@@ -6,7 +6,7 @@
 /*   By: msanjuan <msanjuan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/04 17:58:54 by msanjuan          #+#    #+#             */
-/*   Updated: 2022/10/06 18:49:40 by msanjuan         ###   ########.fr       */
+/*   Updated: 2022/10/07 15:11:21 by msanjuan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,32 +57,31 @@ std::string const	RobotomyRequestForm::getTarget(void) const
 ******
 *********************************************************/
 
-/* Échelons requis : signature 25, exécution 5
-Informe que la <target> a été pardonnée par Zaphod Beeblebrox.*/
-void	RobotomyRequestForm::execute(Bureaucrat const & executor) const
+bool	RobotomyRequestForm::execute(Bureaucrat const & executor) const
 {
 	try
 	{
-		if (executor.getGrade() > 45 && this->getIsSigned() == false)
+		if (executor.getGrade() > 45 || this->getIsSigned() == false)
 			throw Form::InvalidExecutionGradeException();
 		else
 		{
 			std::cout << "BJJJZZZZ BJJJJJJZZZZ BBJJZZZZZZZ" << std::endl; // bruits de perceuse
 			
-			srand(time(NULL));
 			int RobotomyTry = std::rand() % 2;
 			std::cout << this->getTarget();
 			if (RobotomyTry == 0)
 				std::cout << " was successfully robotomised with a success rate of 50%!" << std::endl;
 			else
-				std::cout << "'s operation failed. Sorry your brain is intact!" << std::endl;
+				std::cout << "'s operation failed. Sorry their brain is intact!" << std::endl;
 		}
 	}
 	catch (Form::InvalidExecutionGradeException& exception)
 	{
-		std::cerr << exception.what() << std::endl;
+		// std::cout << RED << executor.getName() << " cannot execute this form. Reason : ";
+		// std::cerr << exception.what() << RESET << std::endl;
+		return false;
 	}
-	return ;
+	return true;
 }
 
 std::ostream &	operator<<(std::ostream & o, RobotomyRequestForm const & f)
@@ -91,6 +90,6 @@ std::ostream &	operator<<(std::ostream & o, RobotomyRequestForm const & f)
 	o << "Form's target is : " << f.getTarget() << std::endl;
 	o << "Form's required execution grade is : " << f.getSignGrade() << std::endl;
 	o << "Form's required signature grade is : " << f.getExecGrade() << std::endl;
-	o << "Currently, it is : " << ((f.getIsSigned() == true) ? "signed." : "not signed.") << std::endl;
+	o << "Currently, it is : " << ((f.getIsSigned() == true) ? GREEN "signed." : RED "not signed.") << RESET << std::endl;
 	return o;
 }

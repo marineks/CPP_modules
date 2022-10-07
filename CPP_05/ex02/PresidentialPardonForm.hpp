@@ -6,7 +6,7 @@
 /*   By: msanjuan <msanjuan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/04 17:59:38 by msanjuan          #+#    #+#             */
-/*   Updated: 2022/10/06 18:47:04 by msanjuan         ###   ########.fr       */
+/*   Updated: 2022/10/07 14:50:47 by msanjuan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,13 +18,12 @@
 # include <iostream>
 # include <cstdlib>
 
-// note a soi meme: classe abstraite Form en public ou privee ? pas oublier attributs en protected
 class PresidentialPardonForm : public Form
 {
 	public:
-				PresidentialPardonForm(void); 							// default
+				PresidentialPardonForm(void); 												// default
 				PresidentialPardonForm(PresidentialPardonForm const & src);					// copy
-				~PresidentialPardonForm(void);							// destructor
+				~PresidentialPardonForm(void);												// destructor
 				PresidentialPardonForm &	operator=(PresidentialPardonForm const & rhs);	// affectation
 
 				/* Parametric constructors */
@@ -34,10 +33,10 @@ class PresidentialPardonForm : public Form
 				std::string const	getTarget(void) const;
 				
 				/* Other function members */
-				void execute(Bureaucrat const & executor) const;
+				bool				execute(Bureaucrat const & executor) const;
 	
 	private:
-				std::string const _target;
+				std::string const	_target;
 	
 };
 

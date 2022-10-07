@@ -73,6 +73,7 @@ clean:
 		@echo $(PURPLE) "[🧹Cleaning...🧹]" $(EOC)
 		@${RM} ${OBJS}
 		@${RM} ${OBJ_DIR} 
+		@${RM} *_shrubbery
 
 fclean: clean
 		@echo $(PURPLE) "[🧹FCleaning...🧹]" $(EOC)

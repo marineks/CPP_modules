@@ -6,7 +6,7 @@
 /*   By: msanjuan <msanjuan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/04 17:51:22 by msanjuan          #+#    #+#             */
-/*   Updated: 2022/10/06 18:44:36 by msanjuan         ###   ########.fr       */
+/*   Updated: 2022/10/07 15:03:27 by msanjuan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,20 +59,22 @@ std::string const	PresidentialPardonForm::getTarget(void) const
 
 /* Échelons requis : signature 25, exécution 5
 Informe que la <target> a été pardonnée par Zaphod Beeblebrox.*/
-void	PresidentialPardonForm::execute(Bureaucrat const & executor) const
+bool	PresidentialPardonForm::execute(Bureaucrat const & executor) const
 {
 	try
 	{
-		if (executor.getGrade() > 5 && this->getIsSigned() == false)
+		if (executor.getGrade() > 5 || this->getIsSigned() == false)
 			throw Form::InvalidExecutionGradeException();
 		else
 			std::cout << this->getTarget() << " was forgiven by Zaphod Beeblebrox." << std::endl;
 	}
 	catch (Form::InvalidExecutionGradeException& exception)
 	{
-		std::cerr << exception.what() << std::endl;
+		// std::cout << RED << executor.getName() << " cannot execute this form. Reason : ";
+		// std::cerr << exception.what() << RESET << std::endl;
+		return false;
 	}
-	return ;
+	return true;
 }
 
 std::ostream &	operator<<(std::ostream & o, PresidentialPardonForm const & f)
@@ -81,6 +83,6 @@ std::ostream &	operator<<(std::ostream & o, PresidentialPardonForm const & f)
 	o << "Form's target is : " << f.getTarget() << std::endl;
 	o << "Form's required execution grade is : " << f.getSignGrade() << std::endl;
 	o << "Form's required signature grade is : " << f.getExecGrade() << std::endl;
-	o << "Currently, it is : " << ((f.getIsSigned() == true) ? "signed." : "not signed.") << std::endl;
+	o << "Currently, it is : " << ((f.getIsSigned() == true) ? GREEN "signed." : RED "not signed.") << RESET << std::endl;
 	return o;
 }
