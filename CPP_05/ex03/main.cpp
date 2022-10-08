@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marine <marine@student.42.fr>              +#+  +:+       +#+        */
+/*   By: msanjuan <msanjuan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/04 11:16:18 by msanjuan          #+#    #+#             */
-/*   Updated: 2022/10/07 23:15:49 by marine           ###   ########.fr       */
+/*   Updated: 2022/10/08 15:42:11 by msanjuan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,10 +33,8 @@ int	main(void)
 
 	/* CHECK CREATION OF FORMS BY INTERN */	
 	Form *test = intern.makeForm("test non concluant", "Alicia");
-	(void) test;
 	
 	Form *anotherTest = intern.makeForm("", "");
-	(void) anotherTest;
 	
 	Form *Robotomy = intern.makeForm("robotomy request", "Bender");
 
@@ -63,6 +61,9 @@ int	main(void)
 
 	Georges.executeForm(*Shrubbery);
 
+	(void) test;
+	(void) anotherTest;
+	
 	delete test;
 	delete anotherTest;
 	delete Robotomy;

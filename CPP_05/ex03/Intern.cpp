@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Intern.cpp                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marine <marine@student.42.fr>              +#+  +:+       +#+        */
+/*   By: msanjuan <msanjuan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/07 19:51:06 by marine            #+#    #+#             */
-/*   Updated: 2022/10/07 23:09:57 by marine           ###   ########.fr       */
+/*   Updated: 2022/10/08 15:38:52 by msanjuan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ Intern::Intern(Intern const & src)
 }
 
 Intern::~Intern(){
-	std::cout << "Intern dismissed" << std::endl;
+	std::cout << "This work was not very efficient... Intern dismissed" << std::endl;
 }
 
 Intern &	Intern::operator=(Intern const & rhs)
