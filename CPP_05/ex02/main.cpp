@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marine <marine@student.42.fr>              +#+  +:+       +#+        */
+/*   By: msanjuan <msanjuan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/04 11:16:18 by msanjuan          #+#    #+#             */
-/*   Updated: 2022/10/07 23:48:51 by marine           ###   ########.fr       */
+/*   Updated: 2022/10/08 15:31:08 by msanjuan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,10 @@ int	main(void)
 	/* CHECK EXECUTER CHAQUE FORM */
 	std::cout << YELLOW << " ### OVERVIEW OF THE CLASSES ###" << RESET << std::endl;
 	Georges.executeForm(Robotomy); // Georges should not be able to exec
+	Alicia.executeForm(Robotomy);
+	Alicia.executeForm(Robotomy);
+	Alicia.executeForm(Robotomy);
+	Alicia.executeForm(Robotomy);
 	Alicia.executeForm(Robotomy);
 	Alicia.executeForm(Robotomy);
 	Alicia.executeForm(Robotomy);

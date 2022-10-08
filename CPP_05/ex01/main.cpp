@@ -6,7 +6,7 @@
 /*   By: msanjuan <msanjuan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/04 11:16:18 by msanjuan          #+#    #+#             */
-/*   Updated: 2022/10/08 15:06:48 by msanjuan         ###   ########.fr       */
+/*   Updated: 2022/10/08 15:07:59 by msanjuan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,6 @@ int	main(void)
 	Form form_2;
 	std::cout << form_2 << std::endl << std::endl;
 	
-
 	try
 	{
 		Form form_3("Burn Hippietech", 0, 140, false); // should throw a "too high" exception
