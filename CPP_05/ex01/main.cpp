@@ -6,7 +6,7 @@
 /*   By: msanjuan <msanjuan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/04 11:16:18 by msanjuan          #+#    #+#             */
-/*   Updated: 2022/10/04 15:35:48 by msanjuan         ###   ########.fr       */
+/*   Updated: 2022/10/08 15:06:48 by msanjuan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,6 @@ int	main(void)
 		std::cout << four << std::endl;
 	}
 	catch (std::exception& exception) {}
-	// catch (Bureaucrat::GradeTooHighException& exception) {}
 		
 	try
 	{
@@ -79,25 +78,18 @@ int	main(void)
 	}
 	catch (std::exception& exception) {}
 
-	std::cout << CYAN << "Tests de signature d'un form" << RESET << std::endl;
+	std::cout << std::endl << CYAN << "Tests de signature d'un form" << RESET << std::endl;
 	std::cout << std::endl;
 	
 	std::cout << "Can Max sign Form 1 ?" << std::endl;
-	form_1.beSigned(two); // should throw a "too low" exception
-	std::cout << std::endl;
-	
-	std::cout << "What's the current status of Form 1 ?" << std::endl;
-	two.signForm(form_1); 
+	two.signForm(form_1); // should throw a "too low" exception
 	std::cout << std::endl;
 	
 	std::cout << "Can Ollie sign Form 1 ?" << std::endl;
-	form_1.beSigned(one);
-	std::cout << std::endl;
-	
-	std::cout << "What's the current status of Form 1 ?" << std::endl;
 	one.signForm(form_1);
 	std::cout << std::endl;
 	
+	std::cout << "What's the current status of Form 1 ?" << std::endl;	
 	std::cout << form_1 << std::endl << std::endl;
 
 	return (0);

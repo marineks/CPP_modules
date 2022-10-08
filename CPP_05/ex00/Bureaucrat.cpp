@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Bureaucrat.cpp                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marine <marine@student.42.fr>              +#+  +:+       +#+        */
+/*   By: msanjuan <msanjuan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/04 11:17:19 by msanjuan          #+#    #+#             */
-/*   Updated: 2022/10/07 23:22:27 by marine           ###   ########.fr       */
+/*   Updated: 2022/10/08 14:23:42 by msanjuan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,9 +54,9 @@ try : _name(name), _grade(grade)
 {
 	std::cout << "📑 [Bureaucrat] Parametric Constructor called for " << this->_name << std::endl;
 	if (grade > 150)
-		throw Bureaucrat::GradeTooHighException();
-	else if (grade < 1)
 		throw Bureaucrat::GradeTooLowException();
+	else if (grade < 1)
+		throw Bureaucrat::GradeTooHighException();
 }
 catch (Bureaucrat::GradeTooLowException& exception)
 {
@@ -87,9 +87,9 @@ void				Bureaucrat::setGrade(int rank)
 	try
 	{
 		if (rank > 150)
-			throw Bureaucrat::GradeTooHighException();
-		else if (rank < 1)
 			throw Bureaucrat::GradeTooLowException();
+		else if (rank < 1)
+			throw Bureaucrat::GradeTooHighException();
 		else
 			this->_grade = rank;
 	}
@@ -114,11 +114,11 @@ void				Bureaucrat::riseGrade(void)
 	try
 	{
 		if (this->_grade - 1 < 1) // Grade 1 is higher in rank than Grade 2
-			throw Bureaucrat::GradeTooLowException();
+			throw Bureaucrat::GradeTooHighException();
 		else
 			this->_grade--;
 	}
-	catch (Bureaucrat::GradeTooLowException& exception)
+	catch (Bureaucrat::GradeTooHighException& exception)
 	{
 		std::cerr << exception.what() << std::endl;
 	}
@@ -130,11 +130,11 @@ void				Bureaucrat::lowerGrade(void)
 	try
 	{
 		if (this->_grade + 1 > 150)
-			throw Bureaucrat::GradeTooHighException();
+			throw Bureaucrat::GradeTooLowException();
 		else
 			this->_grade++; // Grade 150 is lower in rank than Grade 149
 	}
-	catch (Bureaucrat::GradeTooHighException& exception)
+	catch (Bureaucrat::GradeTooLowException& exception)
 	{
 		std::cerr << exception.what() << std::endl;
 		return ;

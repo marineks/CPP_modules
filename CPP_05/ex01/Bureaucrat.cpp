@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Bureaucrat.cpp                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marine <marine@student.42.fr>              +#+  +:+       +#+        */
+/*   By: msanjuan <msanjuan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/04 11:17:19 by msanjuan          #+#    #+#             */
-/*   Updated: 2022/10/07 23:22:03 by marine           ###   ########.fr       */
+/*   Updated: 2022/10/08 14:59:26 by msanjuan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -144,11 +144,15 @@ void				Bureaucrat::lowerGrade(void)
 
 void				Bureaucrat::signForm(Form &form)
 {
-	if (form.getIsSigned() == true)
-		std::cout << "Bureaucrat " <<  this->getName() << " signed " << form.getName() << std::endl;
-	else
-		std::cout << "Bureaucrat " <<  this->getName() << " couldn't sign " << form.getName() << " because he does not have the right credentials." << std::endl;
-	return ;
+	try
+	{
+		form.beSigned(*this);
+		std::cout << "Bureaucrat " + this->getName() + " signed " + form.getName() << std::endl;
+	}
+	catch(const std::exception& exception)
+	{
+		std::cout << "Bureaucrat " + this->getName() + " couldn't sign " + form.getName() << " because " << exception.what() << std::endl;
+	}
 }
 
 

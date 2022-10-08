@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Form.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marine <marine@student.42.fr>              +#+  +:+       +#+        */
+/*   By: msanjuan <msanjuan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/16 11:05:34 by marine            #+#    #+#             */
-/*   Updated: 2022/10/07 23:21:09 by marine           ###   ########.fr       */
+/*   Updated: 2022/10/08 14:55:11 by msanjuan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -144,20 +144,12 @@ void				Form::setExecGrade(int rank)
 *********************************************************/
 void				Form::beSigned(Bureaucrat & bureaucrat)
 {
-	try
+	if (bureaucrat.getGrade() > this->_signGrade) // Grade 1 is higher in rank than Grade 2
+		throw Bureaucrat::GradeTooLowException();
+	else
 	{
-		if (bureaucrat.getGrade() > this->_signGrade) // Grade 1 is higher in rank than Grade 2
-			throw Bureaucrat::GradeTooLowException();
-		else
-		{
-			this->_isSigned = true;
-			std::cout << bureaucrat.getName() << " is able to sign the Form!" << std::endl;
-		}
-			
-	}
-	catch (Bureaucrat::GradeTooLowException& exception)
-	{
-		std::cerr << exception.what() << std::endl;
+		this->_isSigned = true;
+		std::cout << bureaucrat.getName() << " is able to sign the Form!" << std::endl;
 	}
 	return ;
 }
