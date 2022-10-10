@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marine <marine@student.42.fr>              +#+  +:+       +#+        */
+/*   By: msanjuan <msanjuan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/26 17:22:50 by marine            #+#    #+#             */
-/*   Updated: 2022/09/26 19:48:44 by marine           ###   ########.fr       */
+/*   Updated: 2022/10/10 13:57:55 by msanjuan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,12 +28,6 @@
 #include <iostream>
 #include <ctime>
 #include <cstdlib>
-
-// class Base {public: virtual ~Base(void) {} };
-// class A: public Base {};
-// class B: public Base {};
-// class C: public Base {};
-
 
 Base::~Base() {}
 
@@ -59,7 +53,6 @@ Base::~Base() {}
 	le temps actuel au moment de l'execution du programme (car l'heure change toujours). Il ne doit être appelé qu'une 
 	seule fois, au début du programme.
 
-	Rand() 
 */
 Base	*generate(void)
 {
