@@ -217,5 +217,17 @@ All std::string member functions [here](https://cplusplus.com/reference/string/s
 
 ## Module 06
 
+float fmod(float a, float b) => retourne le reste d'une division de a par b (ici, toujours 1)
+		// instant nerd : difference remainder v. fmod = la façon dont on arrondit
+		/*
+			remainder : x - r * y, où r est le résultat de x/y, arrondi à la valeur entière la plus proche
+			fmod : x _ t * y, où t est le résultat tronqué (aka arrondi vers 0) de x/y
+
+			EXEMPLE : 
+			double x = 5.1, y = 3;
+			double result = remainder(x, y); => output is -0.9 (car 5.1/3 = 1.7, et là on arrondit à 2. Donc 5.1 - 2 * 3 = -0.9)
+			double result2 = fmod(x, y); => output is 2.1
+			Source: https://stackoverflow.com/questions/25734144/difference-between-c-functions-remainder-and-fmod 
+
 ## Module 07
 

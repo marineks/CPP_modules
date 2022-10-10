@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Convert.hpp                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marine <marine@student.42.fr>              +#+  +:+       +#+        */
+/*   By: msanjuan <msanjuan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/25 16:41:38 by marine            #+#    #+#             */
-/*   Updated: 2022/09/25 20:03:01 by marine           ###   ########.fr       */
+/*   Updated: 2022/10/10 11:43:25 by msanjuan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,16 @@
 #include <climits>
 #include <cfloat>
 #include <iomanip>
+#include <stdlib.h>
+
+typedef enum e_types
+{
+	CHAR = 0,
+	INT,
+	FLOAT,
+	DOUBLE,
+	UNSUPPORTED
+}	t_types;
 
 class Convert 
 {
@@ -32,30 +42,27 @@ class Convert
 			Convert& operator=(Convert const& rhs); // affectation
 
 			/* Parametric constructor */
-			Convert(std::string const & input);
+			Convert(std::string const input);
 			
-			/* Other member functions - l stands for literal */
-			char	ltoChar(void);
-			int		ltoInt(void);
-			float	ltoFloat(void);
-			double	ltoDouble(void);
+			/* Conversion functions */
+			bool	isChar(std::string const input);
+			bool	isInt(std::string const input);
+			bool	isFloat(std::string const input);
+			bool	isDouble(std::string const input);
 
-			/* Exceptions */
-			class NonsensicalConversionException : public std::exception {
-				const char* what(void) const throw();
-			};
-
-			class UnprintableException : public std::exception {
-				const char* what(void) const throw();
-			};
-
-			class FormatException : public std::exception {
-				const char* what(void) const throw();
-			};
+			void	displayConversions(void);
+			void	setDisplayFlags(void);
+			void	convertToOtherTypes(void);
 
 	private:
-			bool	_isNbCorrectlyFormatted(const std::string& input) const;
-			double	_input;
+			int		_int;
+			float	_float;
+			double	_double;
+			char	_char;
+			t_types	_type;
+			bool	_isConvertibleInt;
+			bool	_isConvertibleChar;
+			bool	_isPrintableChar;
 };
 
 #endif
