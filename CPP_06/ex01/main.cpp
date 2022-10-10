@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marine <marine@student.42.fr>              +#+  +:+       +#+        */
+/*   By: msanjuan <msanjuan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/25 21:47:20 by marine            #+#    #+#             */
-/*   Updated: 2022/09/26 16:24:01 by marine           ###   ########.fr       */
+/*   Updated: 2022/10/10 12:58:45 by msanjuan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,8 +89,8 @@ int	main(void)
 	std::cout << "Unscrambled string: " << unscrambled->string << std::endl << std::endl;
 	
 	// assurez-vous que le retour de deserialize() est identique au pointeur d’origine.
-	data_ptr.number == unscrambled->number ? std::cout << GREEN << "OK" << RESET << std::endl :  std::cout << RED << "KO" << RESET << std::endl;
-	data_ptr.string == unscrambled->string ? std::cout << GREEN << "OK" << RESET << std::endl :  std::cout << RED << "KO" << RESET << std::endl;
+	std::cout << (data_ptr.number == unscrambled->number ? GREEN "OK" : RED "KO") << RESET << std::endl;
+	std::cout << (data_ptr.string == unscrambled->string ? GREEN "OK" : RED "KO") << RESET << std::endl;
 
 	return (0);
 }
