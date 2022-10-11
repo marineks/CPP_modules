@@ -6,7 +6,7 @@
 /*   By: msanjuan <msanjuan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/27 00:39:58 by marine            #+#    #+#             */
-/*   Updated: 2022/10/11 21:36:42 by msanjuan         ###   ########.fr       */
+/*   Updated: 2022/10/11 22:11:31 by msanjuan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,13 +27,13 @@
 #include <iostream>
 
 template<typename T>
-class Array
+class Array // tableau 
 {
 	public:
 			Array<T>(void);					// default
 			Array<T>(Array<T> const &src);	// copy
 			~Array<T>(void);				// destructor
-			Array<T>		&operator=(Array<T> const &rhs);
+			Array<T>		&operator=(Array<T> const &rhs); // affectation
 
 			/* Parametric constructor */
 			Array<T>(unsigned int n);
@@ -42,13 +42,13 @@ class Array
 			unsigned int	 size(void) const;
 			T				*getContent(void) const;
 			
-			/* Operator overload */
+			/* Other Operator overload */
 			T				&operator[](unsigned int index);
 			
 			
 	private:
-			unsigned int	_n; // nombre d'éléments du tableau
-			T			   *_content;
+			unsigned int	_n; 		// nombre d'éléments du tableau
+			T			   *_content;	// éléments du tableau
 };
 
 
@@ -70,7 +70,7 @@ class InvalidIndexException : public std::exception
 
 /* ---------------- CANONICAL -----------------*/
 template<typename T>
-Array<T>::Array(void) : _n(0), _content(0) {
+Array<T>::Array(void) : _n(0), _content(NULL) {
 	std::cout << "[DEFAULT CONSTRUCTOR] " << CYAN << "An empty array was created" << RESET << std::endl;
 }
 
@@ -119,8 +119,6 @@ Array<T>	&Array<T>::operator=(Array<T> const &rhs)
 *********************************************************/
 template<typename T>
 Array<T>::Array(unsigned int n) : _n(n), _content(new T[n]) {
-	// this->_n = n;
-	// this->_content = new T[n];
 	std::cout << "[PARAMETRIC CONSTRUCTOR] " << GREEN << "An array of size n: " << n << " was created" << RESET << std::endl;
 }
 
