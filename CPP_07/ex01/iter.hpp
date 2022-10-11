@@ -19,9 +19,9 @@ void print(T &y) {
 }
 
 template<typename T>
-void	iter(T *array, int len, void f(T &array))
+void	iter(T *array, size_t len, void f(T &array))
 {
-	for (int i = 0; i < len; i++)
+	for (size_t i = 0; i < len; i++)
 		f(array[i]);
 }
 
