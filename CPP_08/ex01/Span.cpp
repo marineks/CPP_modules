@@ -6,7 +6,7 @@
 /*   By: msanjuan <msanjuan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/12 12:23:24 by msanjuan          #+#    #+#             */
-/*   Updated: 2022/10/12 18:16:32 by msanjuan         ###   ########.fr       */
+/*   Updated: 2022/10/13 00:14:54 by msanjuan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,17 @@ void	Span::addNumber(long int number)
 	if (_stack.size() == _N)
 		throw FullSpanException();
 	_stack.push_back(number);
+}
+
+void	Span::addRange(long int n, long int range)
+{
+	if (_stack.size() == _N)
+		throw FullSpanException();
+	// srand(time(NULL));
+	for (long int i = 0; i < n; i++)
+	{
+		this->addNumber(range + i);
+	}
 }
 
 unsigned int		Span::shortestSpan(void) {

@@ -6,7 +6,7 @@
 /*   By: msanjuan <msanjuan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/12 12:23:26 by msanjuan          #+#    #+#             */
-/*   Updated: 2022/10/12 18:22:45 by msanjuan         ###   ########.fr       */
+/*   Updated: 2022/10/13 00:12:39 by msanjuan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,15 +74,6 @@ int main(void)
 	sameVal2.addNumber(-42);
 	
 	std::cout << sameVal2.shortestSpan() << std::endl; // should be 1
-
-	Span sameVal2(4);
-
-	sameVal2.addNumber(-2);
-	sameVal2.addNumber(-3);
-	sameVal2.addNumber(-24);
-	sameVal2.addNumber(-42);
-	
-	std::cout << sameVal2.shortestSpan() << std::endl; // should be 1
 	
 	// Tests on LONGEST SPAN
 	Span limits(4);
@@ -102,9 +93,14 @@ int main(void)
 	std::cout << signs.longestSpan() << std::endl; // should be 4
 
 	// Tests on a big Span
-	Span big(99999);
+	Span big(10);
 
 	// addnumber plage iterative
+	big.addRange(10, 10);
+
+	
+	
+	std::cout << big.longestSpan() << std::endl; // should be 4
 	
 	return (0);
 }
