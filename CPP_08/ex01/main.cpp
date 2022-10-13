@@ -6,7 +6,7 @@
 /*   By: msanjuan <msanjuan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/12 12:23:26 by msanjuan          #+#    #+#             */
-/*   Updated: 2022/10/13 00:12:39 by msanjuan         ###   ########.fr       */
+/*   Updated: 2022/10/13 10:04:36 by msanjuan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ int main(void)
 		
 		// std::cout << error.shortestSpan() << std::endl; // decomment to trigger
 		error.addNumber(1); // at this point, only one elt in the stack
-		// std::cout << error.longestSpan() << std::endl; // decomment to trigger
+		std::cout << error.longestSpan() << std::endl; // decomment to trigger
 	}
 	catch(const std::exception& e)
 	{ std::cerr << RED << e.what() << RESET << '\n'; }
@@ -81,8 +81,8 @@ int main(void)
 	limits.addNumber(INT32_MAX);
 	limits.addNumber(INT32_MIN);
 	
-	std::cout << limits.shortestSpan() << std::endl; // should be -1
-	std::cout << limits.longestSpan() << std::endl; // should be -1
+	std::cout << limits.shortestSpan() << std::endl; // should be 4294967295
+	std::cout << limits.longestSpan() << std::endl; // should be 4294967295
 
 	Span signs(2);
 
@@ -93,14 +93,22 @@ int main(void)
 	std::cout << signs.longestSpan() << std::endl; // should be 4
 
 	// Tests on a big Span
-	Span big(10);
+	int	size = 42000;
+	Span big(size);
+	std::vector<int> add;
 
-	// addnumber plage iterative
-	big.addRange(10, 10);
-
+	for (int i = 0; i < 10; i++)
+		add.push_back(i);
 	
+	try 
+	{	
+		big.addRange(add.begin(), add.end());
+	}
+	catch(const std::exception& e)
+	{ std::cerr << e.what() << '\n'; }
 	
-	std::cout << big.longestSpan() << std::endl; // should be 4
+	std::cout << big.shortestSpan() << std::endl; // should be 1
+	std::cout << big.longestSpan() << std::endl; // should be size - 1
 	
 	return (0);
 }

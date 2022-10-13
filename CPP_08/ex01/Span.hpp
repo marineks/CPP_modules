@@ -6,7 +6,7 @@
 /*   By: msanjuan <msanjuan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/12 12:22:47 by msanjuan          #+#    #+#             */
-/*   Updated: 2022/10/13 00:16:05 by msanjuan         ###   ########.fr       */
+/*   Updated: 2022/10/13 09:37:14 by msanjuan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ class Span
 				
 				/* Other member functions */
 				void	addNumber(long int	number);
-				void	addRange(long int n, long int range); // plage itérative
+				void	addRange(std::vector<int>::iterator begin, std::vector<int>::iterator end); // plage itérative
 				unsigned int		shortestSpan(void);
 				unsigned int		longestSpan(void);
 
