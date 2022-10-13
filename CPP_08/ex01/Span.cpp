@@ -6,7 +6,7 @@
 /*   By: msanjuan <msanjuan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/12 12:23:24 by msanjuan          #+#    #+#             */
-/*   Updated: 2022/10/13 09:58:59 by msanjuan         ###   ########.fr       */
+/*   Updated: 2022/10/13 10:07:54 by msanjuan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,6 @@ unsigned int		Span::shortestSpan(void) {
 		if ((*(it + 1) - *it) < shortestSpan)
 			shortestSpan = *(it + 1) - *it;
 	}
-	// return (std::abs(shortestSpan));
 	return (shortestSpan);
 }
 
