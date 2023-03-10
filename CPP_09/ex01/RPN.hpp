@@ -3,11 +3,15 @@
 
 #include <iostream>
 #include <stack>
+#include <string>
+#include <ostream>
+#include <cstdlib> // atoi
 
 class RPN
 {
 	private:
-		std::stack<char> _postfix_expr;
+		std::stack<int> _postfix_expr;
+		std::string		_operators;
 	public:
 		/* Forme canonique de Coplien */
 		RPN();
@@ -19,13 +23,16 @@ class RPN
 		RPN(char const *input);
 
 		/* Méthodes */
-		int	resolveEquation();
+		void			resolveEquation();
 
 			/* Accesseurs */
-		std::stack<char>	getPostfixExpr(void);
+		std::stack<int>	getPostfixExpr(void) const;
+		std::string		getOperators() const;
+
+		
 };
 
-
-
+/* Overload supplémentaire */
+std::ostream & operator<<(std::ostream & os, std::stack<int> stack);
 
 #endif
