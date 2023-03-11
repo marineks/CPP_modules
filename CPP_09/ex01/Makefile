@@ -17,8 +17,8 @@ OBJ_DIR = objs/
 #########################################
 #			FLAGS COMPILATION			#
 #########################################
-CFLAGS = -Wall -Werror -Wextra -std=c++98 -g
-CFLAGS += -fsanitize=address -Wno-unused 
+CFLAGS = -Wall -Werror -Wextra -std=c++98 -g3
+# CFLAGS += -fsanitize=address -Wno-unused 
 IFLAGS := -I includes
 #########################################
 #			FILES PATH					#

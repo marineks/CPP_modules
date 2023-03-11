@@ -2,20 +2,15 @@
 
 /* FORME COPLIENNE */
 
-// constructeur par defaut
 RPN::RPN(){};
+RPN::~RPN(){};
 
-// constructeur par copie
 RPN::RPN(const RPN &src)
 {
 	*this = src;
 	return;
 }
 
-// destructeur
-RPN::~RPN(){};
-
-// affectation
 RPN &RPN::operator=(RPN const &rhs)
 {
 	if (this != &rhs)
@@ -35,18 +30,23 @@ RPN::RPN(char const *input)
 
 	if (expr.empty() == true)
 	{
-			std::cout << "Error" << std::endl;
-			return ;
+		std::cout << "Error (inverted expression missing)" << std::endl;
+		return ;
 	}
 
-	// on push char par char dans la stack en faisant des checks
+	// on push_back char par char dans la stack en faisant des checks
 	for (size_t i = 0; i < expr.size(); i++)
 	{
 		if (expr[i] == ' ') // on passe les espaces
 			continue;
 		if (isdigit(expr[i])) // on store les nombres ensemble
 		{
-			this->_postfix_expr.push(int(expr[i]) - 48);
+			this->_postfix_expr.push_back(int(expr[i]) - 48);
+			if (expr[i + 1] && isdigit(expr[i + 1]))
+			{
+				std::cout << "Error (use of number > 10)" << std::endl;
+				return ;
+			}
 		}
 		else if (tokens_handled.find(expr[i]) != std::string::npos) // et les operateurs ensemble
 		{
@@ -54,56 +54,70 @@ RPN::RPN(char const *input)
 		}
 		else // renvoyer erreur si pb de format
 		{
-			std::cout << "Error" << std::endl;
+			std::cout << "Error (not a correct inverted expression)" << std::endl;
 			return ;
 		}
 	}
 	// std::cout << "Numbers : " << _postfix_expr << std::endl;
-	// std::cout << "Operators : " << _operators[0] << " " << _operators[1] << std::endl;
+	// std::cout << "Operators : ";
+	// for (size_t i = 0; i < _operators.size(); i++)
+	// 	std::cout << _operators[i];
+	// std::cout << std::endl;
 	resolveEquation();
 };
 
 void RPN::resolveEquation()
 {
+	if (_postfix_expr.size() < 2)
+	{
+		std::cout << "Error (not a correct inverted expression)" << std::endl;
+		return ;
+	}
+
 	for (size_t i = 0; i < this->getOperators().size(); i++)
 	{
-		int a = _postfix_expr.top();
-		_postfix_expr.pop();
-		int b = _postfix_expr.top();
-		_postfix_expr.pop();
+		int a = _postfix_expr.front();
+		_postfix_expr.pop_front();
+		int b = _postfix_expr.front();
+		_postfix_expr.pop_front();
 
 		switch (this->getOperators()[i])
 			{
 			case '+':
-				_postfix_expr.push(a + b);
+				_postfix_expr.push_front(a + b);
 				break;
 			case '-':
-				_postfix_expr.push(a - b);
+				_postfix_expr.push_front(a - b);
 				break;
 			case '*':
-				_postfix_expr.push(a * b);
+				_postfix_expr.push_front(a * b);
 				break;
 			case '/':
-				_postfix_expr.push(a / b);
+				if (b == 0)
+				{
+					std::cout << "Error (division by zero)" << std::endl;
+					return ;
+				}
+				_postfix_expr.push_front(a / b);
+				// gérer la division par 0
 				break;
 			}
 	}
 	
 	// on print le resultat (normalement la size de la stack est de 1, c'est le résultat)
-	std::cout << "Result is : " << _postfix_expr.top() << std::endl;
+	std::cout << "Result is : " << _postfix_expr.front() << std::endl;
 };
 
-std::stack<int> RPN::getPostfixExpr(void) const { return (this->_postfix_expr); };
+std::deque<int> RPN::getPostfixExpr(void) const { return (this->_postfix_expr); };
 
 std::string RPN::getOperators(void) const { return (this->_operators); };
 
-std::ostream & operator<<(std::ostream & os, std::stack<int> stack)
+std::ostream & operator<<(std::ostream & os, std::deque<int> stack)
 {
     while(!stack.empty()) 
     {
-        os << stack.top() << " ";
-        stack.pop();
+        os << stack.front() << " ";
+        stack.pop_front();
     }
-	// os << std::endl;
     return os;
 }

@@ -12,8 +12,6 @@ int main(int argc, char **argv)
 		{
 			std::cerr << e.what() << '\n';
 		}
-		
-		
 		return (0);
 	}
 	else
@@ -21,5 +19,4 @@ int main(int argc, char **argv)
 		std::cout << "Correct usage is `./RPN <inverted Polish expression>` :] " << std::endl;
 		return (1);
 	}
-	
 }

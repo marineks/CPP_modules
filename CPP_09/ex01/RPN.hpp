@@ -10,7 +10,7 @@
 class RPN
 {
 	private:
-		std::stack<int> _postfix_expr;
+		std::deque<int> _postfix_expr;
 		std::string		_operators;
 	public:
 		/* Forme canonique de Coplien */
@@ -26,13 +26,13 @@ class RPN
 		void			resolveEquation();
 
 			/* Accesseurs */
-		std::stack<int>	getPostfixExpr(void) const;
+		std::deque<int>	getPostfixExpr(void) const;
 		std::string		getOperators() const;
 
 		
 };
 
 /* Overload supplémentaire */
-std::ostream & operator<<(std::ostream & os, std::stack<int> stack);
+std::ostream & operator<<(std::ostream & os, std::deque<int> stack);
 
 #endif
