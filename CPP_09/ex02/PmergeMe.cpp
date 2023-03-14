@@ -2,6 +2,7 @@
 #include <cstdlib> // atoi
 #include <limits> // int max
 #include <cstring> // strcmp
+#include <algorithm> // advance, copy
 
 #define THRESHOLD 7
 // sources pour cette value : 
@@ -24,6 +25,7 @@ PmergeMe &PmergeMe::operator=(PmergeMe const &rhs)
 {
 	if (this != &rhs)
 	{
+		this->_number_vector = rhs._number_vector;
 		this->_number_list = rhs._number_list;
 	}
 	return *this;
@@ -33,13 +35,18 @@ PmergeMe &PmergeMe::operator=(PmergeMe const &rhs)
 
 PmergeMe::PmergeMe(char **input)
 {
-	setNumberList(input);
-	mergeSortVector(_number_list);
-	std::cout << "After : " << _number_list << std::endl;
+	setNumberVector(input);
+	setNumberList(_number_vector);
+	_number_vector = mergeSort(_number_vector);
+	_number_list = mergeSort(_number_list);
+	std::cout << "After  : " << _number_vector << std::endl;
+	for (std::list<int>::iterator it = _number_list.begin(); it != _number_list.end(); it++)
+		std::cout << *it << " ";
+	std::cout << "\n";
+	// // std::cout << "After  : " << _number_list << std::endl;
 };
 
-// TODO : checker les doublons
-void	PmergeMe::setNumberList(char **input)
+void	PmergeMe::setNumberVector(char **input)
 {
 	for (size_t i = 1; input[i]; i++)
 	{
@@ -55,15 +62,37 @@ void	PmergeMe::setNumberList(char **input)
 			std::cout << "Error : exceeds INT_MAX." << std::endl;
 			return ;
 		}
-		_number_list.push_back(element);
+		_number_vector.push_back(element);
 	}
-	std::cout << "Before : " << _number_list << std::endl;
+	std::cout << "Before : " << _number_vector << std::endl;
 };
 
-std::vector<int>	PmergeMe::getNumberList(void) const 
+
+void	PmergeMe::setNumberList(std::vector<int> copy)
+{
+	for (size_t i = 0; i < copy.size(); i++)
+	{
+		_number_list.push_back(copy[i]);
+	}
+};
+
+std::vector<int>	PmergeMe::getNumberVector(void) const 
+{
+	return (this->_number_vector);
+};
+
+std::list<int>	PmergeMe::getNumberList(void) const 
 {
 	return (this->_number_list);
 };
+
+// ###################################################
+// ###################################################
+// ########                                  #########
+// ########            VECTOR                #########
+// ########                                  #########
+// ###################################################
+// ###################################################
 
 bool	PmergeMe::isSorted(std::vector<int> array)
 {
@@ -77,7 +106,7 @@ bool	PmergeMe::isSorted(std::vector<int> array)
 	return (true);
 }
 
-void	PmergeMe::insertionSortVector(std::vector<int>& array)
+std::vector<int>	PmergeMe::insertionSort(std::vector<int>& array)
 {
 	while (isSorted(array) == false)
 	{
@@ -96,43 +125,41 @@ void	PmergeMe::insertionSortVector(std::vector<int>& array)
 			i++;
 		}
 	}
+	return (array);
 }
 
-void	PmergeMe::mergeSortVector(std::vector<int>& array)
+std::vector<int>	PmergeMe::mergeSort(std::vector<int>& array)
 {
-	if (_number_list.size() <= 1) // list already sorted
-		return ;
+	if (array.size() <= 1) // list already sorted
+		return array;
 	
-	if (_number_list.size() <= THRESHOLD)
-	{
-		insertionSortVector(array);
-		return ;
-	}
+	if (_number_vector.size() <= THRESHOLD)
+		return insertionSort(array);
 	
 	// partition the list of numbers in two parts
 	std::vector<int> left_half;
 	std::vector<int> right_half;
+
 	left_half.assign(array.begin(), array.begin() + array.size() / 2);
-	right_half.assign(array.begin() + array.size() / 2 + 1, array.end());
-	
+	right_half.assign(array.begin() + array.size() / 2, array.end());
+
 	// recursively sort the two partitions
-	mergeSortVector(left_half);
-	mergeSortVector(right_half);
+	left_half = mergeSort(left_half);
+	right_half = mergeSort(right_half);
 	
 	// merge them
-	mergeHalves(_number_list, left_half, right_half);
+	return mergeHalves(left_half, right_half);
 		
 };
 
-void	PmergeMe::mergeHalves(std::vector<int>& list, std::vector<int>& left_half, std::vector<int>& right_half)
+std::vector<int>	PmergeMe::mergeHalves(std::vector<int>& left_half, std::vector<int>& right_half)
 {
-	(void) list;
 	std::vector<int> sorted;
 
 	// Merge the halves : store l'élément le plus petit dans le temp vector sorted
 	while (left_half.empty() == false && right_half.empty() == false)
 	{
-		if (left_half.front() < right_half.front())
+		if (left_half.front() <= right_half.front())
 		{
 			sorted.push_back(left_half.front()); // on push la valeur la plus petite
 			left_half.erase(left_half.begin()); // on l'efface du sub array
@@ -156,9 +183,129 @@ void	PmergeMe::mergeHalves(std::vector<int>& list, std::vector<int>& left_half, 
 		sorted.push_back(right_half.front());
 		right_half.erase(right_half.begin());
 	}
+	return sorted;
+};
+
+// ###################################################
+// ###################################################
+// ########                                  #########
+// ########              LIST                #########
+// ########                                  #########
+// ###################################################
+// ###################################################
+
+
+
+bool	PmergeMe::isSorted(std::list<int> array)
+{
+	std::list<int>::iterator it = array.begin();
+	std::list<int>::iterator next_it;
+	while (it != array.end())
+	{
+		next_it = it;
+		next_it++;
+		if (next_it != array.end() && *next_it < *it)
+			return (false);
+		it = next_it;
+	}
+	return (true);
+}
+
+std::list<int>	PmergeMe::insertionSort(std::list<int>& array)
+{
+	while (isSorted(array) == false)
+	{
+		std::list<int>::iterator it = array.begin();
+        size_t i = 0;
+        while (i < array.size())
+        {
+            std::list<int>::iterator next_it = it;
+            next_it++;
+            if (next_it != array.end() && *it > *next_it)
+            {
+                int tmp = *it;
+                *it = *next_it;
+                *next_it = tmp;
+            }
+            i++;
+           it ++;
+        }
+	}
+	return (array);
+}
+
+std::list<int>	PmergeMe::mergeSort(std::list<int>& array)
+{
+	if (array.size() <= 1) // list already sorted
+		return array;
+	
+	if (_number_list.size() <= THRESHOLD)
+		return insertionSort(array);
+	
+	// partition the list of numbers in two parts
+	std::list<int> left_half;
+	std::list<int> right_half;
+
+	std::list<int>::iterator middle = array.begin();
+	std::advance(middle, array.size() / 2);
+	std::copy(array.begin(), middle, std::back_inserter(left_half));
+	std::copy(middle, array.end(), std::back_inserter(right_half));
+
+	// recursively sort the two partitions
+	left_half = mergeSort(left_half);
+	right_half = mergeSort(right_half);
+	
+	// merge them
+	return mergeHalves(left_half, right_half);
+		
+};
+
+std::list<int>	PmergeMe::mergeHalves(std::list<int>& left_half, std::list<int>& right_half)
+{
+	std::list<int> sorted;
+
+	// Merge the halves : store l'élément le plus petit dans le temp list sorted
+	while (left_half.empty() == false && right_half.empty() == false)
+	{
+		if (left_half.front() <= right_half.front())
+		{
+			sorted.push_back(left_half.front()); // on push la valeur la plus petite
+			left_half.erase(left_half.begin()); // on l'efface du sub array
+		}
+		else
+		{
+			sorted.push_back(right_half.front());
+			right_half.erase(right_half.begin());
+		}
+	}
+
+	// Insert all the remaining values into the list sorted
+	while (left_half.empty() == false)
+	{
+		sorted.push_back(left_half.front());
+		left_half.erase(left_half.begin());
+	}
+
+	while (right_half.empty() == false)
+	{
+		sorted.push_back(right_half.front());
+		right_half.erase(right_half.begin());
+	}
+	return sorted;
 };
 
 
+
+
+
+
+
+
+
+
+
+
+// AUTRE
 std::ostream & operator<<(std::ostream & os, std::vector<int> list)
 {
     for (size_t i = 0; i < list.size(); i++)
@@ -167,3 +314,8 @@ std::ostream & operator<<(std::ostream & os, std::vector<int> list)
 	}
     return os;
 };
+
+/* // PRINT A LIST
+for (std::list<int>::iterator it = _number_list.begin(); it != _number_list.end(); it++)
+		std::cout << *it << " ";
+*/
