@@ -11,6 +11,7 @@ int main(int argc, char **argv)
 	else
 	{
 		PmergeMe test(argv);
+		std::cout << test;
 		return (0);
 	}
 }

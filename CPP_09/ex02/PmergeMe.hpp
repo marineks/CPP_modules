@@ -6,6 +6,7 @@
 #include <list>
 #include <string>
 #include <ostream>
+#include <ctime>
 
 class PmergeMe
 {
@@ -42,6 +43,6 @@ class PmergeMe
 		std::list<int>		getNumberList(void) const;
 };
 
-std::ostream & operator<<(std::ostream & os, std::vector<int> list);
+std::ostream & operator<<(std::ostream & os, PmergeMe sort);
 
 #endif

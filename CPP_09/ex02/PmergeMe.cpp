@@ -3,6 +3,8 @@
 #include <limits> // int max
 #include <cstring> // strcmp
 #include <algorithm> // advance, copy
+#include <iomanip> // setprecision
+#include <sys/time.h>
 
 #define THRESHOLD 7
 // sources pour cette value : 
@@ -37,13 +39,6 @@ PmergeMe::PmergeMe(char **input)
 {
 	setNumberVector(input);
 	setNumberList(_number_vector);
-	_number_vector = mergeSort(_number_vector);
-	_number_list = mergeSort(_number_list);
-	std::cout << "After  : " << _number_vector << std::endl;
-	for (std::list<int>::iterator it = _number_list.begin(); it != _number_list.end(); it++)
-		std::cout << *it << " ";
-	std::cout << "\n";
-	// // std::cout << "After  : " << _number_list << std::endl;
 };
 
 void	PmergeMe::setNumberVector(char **input)
@@ -64,7 +59,6 @@ void	PmergeMe::setNumberVector(char **input)
 		}
 		_number_vector.push_back(element);
 	}
-	std::cout << "Before : " << _number_vector << std::endl;
 };
 
 
@@ -85,6 +79,42 @@ std::list<int>	PmergeMe::getNumberList(void) const
 {
 	return (this->_number_list);
 };
+
+std::ostream & operator<<(std::ostream & os, PmergeMe sort)
+{
+	std::string concl1 = "Time to process a range of ";
+	std::string concl2 = " elements with std::vector<int> : ";
+	std::string concl3 = " elements with std::list<int>   : ";
+	std::vector<int> vect = sort.getNumberVector();
+	std::list<int>	 list = sort.getNumberList();
+	
+	os << "Before : ";
+
+	for (size_t i = 0; i < vect.size(); i++)
+		os << vect[i] << " ";
+	os << "\n";
+
+	struct timeval start;
+	struct timeval end;
+	gettimeofday(&start, NULL);
+	vect = sort.mergeSort(vect);
+	gettimeofday(&end, NULL);
+
+	os << "After  : ";
+	for (size_t i = 0; i < vect.size(); i++)
+		os << vect[i] << " ";
+	os << "\n";
+
+	std::cout << concl1 << vect.size() << concl2 << end.tv_usec - start.tv_usec << " us\n";
+
+	gettimeofday(&start, NULL);
+	list = sort.mergeSort(list);
+	gettimeofday(&end, NULL);
+	std::cout << concl1 << list.size() << concl3 << end.tv_usec - start.tv_usec << " us\n" ;
+	
+    return os;
+};
+
 
 // ###################################################
 // ###################################################
@@ -293,29 +323,3 @@ std::list<int>	PmergeMe::mergeHalves(std::list<int>& left_half, std::list<int>& 
 	}
 	return sorted;
 };
-
-
-
-
-
-
-
-
-
-
-
-
-// AUTRE
-std::ostream & operator<<(std::ostream & os, std::vector<int> list)
-{
-    for (size_t i = 0; i < list.size(); i++)
-	{
-		os << list[i] << " ";
-	}
-    return os;
-};
-
-/* // PRINT A LIST
-for (std::list<int>::iterator it = _number_list.begin(); it != _number_list.end(); it++)
-		std::cout << *it << " ";
-*/
