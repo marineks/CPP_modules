@@ -23,6 +23,8 @@ class BitcoinExchange
 		BitcoinExchange(char const *input);
 
 		/* Méthodes */
+		bool	isDateCorrect(std::string line);
+		bool	isValueCorrect(std::string line);
 		
 		/* Accesseurs */
 		
