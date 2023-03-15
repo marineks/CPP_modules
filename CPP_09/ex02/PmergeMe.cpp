@@ -94,23 +94,27 @@ std::ostream & operator<<(std::ostream & os, PmergeMe sort)
 		os << vect[i] << " ";
 	os << "\n";
 
-	struct timeval start;
-	struct timeval end;
-	gettimeofday(&start, NULL);
+	struct timeval start_time;
+	struct timeval end_time;
+	gettimeofday(&start_time, NULL);
 	vect = sort.mergeSort(vect);
-	gettimeofday(&end, NULL);
+	gettimeofday(&end_time, NULL);
 
 	os << "After  : ";
 	for (size_t i = 0; i < vect.size(); i++)
 		os << vect[i] << " ";
 	os << "\n";
 
-	std::cout << concl1 << vect.size() << concl2 << end.tv_usec - start.tv_usec << " us\n";
+	double elapsed_time = (end_time.tv_sec - start_time.tv_sec) * 1.0e6 + (end_time.tv_usec - start_time.tv_usec);
+	os << concl1 << vect.size() << concl2 << std::fixed << std::setprecision(6) << elapsed_time/1000000.0 << " seconds (" << std::setprecision(0) << elapsed_time << " in us)\n";
 
-	gettimeofday(&start, NULL);
+	
+	gettimeofday(&start_time, NULL);
 	list = sort.mergeSort(list);
-	gettimeofday(&end, NULL);
-	std::cout << concl1 << list.size() << concl3 << end.tv_usec - start.tv_usec << " us\n" ;
+	gettimeofday(&end_time, NULL);
+	
+	elapsed_time = (end_time.tv_sec - start_time.tv_sec) * 1.0e6 + (end_time.tv_usec - start_time.tv_usec);
+	os << concl1 << list.size() << concl3 << std::fixed << std::setprecision(6) << elapsed_time/1000000.0 << " seconds (" << std::setprecision(0) << elapsed_time << " in us)\n";
 	
     return os;
 };

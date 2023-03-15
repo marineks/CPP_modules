@@ -1,4 +1,6 @@
 #include "PmergeMe.hpp"
+#include <sys/time.h>
+#include <iomanip>
 
 int main(int argc, char **argv)
 {
@@ -12,6 +14,7 @@ int main(int argc, char **argv)
 	{
 		PmergeMe test(argv);
 		std::cout << test;
+
 		return (0);
 	}
 }
