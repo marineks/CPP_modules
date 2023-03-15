@@ -48,14 +48,14 @@ void	PmergeMe::setNumberVector(char **input)
 		long int element = atol(input[i]);
 		if (element == 0 && strcmp(input[i], "0") != 0){
 			std::cout << "Error : this is not a correctly formatted integer." << std::endl;
-			return ;
+			throw PmergeMe::FormatException();
 		}
 		if (element < 0) {
 			std::cout << "Error : there is an int < 0 in this sequence." << std::endl;
-			return ;
+			throw PmergeMe::FormatException();
 		} else if (element > std::numeric_limits<int>::max()) {
 			std::cout << "Error : exceeds INT_MAX." << std::endl;
-			return ;
+			throw PmergeMe::FormatException();
 		}
 		_number_vector.push_back(element);
 	}
@@ -119,6 +119,10 @@ std::ostream & operator<<(std::ostream & os, PmergeMe sort)
     return os;
 };
 
+const char * 	PmergeMe::FormatException::what (void) const throw() 
+{
+	return "Incorrect format (for more specifications see above).";
+}
 
 // ###################################################
 // ###################################################
@@ -128,10 +132,19 @@ std::ostream & operator<<(std::ostream & os, PmergeMe sort)
 // ###################################################
 // ###################################################
 
+
+/*
+On the difference of performance between std::vector and std::list :
+https://stackoverflow.com/questions/2209224/vector-vs-list-in-stl
+https://cppbenchmarks.wordpress.com/2020/08/25/benchmarking-stdvector-and-stdlist-sorting-performance/
+https://stackoverflow.com/questions/8481234/performance-gap-between-sorting-a-list-and-a-vector-of-structs-c
+*/
+
+
 bool	PmergeMe::isSorted(std::vector<int> array)
 {
 	size_t i = 0;
-	while (i < array.size() - 2)
+	while (i < array.size() - 1)
 	{
 		if (array[i + 1] && array[i] > array[i + 1])
 			return (false);
@@ -146,7 +159,7 @@ std::vector<int>	PmergeMe::insertionSort(std::vector<int>& array)
 	{
 		std::vector<int>::iterator it = array.begin();
 		size_t i = 0;
-		while (i < array.size())
+		while (i < array.size() - 1)
 		{
 			if (it[i + 1] && it[i] > it[i + 1])
 			{
@@ -162,6 +175,15 @@ std::vector<int>	PmergeMe::insertionSort(std::vector<int>& array)
 	return (array);
 }
 
+/*
+Ressources
+https://cppsecrets.com/users/1039649505048495348575464115971151161149746979946105110/C00-Merge-Sort.php
+https://www.codingninjas.com/codestudio/library/sorting-by-combining-insertion-sort-and-merge-sort-algorithms
+https://stackoverflow.com/questions/15057287/combining-mergesort-with-insertion-sort-to-make-it-more-efficient
+https://codereview.stackexchange.com/questions/243797/merge-sort-using-vector-c
+https://codereview.stackexchange.com/questions/167680/merge-sort-implementation-with-vectors
+
+*/
 std::vector<int>	PmergeMe::mergeSort(std::vector<int>& array)
 {
 	if (array.size() <= 1) // list already sorted

@@ -41,6 +41,13 @@ class PmergeMe
 		void				setNumberList(std::vector<int> copy);
 		std::vector<int>	getNumberVector(void) const;
 		std::list<int>		getNumberList(void) const;
+
+		/* Custom exception */
+		class FormatException : public std::exception
+		{
+			public : 
+					const char * 	what (void) const throw();
+		};
 };
 
 std::ostream & operator<<(std::ostream & os, PmergeMe sort);
