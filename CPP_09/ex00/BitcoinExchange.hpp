@@ -6,7 +6,6 @@
 #include <string>
 #include <ostream>
 
-
 class BitcoinExchange
 {
 	private:
@@ -23,20 +22,9 @@ class BitcoinExchange
 		BitcoinExchange(char const *input);
 
 		/* Méthodes */
-		bool	isDateCorrect(std::string line);
-		bool	isValueCorrect(std::string line);
-		
-		/* Accesseurs */
-		
-
-		/* Custom exception */
-		class FormatException : public std::exception
-		{
-			public : 
-					const char * 	what (void) const throw();
-		};
+		std::string	isDateCorrect(std::string line);
+		float		isValueCorrect(std::string line);
+		void		calculateUpdatedValue(std::stringstream&	buffer);
 };
-
-std::ostream & operator<<(std::ostream & os, BitcoinExchange sort);
 
 #endif

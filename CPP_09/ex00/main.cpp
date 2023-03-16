@@ -2,24 +2,14 @@
 
 int main(int argc, char **argv)
 {
-	//récupérer valeurs
 	if (argc != 2)
 	{
-		std::cout << "" << std::endl;
+		std::cout << "Correct usage is : ./btc <input db>" << std::endl;
 		return (1);
 	}
 	else
 	{
-		try
-		{
-			BitcoinExchange test(argv[1]);
-		}
-		catch(const std::exception& e)
-		{
-			std::cerr << e.what() << '\n';
-		}
-		
-
+		BitcoinExchange test(argv[1]);
 		return (0);
 	}
 }

@@ -3,7 +3,6 @@
 #include <sstream> // stringstream
 #include <cstdlib> // atof
 #include <iomanip> // setprecision
-#include <regex>
 
 /* FORME COPLIENNE */
 
@@ -25,13 +24,9 @@ BitcoinExchange &BitcoinExchange::operator=(BitcoinExchange const &rhs)
 	return *this;
 };
 
-/*
-Ressources :
-https://stackoverflow.com/questions/132358/how-to-read-file-content-into-istringstream
-*/
 BitcoinExchange::BitcoinExchange(char const *input)
 {
-	(void)input;
+	// open data.csv
 	std::stringstream	buffer;
 	std::ifstream		csv_file("./data.csv");
 
@@ -42,8 +37,7 @@ BitcoinExchange::BitcoinExchange(char const *input)
 		std::cout << "Error : could not open the csv file.\n";
 	}
 
-	// parse and put in map container
-	std::string input_data = buffer.str();
+	// parse csv and put in map container
 	std::string line;
 	while (std::getline(buffer, line))
 	{
@@ -56,77 +50,124 @@ BitcoinExchange::BitcoinExchange(char const *input)
 
 		_csv_db.insert(std::pair<std::string, float>(key, exchange_rate));
 	}
-
+	
 	buffer.clear();
-	line.clear();
 	std::ifstream		file(input);
 
-	// // retrieve contents of the file
-	if (file)
-	{
+	// retrieve contents of the user's file
+	if (file) {
 		buffer << file.rdbuf();
 		file.close();
 	} else {
 		std::cout << "Error : could not open the file.\n";
 	}
 
-	// do the bitcoin exchange for each line (error handling and exec)
-	while (std::getline(buffer, line))
-	{
-		std::string date;
-		std::string val;
-
-		if (line == "date | value")
-			continue;
-		if ((date = isDateCorrect(line)) == false)
-			std::cout << "Error : incorrect format (date)" << std::endl;
-		if (line.find("|") == std::string::npos)
-			std::cout << "Error : incorrect format (missing pipe)" << std::endl;
-		if ((val = isValueCorrect(line)) == false)
-			std::cout << "Error : incorrect format (value)" << std::endl;
-		else
-		{
-			// date
-			// val
-			// use f lowerbound and decrement by one
-		}
-	}
-
+	calculateUpdatedValue(buffer);
 };
 
-bool	BitcoinExchange::isDateCorrect(std::string line)
+std::string	BitcoinExchange::isDateCorrect(std::string line)
 {
-	std::regex date_regex("\\d{4}-\\d{2}-\\d{2}");
 	std::string date;
 
 	date = (line.find_first_of(" ") != std::string::npos) ?
 		date.assign(line, 0, line.find_first_of(" "))
 		: date.assign(line, 0, std::string::npos);
 
-	if (std::regex_match(date, date_regex))
-		return (true);
-	else
-		return (false);
-	// TODO : return la val et NULL si pas bon
+	if (date.size() != 10)
+		return "";
+	
+	size_t i = 0;
+	while (i < 4)
+	{
+		if (!isdigit(date[i]))
+			return "";
+		i++;
+	}
+	if (date[i] != '-')
+		return "";
+	i++;
+	while (i < 7)
+	{
+		if (!isdigit(date[i]))
+			return "";
+		i++;
+	}
+	if (date[i] != '-')
+		return "";
+	i++;
+	while (i < 10)
+	{
+		if (!isdigit(date[i]))
+			return "";
+		i++;
+	}
+	return (date);
 }
 
-bool	BitcoinExchange::isValueCorrect(std::string line)
+float	BitcoinExchange::isValueCorrect(std::string line)
 {
 	std::string val;
-	val.assign(line, line.find("|") + 1, std::string::npos);
+	if (val.find("|") + 1 != std::string::npos)
+		val.assign(line, line.find("|") + 1, std::string::npos);
 	
-	// TODO : return la val et NULL si pas bon
+	// gestion de la virgule
+	if (val.find(",") != std::string::npos)
+		val.replace(val.find(","), 1, ".");
 
+	float bitcoins = atof(val.c_str());
+	return (bitcoins);
 }
 
-std::ostream & operator<<(std::ostream & os, BitcoinExchange sort)
+// do the bitcoin exchange for each line (error handling and exec)
+void	BitcoinExchange::calculateUpdatedValue(std::stringstream& buffer)
 {
-	(void) sort;
-    return os;
-};
+	std::string line;
+	
+	while (std::getline(buffer, line))
+	{
+		std::string date;
+		float val;
 
-const char * 	BitcoinExchange::FormatException::what (void) const throw() 
-{
-	return "Incorrect format (for more specifications see above).";
+		if (line == "date | value")
+			continue;
+		if (line.find("|") == std::string::npos)
+			std::cout << "Error : incorrect format (missing pipe)" << std::endl;
+		else 
+		{
+			date = isDateCorrect(line);
+			val = isValueCorrect(line);
+
+			if (date.empty() == true)
+				std::cout << "Error : incorrect format (date)" << std::endl;
+			else if (val == 0.0) // means no conversion can be performed
+				std::cout << "Error : incorrect format (value)" << std::endl;
+			else if (val < 0)
+				std::cout << "Error : not a positive number." << std::endl;
+			else if (val > 1000 )
+				std::cout << "Error : too large a number (> 1000)" << std::endl;
+			else
+			{
+				// chercher la bonne date par la key
+				std::map<std::string, float>::iterator it = _csv_db.find(date);
+				if (it != _csv_db.end())
+				{
+					// print val * exchange rate
+					std::cout << date << " => " << val << " = " << val * it->second << std::endl; 
+				}
+				else
+				{
+					std::map<std::string, float>::iterator closest_date = _csv_db.lower_bound(date);
+					if (closest_date != _csv_db.begin())
+					{
+						closest_date--;
+						std::cout << date << " (closest date [" << closest_date->first << "]) => " << val << " = " << val * closest_date->second << std::endl;
+					}
+					else
+					{
+						std::cout << "Error : the date you're looking for is older than our eldest date." << std::endl;
+					}
+				}
+			}
+		}
+	}
 }
-
