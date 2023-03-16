@@ -42,11 +42,6 @@ RPN::RPN(char const *input)
 		if (isdigit(expr[i])) // on store les nombres ensemble
 		{
 			this->_postfix_expr.push_back(int(expr[i]) - 48);
-			if (expr[i + 1] && isdigit(expr[i + 1]))
-			{
-				std::cout << "Error (use of number > 10)" << std::endl;
-				return ;
-			}
 		}
 		else if (tokens_handled.find(expr[i]) != std::string::npos) // et les operateurs ensemble
 		{
@@ -58,11 +53,11 @@ RPN::RPN(char const *input)
 			return ;
 		}
 	}
-	// std::cout << "Numbers : " << _postfix_expr << std::endl;
-	// std::cout << "Operators : ";
-	// for (size_t i = 0; i < _operators.size(); i++)
-	// 	std::cout << _operators[i];
-	// std::cout << std::endl;
+	std::cout << "Numbers : " << _postfix_expr << std::endl;
+	std::cout << "Operators : ";
+	for (size_t i = 0; i < _operators.size(); i++)
+		std::cout << _operators[i];
+	std::cout << std::endl;
 	resolveEquation();
 };
 
@@ -71,6 +66,12 @@ void RPN::resolveEquation()
 	if (_postfix_expr.size() < 2)
 	{
 		std::cout << "Error (not a correct inverted expression)" << std::endl;
+		return ;
+	}
+
+	if (_postfix_expr.size() - this->getOperators().size() != 1)
+	{
+		std::cout << "Error" << std::endl;
 		return ;
 	}
 
@@ -84,12 +85,18 @@ void RPN::resolveEquation()
 		switch (this->getOperators()[i])
 			{
 			case '+':
+				std::cout << "a + b " << a << " " << b << std::endl;
+				std::cout << a + b << std::endl;
 				_postfix_expr.push_front(a + b);
 				break;
 			case '-':
+				std::cout << "a - b " << a << " " << b << std::endl;
+				std::cout << a - b << std::endl;
 				_postfix_expr.push_front(a - b);
 				break;
 			case '*':
+				std::cout << "a * b " << a << " " << b << std::endl;
+				std::cout << a * b << std::endl;
 				_postfix_expr.push_front(a * b);
 				break;
 			case '/':
@@ -98,6 +105,8 @@ void RPN::resolveEquation()
 					std::cout << "Error (division by zero)" << std::endl;
 					return ;
 				}
+				std::cout << "a / b " << a << " " << b << std::endl;
+				std::cout << a / b  << std::endl;
 				_postfix_expr.push_front(a / b);
 				// gérer la division par 0
 				break;
