@@ -45,7 +45,8 @@ RPN::RPN(char const *input)
 		}
 		else if (tokens_handled.find(expr[i]) != std::string::npos) // et les operateurs ensemble
 		{
-			this->_operators += expr[i];
+			this->_operators = expr[i]; // +=
+			resolveEquation();
 		}
 		else // renvoyer erreur si pb de format
 		{
@@ -53,12 +54,13 @@ RPN::RPN(char const *input)
 			return ;
 		}
 	}
-	std::cout << "Numbers : " << _postfix_expr << std::endl;
-	std::cout << "Operators : ";
-	for (size_t i = 0; i < _operators.size(); i++)
-		std::cout << _operators[i];
-	std::cout << std::endl;
-	resolveEquation();
+
+	if (_postfix_expr.size() > 1)
+	{
+		std::cout << "Error" << std::endl;
+		return ;
+	}
+	std::cout << "Result is : " << _postfix_expr.front() << std::endl;
 };
 
 void RPN::resolveEquation()
@@ -69,52 +71,31 @@ void RPN::resolveEquation()
 		return ;
 	}
 
-	if (_postfix_expr.size() - this->getOperators().size() != 1)
-	{
-		std::cout << "Error" << std::endl;
-		return ;
-	}
+	int b = _postfix_expr.back();
+	_postfix_expr.pop_back();
+	int a = _postfix_expr.back();
+	_postfix_expr.pop_back();
 
-	for (size_t i = 0; i < this->getOperators().size(); i++)
+	switch (this->getOperators()[0])
 	{
-		int a = _postfix_expr.front();
-		_postfix_expr.pop_front();
-		int b = _postfix_expr.front();
-		_postfix_expr.pop_front();
-
-		switch (this->getOperators()[i])
-			{
-			case '+':
-				std::cout << "a + b " << a << " " << b << std::endl;
-				std::cout << a + b << std::endl;
-				_postfix_expr.push_front(a + b);
-				break;
-			case '-':
-				std::cout << "a - b " << a << " " << b << std::endl;
-				std::cout << a - b << std::endl;
-				_postfix_expr.push_front(a - b);
-				break;
-			case '*':
-				std::cout << "a * b " << a << " " << b << std::endl;
-				std::cout << a * b << std::endl;
-				_postfix_expr.push_front(a * b);
-				break;
-			case '/':
-				if (b == 0)
-				{
-					std::cout << "Error (division by zero)" << std::endl;
-					return ;
-				}
-				std::cout << "a / b " << a << " " << b << std::endl;
-				std::cout << a / b  << std::endl;
-				_postfix_expr.push_front(a / b);
-				// gérer la division par 0
-				break;
-			}
+	case '+':
+		_postfix_expr.push_back(a + b);
+		break;
+	case '-':
+		_postfix_expr.push_back(a - b);
+		break;
+	case '*':
+		_postfix_expr.push_back(a * b);
+		break;
+	case '/':
+		if (b == 0)
+		{
+			std::cout << "Error (division by zero)" << std::endl;
+			return ;
+		}
+		_postfix_expr.push_back(a / b);
+		break;
 	}
-	
-	// on print le resultat (normalement la size de la stack est de 1, c'est le résultat)
-	std::cout << "Result is : " << _postfix_expr.front() << std::endl;
 };
 
 std::deque<int> RPN::getPostfixExpr(void) const { return (this->_postfix_expr); };
