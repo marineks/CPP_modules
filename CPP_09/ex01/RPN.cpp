@@ -43,9 +43,9 @@ RPN::RPN(char const *input)
 		{
 			this->_postfix_expr.push_back(int(expr[i]) - 48);
 		}
-		else if (tokens_handled.find(expr[i]) != std::string::npos) // et les operateurs ensemble
+		else if (tokens_handled.find(expr[i]) != std::string::npos) // dès qu'on a un operateur on resout
 		{
-			this->_operators = expr[i]; // +=
+			this->_operators = expr[i];
 			resolveEquation();
 		}
 		else // renvoyer erreur si pb de format
